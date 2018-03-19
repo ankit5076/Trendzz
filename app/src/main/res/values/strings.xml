@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Trending</string>
+
+    <string name="no_network">Network not available</string>
+    <string name="slow_network">Slow internet connection</string>
+    <string name="double_quote">\"</string>
+    <string name="quote_msg">\"%s\"</string>
+
+
+</resources>
