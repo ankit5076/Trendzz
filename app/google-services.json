@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "340781226627",
+    "firebase_url": "https://trending-197008.firebaseio.com",
+    "project_id": "trending-197008",
+    "storage_bucket": "trending-197008.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340781226627:android:4f91ca9a0ee8cfea",
+        "android_client_info": {
+          "package_name": "com.trends.trending"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340781226627-mjtpu60eeq5393jg9ldlb2tvr62spp7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhnqoVU65dKaFU3-D8B8aB0wV3ZA58Yvg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
