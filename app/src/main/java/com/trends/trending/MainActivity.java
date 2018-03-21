@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         //mButton =  findViewById(R.id.quoteAct);
 
-        Toast.makeText(this, "welcome", Toast.LENGTH_SHORT).show();
-
         VideoRepository videoRepository = new VideoRepository();
         Parent parent = videoRepository.getSearchResults(KEY_BOLLYWOOD_TRAILERS);
         if (parent != null) {
