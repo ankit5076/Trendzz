@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         // comments
         // comments
+        Toast.makeText(this, "welcome", Toast.LENGTH_SHORT).show();
 
         VideoRepository videoRepository = new VideoRepository();
         Parent parent = videoRepository.getSearchResults(KEY_BOLLYWOOD_TRAILERS);
