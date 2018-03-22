@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         //mButton =  findViewById(R.id.quoteAct);
 
+
+
         VideoRepository videoRepository = new VideoRepository();
         Parent parent = videoRepository.getSearchResults(KEY_BOLLYWOOD_TRAILERS);
         if (parent != null) {
