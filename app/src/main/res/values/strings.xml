@@ -1,10 +1,23 @@
 <resources>
-    <string name="app_name">Trending</string>
 
+    <!--Common message-->
+
+    <string name="app_name">Trending</string>
     <string name="no_network">Network not available</string>
     <string name="slow_network">Slow internet connection</string>
     <string name="double_quote">\"</string>
     <string name="quote_msg">\"%s\"</string>
+
+
+    <!--Video Category list-->
+    
+    <string-array name="video_category">
+
+    </string-array>
+
+    <!--Channel ID's-->
+
+
 
 
 </resources>
