@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.trends.trending.R;
 import com.trends.trending.utils.ShadowTransformer;
 import com.trends.trending.adapter.QuotePagerAdapter;
@@ -41,7 +42,7 @@ public class FamousQuote extends AppCompatActivity {
     //    ButterKnife.bind(this);
         mViewPager = findViewById(R.id.viewPager);
         mCardAdapter = new QuotePagerAdapter(FamousQuote.this);
-        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("quotes");
         mFirebaseHelper = new FirebaseHelper(mFirebaseDatabase, FamousQuote.this);
 
         if(NetworkHelper.hasNetworkAccess(this))
@@ -51,32 +52,46 @@ public class FamousQuote extends AppCompatActivity {
     }
 
     private void fetchQuote() {
-        mFirebaseDatabase.addChildEventListener(new ChildEventListener() {
+
+        mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
                 displayData();
             }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-                displayData();
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-                displayData();
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-                displayData();
-            }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: ");
+
             }
         });
+//
+//        mFirebaseDatabase.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
+//                displayData();
+//            }
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
+//                displayData();
+//            }
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
+//                displayData();
+//            }
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
+//                displayData();
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.d(TAG, "onCancelled: ");
+//            }
+//        });
     }
 
     private void displayData(){
