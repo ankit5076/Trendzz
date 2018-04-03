@@ -1,5 +1,6 @@
 package com.trends.trending.service;
 
+import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.model.youtube.Parent;
 
 import retrofit2.Call;
@@ -26,10 +27,10 @@ public interface VideoService {
             .build();
 
     @GET(SEARCH)
-    Call<Parent> searchResults(@Query("part") String part,
-                               @Query("q") String search,
-                               @Query("maxResults") int resultsPerPage,
-                               @Query("key") String apiKey);
+    Call<SearchParent> searchResults(@Query("part") String part,
+                                     @Query("q") String search,
+                                     @Query("maxResults") int resultsPerPage,
+                                     @Query("key") String apiKey);
 
     @GET(TRENDING)
     Call<Parent> trendingVideos(@Query("part") String part,
