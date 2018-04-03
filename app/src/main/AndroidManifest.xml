@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.FamousQuote" />
-        <activity android:name=".DummyUploadQuote" />
-        <service android:name=".repository.VideoRepository"/>
+        <activity android:name=".DummyUploadQuote" />\
+        <service android:name="com.trends.trending.repository.VideoRepository" />
     </application>
 
 </manifest>
