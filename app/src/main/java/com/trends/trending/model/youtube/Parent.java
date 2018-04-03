@@ -13,8 +13,6 @@ public class Parent implements Parcelable {
 
     private List<Item> items = null;
 
-
-
     public List<Item> getItems() {
         return items;
     }
@@ -37,11 +35,11 @@ public class Parent implements Parcelable {
     }
 
     protected Parent(Parcel in) {
-        this.items = new ArrayList<Item>();
-        in.readList(this.items, Item.class.getClassLoader());
+        this.items = new ArrayList<>();
+        in.readList(this.items, SearchItem.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Parent> CREATOR = new Parcelable.Creator<Parent>() {
+    public static final Creator<Parent> CREATOR = new Creator<Parent>() {
         @Override
         public Parent createFromParcel(Parcel source) {
             return new Parent(source);
