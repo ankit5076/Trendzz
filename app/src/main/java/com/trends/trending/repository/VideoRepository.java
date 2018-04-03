@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.VideoService;
 
@@ -39,6 +41,7 @@ public class VideoRepository extends IntentService {
 
     public VideoRepository() {
         super("Background service");
+        Log.d(TAG, "VideoRepository: ");
     }
 
     @Override
@@ -49,11 +52,12 @@ public class VideoRepository extends IntentService {
             receiver = intent.getParcelableExtra(KEY_RECEIVER);
             String methodName = intent.getStringExtra(KEY_INTENT);
             Bundle bundle = new Bundle();
+            Log.d(TAG, "onHandleIntent:::: "+methodName);
             switch (methodName)
             {
                 case VAL_SEARCH:
                     String search = intent.getStringExtra(KEY_SEARCH);
-                    Parent parent = getSearchResults(search);
+                    SearchParent parent = getSearchResults(search);
                     bundle.putParcelable(KEY_PARENT,parent);
                     receiver.send(1,bundle);
                     break;
@@ -83,9 +87,9 @@ public class VideoRepository extends IntentService {
 
     }
 
-    public Parent getSearchResults(String search){
+    public SearchParent getSearchResults(String search){
         VideoService videoService = VideoService.retrofit.create(VideoService.class);
-        Call<Parent> call = videoService.searchResults
+        Call<SearchParent> call = videoService.searchResults
                 (KEY_PART,search, KEY_RESULTS_PER_PAGE, KEY_API);
         return getResult(call);
     }
@@ -96,19 +100,19 @@ public class VideoRepository extends IntentService {
         Call<Parent> call = videoService.trendingVideos
                 (KEY_PART, KEY_CHART, KEY_COUNTRY_CODE, KEY_RESULTS_PER_PAGE, KEY_API);
 
-//        call.enqueue(new Callback<Parent>() {
+//        call.enqueue(new Callback<SearchParent>() {
 //            @Override
-//            public void onResponse(Call<Parent> call, Response<Parent> response) {
+//            public void onResponse(Call<SearchParent> call, Response<SearchParent> response) {
 //                parent = response.body();
 //            }
 //
 //            @Override
-//            public void onFailure(Call<Parent> call, Throwable t) {
+//            public void onFailure(Call<SearchParent> call, Throwable t) {
 //                parent = null;
 //            }
 //        });
 
-        return getResult(call);
+        return getResultTrending(call);
     }
 
     public Parent getChannelPlaylists(String channelId){
@@ -118,7 +122,7 @@ public class VideoRepository extends IntentService {
                 (KEY_PART, channelId, KEY_RESULTS_PER_PAGE, KEY_API);
 
 
-        return getResult(call);
+        return getResultTrending(call);
     }
 
     public Parent getPlaylistVideos(String playlistId){
@@ -127,13 +131,27 @@ public class VideoRepository extends IntentService {
         Call<Parent> call = videoService.playlistsVideos
                 (KEY_PART, playlistId, KEY_RESULTS_PER_PAGE, KEY_API);
 
-        return getResult(call);
+        return getResultTrending(call);
     }
 
-    public Parent getResult(Call<Parent> call){
+    public SearchParent getResult(Call<SearchParent> call){
         try {
+            //Log.d(TAG, "getResult: "+call.execute().body());
             return call.execute().body();
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException e) {
+            Log.d(TAG, "getResultc: "+e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // TODO: 4/3/2018 try to use generic template to optimize code
+    public Parent getResultTrending(Call<Parent> call){
+        try {
+            //Log.d(TAG, "getResult: "+call.execute().body());
+            return call.execute().body();
+        } catch (IOException | IllegalStateException e) {
+            Log.d(TAG, "getResultc: "+e.getMessage());
             e.printStackTrace();
         }
         return null;
