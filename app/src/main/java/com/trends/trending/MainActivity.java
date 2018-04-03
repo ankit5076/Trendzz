@@ -14,12 +14,11 @@ import com.trends.trending.ui.FamousQuote;
 
 import butterknife.ButterKnife;
 
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_BOLLYWOOD_TRAILERS;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_PLAYLIST_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_SEARCH;
-import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
+import static com.trends.trending.utils.Keys.VideoInfo.VAL_PLAYLIST_VIDEOS;
 
 public class MainActivity extends AppCompatActivity implements ReturnReceiver.Receiver {
 
@@ -40,8 +39,13 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 
         Intent parent1 = new Intent(this, VideoRepository.class);
         parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
-        parent1.putExtra(KEY_INTENT, VAL_SEARCH);
-        parent1.putExtra(KEY_SEARCH, KEY_BOLLYWOOD_TRAILERS);
+        //parent1.putExtra(KEY_INTENT, VAL_SEARCH);
+        //parent1.putExtra(KEY_SEARCH, KEY_BOLLYWOOD_TRAILERS);
+        //parent1.putExtra(KEY_INTENT, VAL_TRENDING);
+        //parent1.putExtra(KEY_INTENT, VAL_CHANNEL_PLAYLIST);
+        //parent1.putExtra(KEY_CHANNEL_PLAYLIST_ID, "UCq-Fj5jknLsUf-MWSy4_brA");
+        parent1.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
+        parent1.putExtra(KEY_PLAYLIST_ID, "PL9bw4S5ePsEG47QE3VB9Uv7Uu63naEP2m");
         this.startService(parent1);
 
     }
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        
+
         Parent parent = resultData.getParcelable(KEY_PARENT);
 
         if (parent != null) {
