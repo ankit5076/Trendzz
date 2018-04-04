@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.FamousQuote" />
-        <activity android:name=".DummyUploadQuote" />\
+        <activity android:name=".DummyUploadQuote" />
+        <activity android:name=".MainActivity1" />
         <service android:name="com.trends.trending.repository.VideoRepository" />
     </application>
 

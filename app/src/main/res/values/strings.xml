@@ -17,7 +17,7 @@
 
     <!--Channel ID's-->
 
-
+    <string name="Hello_World">Hello World!</string>
 
 
 </resources>
