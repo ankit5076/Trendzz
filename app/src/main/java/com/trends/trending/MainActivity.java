@@ -34,19 +34,19 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mReturnReceiver = new ReturnReceiver(new Handler());
-        mReturnReceiver.setReceiver(this);
-
-        Intent parent1 = new Intent(this, VideoRepository.class);
-        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
-        //parent1.putExtra(KEY_INTENT, VAL_SEARCH);
-        //parent1.putExtra(KEY_SEARCH, KEY_BOLLYWOOD_TRAILERS);
-        //parent1.putExtra(KEY_INTENT, VAL_TRENDING);
-        //parent1.putExtra(KEY_INTENT, VAL_CHANNEL_PLAYLIST);
-        //parent1.putExtra(KEY_CHANNEL_PLAYLIST_ID, "UCq-Fj5jknLsUf-MWSy4_brA");
-        parent1.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
-        parent1.putExtra(KEY_PLAYLIST_ID, "PL9bw4S5ePsEG47QE3VB9Uv7Uu63naEP2m");
-        this.startService(parent1);
+//        mReturnReceiver = new ReturnReceiver(new Handler());
+//        mReturnReceiver.setReceiver(this);
+//
+//        Intent parent1 = new Intent(this, VideoRepository.class);
+//        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
+//        //parent1.putExtra(KEY_INTENT, VAL_SEARCH);
+//        //parent1.putExtra(KEY_SEARCH, KEY_BOLLYWOOD_TRAILERS);
+//        //parent1.putExtra(KEY_INTENT, VAL_TRENDING);
+//        //parent1.putExtra(KEY_INTENT, VAL_CHANNEL_PLAYLIST);
+//        //parent1.putExtra(KEY_CHANNEL_PLAYLIST_ID, "UCq-Fj5jknLsUf-MWSy4_brA");
+//        parent1.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
+//        parent1.putExtra(KEY_PLAYLIST_ID, "PL9bw4S5ePsEG47QE3VB9Uv7Uu63naEP2m");
+//        this.startService(parent1);
 
     }
 
