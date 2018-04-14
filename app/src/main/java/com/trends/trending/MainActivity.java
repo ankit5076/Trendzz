@@ -2,23 +2,19 @@ package com.trends.trending;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
-import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
 import com.trends.trending.ui.FamousQuote;
+import com.trends.trending.utils.ExtraHelper;
 
 import butterknife.ButterKnife;
 
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_PLAYLIST_ID;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
-import static com.trends.trending.utils.Keys.VideoInfo.VAL_PLAYLIST_VIDEOS;
 
 public class MainActivity extends AppCompatActivity implements ReturnReceiver.Receiver {
 
@@ -28,13 +24,14 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 
     ReturnReceiver mReturnReceiver;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        mReturnReceiver = new ReturnReceiver(new Handler());
+//        mReturnReceiver = new ReturnReceiver(new Handler());(
 //        mReturnReceiver.setReceiver(this);
 //
 //        Intent parent1 = new Intent(this, VideoRepository.class);
@@ -48,7 +45,20 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 //        parent1.putExtra(KEY_PLAYLIST_ID, "PL9bw4S5ePsEG47QE3VB9Uv7Uu63naEP2m");
 //        this.startService(parent1);
 
+        //getYoutubeDownloadUrl("https://www.youtube.com/watch?v=UvAPcNPXVDQ");
+        getUrl();
+
     }
+
+    private void getUrl() {
+        ExtraHelper extraHelper = new ExtraHelper();
+        extraHelper.getYoutubeDownloadUrl("https://www.youtube.com/watch?v=UvAPcNPXVDQ",this);
+        DownloadFormatDialog downloadFormatDialog = new DownloadFormatDialog();
+        downloadFormatDialog.show(getSupportFragmentManager(),"DIALOG_FRAGMENT");
+
+    }
+
+
 
 
     public void goToUpload(View view) {
@@ -60,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     }
 
     public void goToVideos(View view) {
-        Intent intent = new Intent(this, MainActivity1.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MainActivity1.class);
+//        startActivity(intent);
     }
 
     @Override
