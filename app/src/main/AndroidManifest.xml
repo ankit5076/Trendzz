@@ -23,6 +23,7 @@
         <activity android:name=".ui.FamousQuote" />
         <activity android:name=".DummyUploadQuote" />
         <service android:name="com.trends.trending.repository.VideoRepository" />
+        <service android:name=".service.DownloadService" />
     </application>
 
 </manifest>

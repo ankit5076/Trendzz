@@ -46,20 +46,16 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 //        this.startService(parent1);
 
         //getYoutubeDownloadUrl("https://www.youtube.com/watch?v=UvAPcNPXVDQ");
-        getUrl();
-
+        getUrl("dfNdRsNSFx4");
     }
 
-    private void getUrl() {
+    private void getUrl(String videoId) {
         ExtraHelper extraHelper = new ExtraHelper();
-        extraHelper.getYoutubeDownloadUrl("https://www.youtube.com/watch?v=UvAPcNPXVDQ",this);
+        extraHelper.getYoutubeDownloadUrl("https://www.youtube.com/watch?v="+videoId,this);
         DownloadFormatDialog downloadFormatDialog = new DownloadFormatDialog();
         downloadFormatDialog.show(getSupportFragmentManager(),"DIALOG_FRAGMENT");
 
     }
-
-
-
 
     public void goToUpload(View view) {
         startActivity(new Intent(this, DummyUploadQuote.class));
