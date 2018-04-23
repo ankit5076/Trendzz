@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.ReturnReceiver;
 import com.trends.trending.ui.FamousQuote;
+import com.trends.trending.utils.ExtraHelper;
 
 import butterknife.ButterKnife;
 
@@ -22,13 +24,14 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 
     ReturnReceiver mReturnReceiver;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {bil
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        mReturnReceiver = new ReturnReceiver(new Handler());
+//        mReturnReceiver = new ReturnReceiver(new Handler());(
 //        mReturnReceiver.setReceiver(this);
 //
 //        Intent parent1 = new Intent(this, VideoRepository.class);
@@ -42,8 +45,17 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 //        parent1.putExtra(KEY_PLAYLIST_ID, "PL9bw4S5ePsEG47QE3VB9Uv7Uu63naEP2m");
 //        this.startService(parent1);
 
+        //getYoutubeDownloadUrl("https://www.youtube.com/watch?v=UvAPcNPXVDQ");
+        getUrl("dfNdRsNSFx4");
     }
 
+    private void getUrl(String videoId) {
+        ExtraHelper extraHelper = new ExtraHelper();
+        extraHelper.getYoutubeDownloadUrl("https://www.youtube.com/watch?v="+videoId,this);
+        DownloadFormatDialog downloadFormatDialog = new DownloadFormatDialog();
+        downloadFormatDialog.show(getSupportFragmentManager(),"DIALOG_FRAGMENT");
+
+    }
 
     public void goToUpload(View view) {
         startActivity(new Intent(this, DummyUploadQuote.class));
@@ -54,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     }
 
     public void goToVideos(View view) {
-        Intent intent = new Intent(this, ActivityVideos.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ActivityVideos.class);
+//        startActivity(intent);
     }
 
     @Override
