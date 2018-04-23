@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 //        mReturnReceiver.setReceiver(this);
 //
 //        Intent parent1 = new Intent(this, VideoRepository.class);
-//        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
+//        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);k
 //        //parent1.putExtra(KEY_INTENT, VAL_SEARCH);
 //        //parent1.putExtra(KEY_SEARCH, KEY_BOLLYWOOD_TRAILERS);
 //        //parent1.putExtra(KEY_INTENT, VAL_TRENDING);
