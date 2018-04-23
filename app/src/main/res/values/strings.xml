@@ -1,21 +1,97 @@
 <resources>
 
     <!--Common message-->
-
     <string name="app_name">Trending</string>
     <string name="no_network">Network not available</string>
     <string name="slow_network">Slow internet connection</string>
     <string name="double_quote">\"</string>
     <string name="quote_msg">\"%s\"</string>
+    <string name="channel_name">Channel Name</string>
+    <!--Videos chanel names-->
 
+    <!--Bollywood Music Start-->
+    <string name="zee_music_company">Zee Music Company</string>
+    <string name="t_series">T-Series</string>
+    <string name="yrf_music">YRF Music</string>
+    <string name="sony_music_india">Sony Music India</string>
+    <!--Bollywood Music End-->
 
-    <!--Video Category list-->
-    
-    <string-array name="video_category">
+    <!--Hollywood Music Start-->
+    <string name="taylor_swift_vevo">TaylorSwiftVEVO</string>
+    <string name="akon_vevo">TaylorSwiftVEVO</string>
+    <!--Hollywood Music End-->
+
+    <!--StandupComedy Start-->
+    <string name="zakir_khan">Zakir Khan</string>
+    <!--StandupComedy End-->
+
+    <!--Vines Start-->
+    <string name="ashish_chanchlani_vines">ashish chanchlani vines</string>
+    <string name="amit_bhadana">Amit Bhadana</string>
+    <string name="be_younick">Be YouNick</string>
+    <string name="carryminati">CarryMinati</string>
+    <!--Vines End-->
+
+    <!--Fitness Start-->
+    <string name="guru_mann_fitness">Guru Mann Fitness</string>
+    <string name="fitmuscle_tv">FitMuscle TV</string>
+    <!--Fitness End-->
+
+    <!--Video chanel list-->
+    <string-array name="bollowood_chhanel_title">
+
+        <item>@string/zee_music_company</item>
+        <item>@string/t_series</item>
+        <item>@string/yrf_music</item>
+        <item>@string/sony_music_india</item>
+        <item>@string/taylor_swift_vevo</item>
+        <item>@string/akon_vevo</item>
+        <item>@string/zakir_khan</item>
+        <item>@string/ashish_chanchlani_vines</item>
+        <item>@string/amit_bhadana</item>
+        <item>@string/be_younick</item>
+        <item>@string/carryminati</item>
+        <item>@string/guru_mann_fitness</item>
+        <item>@string/fitmuscle_tv</item>
 
     </string-array>
 
-    <!--Channel ID's-->
+    <!--Video chanel id list-->
+    <string-array name="bollowood_chhanel_id">
+        <item>UCFFbwnve3yF62-tVXkTyHqg</item>
+        <item>UCq-Fj5jknLsUf-MWSy4_brA</item>
+        <item>UCjeD2I8jwXg2l_nvXb_6Hzw</item>
+        <item>UC56gTxNs4f9xZ7Pa2i5xNzg</item>
+        <item>UCANLZYMidaCbLQFWXBC95Jg</item>
+        <item>UCX2v47KsDKqajrEYFV7GbBg</item>
+        <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
+        <item>UC7eHZXheF8nVOfwB2PEslMw</item>
+        <item>UC_vcKmg67vjMP7ciLnSxSHQ</item>
+        <item>UC7sRFTKIbH4NNpFXmpUAWuA</item>
+        <item>UCj22tfcQrWG7EMEKS0qLeEg</item>
+        <item>UCGMOauU8dOd4mv2bT3Tx57w</item>
+        <item>PLghtQOauHTUqjqZBn3YiZstjIl9rVYUfC</item>
+
+    </string-array>
+
+    <!--Video chanel image list-->
+    <string-array name="bollowood_chhanel_image">
+        <item>zee_music_company</item>
+        <item>t_series</item>
+        <item>yrf_music</item>
+        <item>sony_music_india</item>
+        <item>taylor_swift_vevo</item>
+        <item>akon_vevo</item>
+        <item>zakir_khan</item>
+        <item>ashish_chanchlani_vines</item>
+        <item>amit_bhadana</item>
+        <item>be_younick</item>
+        <item>carryminati</item>
+        <item>guru_mann_fitness</item>
+        <item>fitmuscle_tv</item>
+
+    </string-array>
+
 
     <string name="Hello_World">Hello World!</string>
 

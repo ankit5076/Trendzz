@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".ui.FamousQuote" />
         <activity android:name=".DummyUploadQuote" />
-        <activity android:name=".MainActivity1" />
+        <activity android:name=".ActivityVideos" />
         <service android:name="com.trends.trending.repository.VideoRepository" />
     </application>
 

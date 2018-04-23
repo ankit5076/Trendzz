@@ -2,23 +2,17 @@ package com.trends.trending;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.trends.trending.model.youtube.Parent;
-import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
 import com.trends.trending.ui.FamousQuote;
 
 import butterknife.ButterKnife;
 
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_PLAYLIST_ID;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
-import static com.trends.trending.utils.Keys.VideoInfo.VAL_PLAYLIST_VIDEOS;
 
 public class MainActivity extends AppCompatActivity implements ReturnReceiver.Receiver {
 
@@ -29,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     ReturnReceiver mReturnReceiver;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {bil
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -60,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     }
 
     public void goToVideos(View view) {
-        Intent intent = new Intent(this, MainActivity1.class);
+        Intent intent = new Intent(this, ActivityVideos.class);
         startActivity(intent);
     }
 

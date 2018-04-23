@@ -1,13 +1,13 @@
 package com.trends.trending;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.trends.trending.adapter.VideosAdapter;
 import com.trends.trending.model.youtube.Playlist;
 
 import java.util.ArrayList;
@@ -16,12 +16,12 @@ import java.util.ArrayList;
  * Created by ankit.a.vishwakarma on 28-Mar-18.
  */
 
-public class MainActivity1 extends AppCompatActivity {
+public class ActivityVideos extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Playlist> planetList=new ArrayList();
-    public static final String TAG = MainActivity1.class.getSimpleName();
+    public static final String TAG = ActivityVideos.class.getSimpleName();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MainActivity1 extends AppCompatActivity {
         p7.setPlaylistImage(R.drawable.mumbaikernikhil);
         planetList.add(p7);
 
-        adapter = new PlanetAdapter(planetList,this);
+        adapter = new VideosAdapter(planetList,this);
         recyclerView.setAdapter(adapter);
     }
 }

@@ -1,4 +1,4 @@
-package com.trends.trending;
+package com.trends.trending.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.trends.trending.R;
 import com.trends.trending.model.youtube.Playlist;
 
 import java.util.ArrayList;
@@ -16,23 +17,23 @@ import java.util.ArrayList;
  * Created by ankit.a.vishwakarma on 28-Mar-18.
  */
 
-public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetViewHolder> {
+public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.PlanetViewHolder> {
 
     ArrayList<Playlist> planetList;
 
-    public PlanetAdapter(ArrayList<Playlist> planetList, Context context) {
+    public VideosAdapter(ArrayList<Playlist> planetList, Context context) {
         this.planetList = planetList;
     }
 
     @Override
-    public PlanetAdapter.PlanetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VideosAdapter.PlanetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video,parent,false);
         PlanetViewHolder viewHolder=new PlanetViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(PlanetAdapter.PlanetViewHolder holder, int position) {
+    public void onBindViewHolder(VideosAdapter.PlanetViewHolder holder, int position) {
         holder.image.setImageResource(planetList.get(position).getPlaylistImage());
         holder.text.setText(planetList.get(position).getPlaylistTitle());
     }
