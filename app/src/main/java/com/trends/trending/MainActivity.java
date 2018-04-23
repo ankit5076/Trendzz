@@ -10,6 +10,7 @@ import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.ReturnReceiver;
 import com.trends.trending.ui.FamousQuote;
+import com.trends.trending.ui.Video;
 import com.trends.trending.utils.ExtraHelper;
 
 import butterknife.ButterKnife;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 //        this.startService(parent1);
 
         //getYoutubeDownloadUrl("https://www.youtube.com/watch?v=UvAPcNPXVDQ");
-        getUrl("dfNdRsNSFx4");
+//        getUrl("dfNdRsNSFx4");
     }
 
     private void getUrl(String videoId) {
@@ -80,5 +81,9 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         } else
             Toast.makeText(this, "MainActivity null", Toast.LENGTH_LONG).show();
 
+    }
+
+    public void goToTab(View view) {
+        startActivity(new Intent(this, Video.class));
     }
 }
