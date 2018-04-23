@@ -43,10 +43,14 @@ public class Video extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new VideosFragment(), "One");
-        adapter.addFragment(new VideosFragment(), "Two");
-        adapter.addFragment(new VideosFragment(), "Three");
-        adapter.addFragment(new VideosFragment(), "Four");
+        adapter.addFragment(new VideosFragment(), "Trending");
+        adapter.addFragment(new VideosFragment(), "Trailers");
+        adapter.addFragment(new VideosFragment(), "Music");
+        adapter.addFragment(new VideosFragment(), "Fitness");
+        adapter.addFragment(new VideosFragment(), "Vines");
+        adapter.addFragment(new VideosFragment(), "Standup comedy");
+        adapter.addFragment(new VideosFragment(), "News");
+        adapter.addFragment(new VideosFragment(), "Technology");
         viewPager.setAdapter(adapter);
     }
 

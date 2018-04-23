@@ -24,7 +24,7 @@
         <activity android:name=".ui.Video"
             android:theme="@style/MyMaterialTheme"/>
         <activity android:name=".DummyUploadQuote" />
-        <activity android:name=".ActivityVideos" />
+
         <service android:name="com.trends.trending.repository.VideoRepository" />
         <service android:name=".service.DownloadService" />
     </application>

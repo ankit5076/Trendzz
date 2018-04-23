@@ -38,30 +38,40 @@
     <!--Fitness End-->
 
     <!--Video chanel list-->
-    <string-array name="bollowood_chhanel_title">
+    <string-array name="music_chhanel_title">
 
         <item>@string/zee_music_company</item>
         <item>@string/t_series</item>
         <item>@string/yrf_music</item>
         <item>@string/sony_music_india</item>
+
+    </string-array>
+
+    <string-array name="others_chhanel_title">
         <item>@string/taylor_swift_vevo</item>
         <item>@string/akon_vevo</item>
+
         <item>@string/zakir_khan</item>
+
         <item>@string/ashish_chanchlani_vines</item>
         <item>@string/amit_bhadana</item>
         <item>@string/be_younick</item>
         <item>@string/carryminati</item>
+
         <item>@string/guru_mann_fitness</item>
         <item>@string/fitmuscle_tv</item>
 
     </string-array>
 
     <!--Video chanel id list-->
-    <string-array name="bollowood_chhanel_id">
+    <string-array name="music_chhanel_id">
         <item>UCFFbwnve3yF62-tVXkTyHqg</item>
         <item>UCq-Fj5jknLsUf-MWSy4_brA</item>
         <item>UCjeD2I8jwXg2l_nvXb_6Hzw</item>
         <item>UC56gTxNs4f9xZ7Pa2i5xNzg</item>
+    </string-array>
+
+    <string-array name="other_chhanel_id">
         <item>UCANLZYMidaCbLQFWXBC95Jg</item>
         <item>UCX2v47KsDKqajrEYFV7GbBg</item>
         <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
@@ -71,15 +81,17 @@
         <item>UCj22tfcQrWG7EMEKS0qLeEg</item>
         <item>UCGMOauU8dOd4mv2bT3Tx57w</item>
         <item>PLghtQOauHTUqjqZBn3YiZstjIl9rVYUfC</item>
-
     </string-array>
 
     <!--Video chanel image list-->
-    <string-array name="bollowood_chhanel_image">
-        <item>zee_music_company</item>
-        <item>t_series</item>
-        <item>yrf_music</item>
-        <item>sony_music_india</item>
+    <array name="music_chhanel_image">
+        <item>@drawable/zee_music_company</item>
+        <item>@drawable/t_series</item>
+        <item>@drawable/yrf_music</item>
+        <item>@drawable/sony_music_india</item>
+    </array>
+
+    <string-array name="other_chhanel_image">
         <item>taylor_swift_vevo</item>
         <item>akon_vevo</item>
         <item>zakir_khan</item>
@@ -89,7 +101,6 @@
         <item>carryminati</item>
         <item>guru_mann_fitness</item>
         <item>fitmuscle_tv</item>
-
     </string-array>
 
 

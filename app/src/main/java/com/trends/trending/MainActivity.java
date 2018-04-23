@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         startActivity(new Intent(this, FamousQuote.class));
     }
 
-    public void goToVideos(View view) {
-//        Intent intent = new Intent(this, ActivityVideos.class);
-//        startActivity(intent);
-    }
-
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
 
