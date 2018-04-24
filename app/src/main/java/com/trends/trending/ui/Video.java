@@ -1,7 +1,5 @@
 package com.trends.trending.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,13 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.trends.trending.R;
-import com.trends.trending.fragment.VideosFragment;
+import com.trends.trending.fragment.FitnessFragment;
+import com.trends.trending.fragment.MusicFragment;
+import com.trends.trending.fragment.NewsFragment;
+import com.trends.trending.fragment.StandupComedyFragment;
+import com.trends.trending.fragment.TechnologyFragment;
+import com.trends.trending.fragment.TrailerFragment;
+import com.trends.trending.fragment.TrendingFragment;
+import com.trends.trending.fragment.VinesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_TAB_TITLE;
 
 /**
  * Created by ankit.a.vishwakarma on 18-Apr-18.
@@ -50,17 +52,16 @@ public class Video extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new VideosFragment(), "Trending");
-        adapter.addFragment(new VideosFragment(), "Trailers");
-        adapter.addFragment(new VideosFragment(), "Music");
-        adapter.addFragment(new VideosFragment(), "Fitness");
-        adapter.addFragment(new VideosFragment(), "Vines");
-        adapter.addFragment(new VideosFragment(), "Standup comedy");
-        adapter.addFragment(new VideosFragment(), "News");
-        adapter.addFragment(new VideosFragment(), "Technology");
+        adapter.addFragment(new TrendingFragment(), "Trending");
+        adapter.addFragment(new TrailerFragment(), "Trailers");
+        adapter.addFragment(new MusicFragment(), "Music");
+        adapter.addFragment(new FitnessFragment(), "Fitness");
+        adapter.addFragment(new VinesFragment(), "Vines");
+        adapter.addFragment(new StandupComedyFragment(), "Standup comedy");
+        adapter.addFragment(new NewsFragment(), "News");
+        adapter.addFragment(new TechnologyFragment(), "Technology");
         viewPager.setAdapter(adapter);
     }
-
 
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -73,13 +74,6 @@ public class Video extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            SharedPreferences settings;
-            SharedPreferences.Editor editor;
-            settings = getSharedPreferences(PREFS_NAME,
-                    Context.MODE_PRIVATE);
-            editor = settings.edit();
-            editor.putString(KEY_TAB_TITLE, mFragmentTitleList.get(position));
-            editor.commit();
             return mFragmentList.get(position);
         }
 

@@ -91,17 +91,17 @@
         <item>@drawable/sony_music_india</item>
     </array>
 
-    <string-array name="other_chhanel_image">
-        <item>taylor_swift_vevo</item>
-        <item>akon_vevo</item>
-        <item>zakir_khan</item>
-        <item>ashish_chanchlani_vines</item>
-        <item>amit_bhadana</item>
-        <item>be_younick</item>
-        <item>carryminati</item>
-        <item>guru_mann_fitness</item>
-        <item>fitmuscle_tv</item>
-    </string-array>
+    <array name="other_chhanel_image">
+        <item>@drawable/taylor_swift_vevo</item>
+        <item>@drawable/akon_vevo</item>
+        <item>@drawable/zakir_khan</item>
+        <item>@drawable/ashish_chanchlani_vines</item>
+        <item>@drawable/amit_bhadana</item>
+        <item>@drawable/be_younick</item>
+        <item>@drawable/carryminati</item>
+        <item>@drawable/guru_mann_fitness</item>
+        <item>@drawable/fitmuscle_tv</item>
+    </array>
 
 
     <string name="Hello_World">Hello World!</string>
