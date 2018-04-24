@@ -4,6 +4,8 @@ package com.trends.trending.fragment;
  * Created by ankit.a.vishwakarma on 18-Apr-18.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.trends.trending.adapter.VideosAdapter;
 import com.trends.trending.R;
@@ -22,6 +25,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_TAB_TITLE;
 
 public class VideosFragment extends Fragment {
 
@@ -57,13 +63,18 @@ public class VideosFragment extends Fragment {
         String[] musicTitle = getResources().getStringArray(R.array.music_chhanel_title);
         TypedArray musicImage = getResources().obtainTypedArray(R.array.music_chhanel_image);
 
+        SharedPreferences settings;
+        settings = getActivity().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        String tabTitle = settings.getString(KEY_TAB_TITLE, null);
+        Toast.makeText(getActivity(), tabTitle, Toast.LENGTH_SHORT).show();
+
         for (int i = 0; i < musicTitle.length; i++) {
             Playlist p = new Playlist();
             p.setPlaylistTitle(musicTitle[i]);
             p.setPlaylistImage(musicImage.getResourceId(i, -1));
             planetList.add(p);
         }
-
         adapter = new VideosAdapter(planetList, getContext());
         recyclerView.setAdapter(adapter);
         // Inflate the layout for this fragment
