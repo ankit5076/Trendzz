@@ -8,28 +8,24 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.trends.trending.adapter.VideosAdapter;
 import com.trends.trending.R;
+import com.trends.trending.adapter.VideosAdapter;
 import com.trends.trending.model.youtube.Playlist;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_TAB_TITLE;
 
-public class VideosFragment extends Fragment {
+public class TrailerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -37,7 +33,7 @@ public class VideosFragment extends Fragment {
     private ArrayList<Playlist> planetList = new ArrayList();
     private View view;
 
-    public VideosFragment() {
+    public TrailerFragment() {
         // Required empty public constructor
     }
 
@@ -60,21 +56,6 @@ public class VideosFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        String[] musicTitle = getResources().getStringArray(R.array.music_chhanel_title);
-        TypedArray musicImage = getResources().obtainTypedArray(R.array.music_chhanel_image);
-
-        SharedPreferences settings;
-        settings = getActivity().getSharedPreferences(PREFS_NAME,
-                Context.MODE_PRIVATE);
-        String tabTitle = settings.getString(KEY_TAB_TITLE, null);
-        Toast.makeText(getActivity(), tabTitle, Toast.LENGTH_SHORT).show();
-
-        for (int i = 0; i < musicTitle.length; i++) {
-            Playlist p = new Playlist();
-            p.setPlaylistTitle(musicTitle[i]);
-            p.setPlaylistImage(musicImage.getResourceId(i, -1));
-            planetList.add(p);
-        }
         adapter = new VideosAdapter(planetList, getContext());
         recyclerView.setAdapter(adapter);
         // Inflate the layout for this fragment
