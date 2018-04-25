@@ -4,8 +4,6 @@ package com.trends.trending.fragment;
  * Created by ankit.a.vishwakarma on 18-Apr-18.
  */
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,16 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.trends.trending.R;
-import com.trends.trending.adapter.VideosAdapter;
+import com.trends.trending.adapter.PlaylistAdapter;
 import com.trends.trending.model.youtube.Playlist;
 
 import java.util.ArrayList;
-
-import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_TAB_TITLE;
 
 public class FitnessFragment extends Fragment {
 
@@ -66,7 +60,7 @@ public class FitnessFragment extends Fragment {
                 planetList.add(p);
             }
 
-        adapter = new VideosAdapter(planetList, getContext());
+        adapter = new PlaylistAdapter(planetList, getContext());
         recyclerView.setAdapter(adapter);
         // Inflate the layout for this fragment
     }

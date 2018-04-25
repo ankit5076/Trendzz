@@ -4,9 +4,6 @@ package com.trends.trending.fragment;
  * Created by ankit.a.vishwakarma on 18-Apr-18.
  */
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,26 +12,21 @@ import android.view.View;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.trends.trending.adapter.VideosAdapter;
+import com.trends.trending.adapter.PlaylistAdapter;
 import com.trends.trending.R;
+import com.trends.trending.adapter.VideoAdapter;
 import com.trends.trending.model.youtube.Playlist;
+import com.trends.trending.model.youtube.Video;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_TAB_TITLE;
 
 public class TrendingFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Playlist> planetList = new ArrayList();
+    private ArrayList<Video> videoList = new ArrayList();
     private View view;
 
     public TrendingFragment() {
@@ -60,7 +52,7 @@ public class TrendingFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new VideosAdapter(planetList, getContext());
+        adapter = new VideoAdapter(videoList, getContext());
         recyclerView.setAdapter(adapter);
         // Inflate the layout for this fragment
     }
