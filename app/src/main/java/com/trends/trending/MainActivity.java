@@ -2,6 +2,7 @@ package com.trends.trending;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        mReturnReceiver = new ReturnReceiver(new Handler());(
-//        mReturnReceiver.setReceiver(this);
+        mReturnReceiver = new ReturnReceiver(new Handler());
+        mReturnReceiver.setReceiver(this);
 //
 //        Intent parent1 = new Intent(this, VideoRepository.class);
 //        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);k

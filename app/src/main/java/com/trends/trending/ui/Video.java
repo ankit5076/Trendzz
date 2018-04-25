@@ -10,17 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.trends.trending.R;
-import com.trends.trending.fragment.FitnessFragment;
-import com.trends.trending.fragment.MusicFragment;
-import com.trends.trending.fragment.NewsFragment;
-import com.trends.trending.fragment.StandupComedyFragment;
-import com.trends.trending.fragment.TechnologyFragment;
-import com.trends.trending.fragment.TrailerFragment;
-import com.trends.trending.fragment.TrendingFragment;
-import com.trends.trending.fragment.VinesFragment;
+import com.trends.trending.fragment.ChannelFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_MUSIC;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_NEWS;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_TECHNOLOGY;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
 
 /**
  * Created by ankit.a.vishwakarma on 18-Apr-18.
@@ -52,14 +54,14 @@ public class Video extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TrendingFragment(), "Trending");
-        adapter.addFragment(new TrailerFragment(), "Trailers");
-        adapter.addFragment(new MusicFragment(), "Music");
-        adapter.addFragment(new FitnessFragment(), "Fitness");
-        adapter.addFragment(new VinesFragment(), "Vines");
-        adapter.addFragment(new StandupComedyFragment(), "Standup comedy");
-        adapter.addFragment(new NewsFragment(), "News");
-        adapter.addFragment(new TechnologyFragment(), "Technology");
+        adapter.addFragment(ChannelFragment.newInstance(TAB_TRENDING), TAB_TRENDING);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_TRAILER), TAB_TRAILER);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_MUSIC), TAB_MUSIC);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_FITNESS), TAB_FITNESS);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_VINES), TAB_VINES);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_COMEDY), TAB_COMEDY);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_NEWS), TAB_NEWS);
+        adapter.addFragment(ChannelFragment.newInstance(TAB_TECHNOLOGY), TAB_TECHNOLOGY);
         viewPager.setAdapter(adapter);
     }
 
