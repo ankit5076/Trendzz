@@ -1,5 +1,7 @@
 package com.trends.trending.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,13 +10,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.trends.trending.R;
 import com.trends.trending.fragment.ChannelFragment;
+import com.trends.trending.model.youtube.Parent;
+import com.trends.trending.service.ReturnReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_MUSIC;
@@ -28,7 +36,7 @@ import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
  * Created by ankit.a.vishwakarma on 18-Apr-18.
  */
 
-public class Video extends AppCompatActivity {
+public class Video extends AppCompatActivity implements ReturnReceiver.Receiver {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -63,6 +71,28 @@ public class Video extends AppCompatActivity {
         adapter.addFragment(ChannelFragment.newInstance(TAB_NEWS), TAB_NEWS);
         adapter.addFragment(ChannelFragment.newInstance(TAB_TECHNOLOGY), TAB_TECHNOLOGY);
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onReceiveResult(int resultCode, Bundle resultData) {
+        Parent parent = resultData.getParcelable(KEY_PARENT);
+        SharedPreferences settings;
+        SharedPreferences.Editor editor;
+        settings = getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        editor = settings.edit();
+        Gson gson = new Gson();
+
+        String parentString = gson.toJson(parent);
+
+        editor.putString("parentstring", parentString);
+        editor.commit();
+
+
+//        if (parent != null) {
+//            Toast.makeText(this, parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+//        } else
+//            Toast.makeText(this, "MainActivity null", Toast.LENGTH_LONG).show();
     }
 
 

@@ -52,7 +52,7 @@ public class VideoRepository extends IntentService {
             receiver = intent.getParcelableExtra(KEY_RECEIVER);
             String methodName = intent.getStringExtra(KEY_INTENT);
             Bundle bundle = new Bundle();
-            Log.d(TAG, "onHandleIntent:::: "+methodName);
+            Log.d(TAG, "onHandleIntent:::: "+receiver);
             switch (methodName)
             {
                 case VAL_SEARCH:

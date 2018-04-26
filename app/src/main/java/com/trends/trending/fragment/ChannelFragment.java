@@ -6,6 +6,7 @@ package com.trends.trending.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,18 +18,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.trends.trending.MainActivity;
 import com.trends.trending.R;
 import com.trends.trending.adapter.PlaylistAdapter;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.model.youtube.Playlist;
+import com.trends.trending.model.youtube.VideoLink;
 import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
 
 import java.util.ArrayList;
 
+import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
+import static com.trends.trending.utils.ExtraHelper.VIDEO_TYPE;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_MUSIC;
@@ -39,13 +45,15 @@ import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
 
-public class ChannelFragment extends Fragment implements ReturnReceiver.Receiver {
+public class ChannelFragment extends Fragment  {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Playlist> planetList = new ArrayList();
     private View view;
+
+    SharedPreferences settings;
 
     ReturnReceiver mReturnReceiver;
 
@@ -93,10 +101,29 @@ public class ChannelFragment extends Fragment implements ReturnReceiver.Receiver
 
         planetList.clear();
         Intent parent1 = new Intent(getActivity(), VideoRepository.class);
+
+        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
         parent1.putExtra(KEY_INTENT, VAL_TRENDING);
         getActivity().startService(parent1);
 
+
+        settings = getActivity().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+
+        String jsonParent = settings.getString("parentstring", null);
+        Gson gson = new Gson();
+        Parent parent = gson.fromJson(jsonParent, Parent.class);
+
+
+
+
+
         if(getTitle().equals(TAB_TRENDING)){
+            if (parent != null) {
+                Toast.makeText(getActivity(), parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+            } else
+                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
+
             for (int i = 0; i < otherTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(otherTitle[i]);
@@ -166,14 +193,6 @@ public class ChannelFragment extends Fragment implements ReturnReceiver.Receiver
         return args.getString("title", "NO TITLE FOUND");
     }
 
-    @Override
-    public void onReceiveResult(int resultCode, Bundle resultData) {
-        Parent parent = resultData.getParcelable(KEY_PARENT);
 
-        if (parent != null) {
-            Toast.makeText(getActivity(), parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-        } else
-            Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
 
-    }
 }
