@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.trends.trending.R;
 import com.trends.trending.fragment.ChannelFragment;
 import com.trends.trending.model.youtube.Parent;
+import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.service.ReturnReceiver;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_SEARCH;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_MUSIC;
@@ -31,6 +33,8 @@ import static com.trends.trending.utils.Keys.VideoInfo.TAB_TECHNOLOGY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRAILER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
+import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
+import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
 
 /**
  * Created by ankit.a.vishwakarma on 18-Apr-18.
@@ -75,7 +79,8 @@ public class Video extends AppCompatActivity implements ReturnReceiver.Receiver 
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        Parent parent = resultData.getParcelable(KEY_PARENT);
+        Parent parent = null;
+        SearchParent searchParent = null;
         SharedPreferences settings;
         SharedPreferences.Editor editor;
         settings = getSharedPreferences(PREFS_NAME,
@@ -83,10 +88,21 @@ public class Video extends AppCompatActivity implements ReturnReceiver.Receiver 
         editor = settings.edit();
         Gson gson = new Gson();
 
-        String parentString = gson.toJson(parent);
+        if (resultData.getString("method").equals(VAL_SEARCH)) {
+            searchParent = resultData.getParcelable(KEY_PARENT);
+            String parentString = gson.toJson(searchParent);
 
-        editor.putString("parentstring", parentString);
-        editor.commit();
+            editor.putString("searchParentString", parentString);
+            editor.commit();
+        }
+
+        else {
+            parent = resultData.getParcelable(KEY_PARENT);
+            String parentString = gson.toJson(parent);
+
+            editor.putString("parentstring", parentString);
+            editor.commit();
+        }
 
 
 //        if (parent != null) {

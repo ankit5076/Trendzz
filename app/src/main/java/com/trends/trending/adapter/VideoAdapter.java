@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.trends.trending.R;
+import com.trends.trending.model.youtube.Item;
 import com.trends.trending.model.youtube.Playlist;
 import com.trends.trending.model.youtube.Video;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ankit.a.vishwakarma on 28-Mar-18.
@@ -20,9 +23,9 @@ import java.util.ArrayList;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHolder> {
 
-    ArrayList<Video> videoList;
+    List<Item> videoList;
 
-    public VideoAdapter(ArrayList<Video> videoList, Context context) {
+    public VideoAdapter(List<Item> videoList, Context context) {
         this.videoList = videoList;
     }
 
@@ -35,9 +38,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHo
 
     @Override
     public void onBindViewHolder(VideoAdapter.PlanetViewHolder holder, int position) {
-        holder.image.setImageResource(videoList.get(position).getVideoImage());
-        holder.title.setText(videoList.get(position).getVideoTitle());
-        holder.desc.setText(videoList.get(position).getVideoDesc());
+//        holder.image.setImageResource(R.drawable.akon_vevo);
+        Picasso.get()
+                .load(videoList.get(position).getSnippet().getThumbnails().getMedium().getUrl())
+                .placeholder(R.drawable.akon_vevo)
+                .error(R.drawable.amit_bhadana)
+                .into(holder.image);
+        holder.title.setText(videoList.get(position).getSnippet().getTitle());
+        holder.channelTtile.setText(videoList.get(position).getSnippet().getChannelTitle());
     }
 
     @Override
@@ -49,13 +57,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHo
 
         protected ImageView image;
         protected TextView title;
-        protected TextView desc;
+        protected TextView channelTtile;
 
         public PlanetViewHolder(View itemView) {
             super(itemView);
             image= (ImageView) itemView.findViewById(R.id.video_image);
-            title= (TextView) itemView.findViewById(R.id.video_channel);
-            desc= (TextView) itemView.findViewById(R.id.video_desc);
+            title= (TextView) itemView.findViewById(R.id.video_title);
+            channelTtile= (TextView) itemView.findViewById(R.id.video_channel_title);
         }
     }
 }

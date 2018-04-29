@@ -1,57 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="85dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
 
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:id="@+id/linearLayout"
 
-    >
-
-    <de.hdodenhof.circleimageview.CircleImageView
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/video_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        tools:src="@drawable/fitmuscletv"
-        android:layout_marginBottom="15dp"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
-
-    <TextView
-        android:id="@+id/video_channel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/channel_name"
-        android:textSize="25dp" />
-
-    <TextView
-        android:id="@+id/video_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/channel_name"
-        android:textSize="25dp" />
-
-
-</LinearLayout>
-
-    <View
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/newContainer"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout"
-        android:background="@android:color/darker_gray" />
+        android:layout_height="wrap_content"
+        tools:context="com.trends.trending.MainActivity">
 
-</RelativeLayout>
+
+        <ImageView
+            android:id="@+id/video_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/carryminati" />
+
+        <TextView
+            android:id="@+id/video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toEndOf="@+id/video_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/video_channel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/video_image"
+            app:layout_constraintTop_toBottomOf="@+id/video_title" />
+    </android.support.constraint.ConstraintLayout>

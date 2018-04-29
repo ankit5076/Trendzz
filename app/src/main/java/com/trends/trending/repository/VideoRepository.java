@@ -59,12 +59,14 @@ public class VideoRepository extends IntentService {
                     String search = intent.getStringExtra(KEY_SEARCH);
                     SearchParent parent = getSearchResults(search);
                     bundle.putParcelable(KEY_PARENT,parent);
+                    bundle.putString("method",VAL_SEARCH);
                     receiver.send(1,bundle);
                     break;
 
                 case VAL_TRENDING:
                     Parent trendingParent = getTrendingVideos();
                     bundle.putParcelable(KEY_PARENT, trendingParent);
+                    bundle.putString("method",VAL_TRENDING);
                     receiver.send(1,bundle);
                     break;
 
@@ -72,6 +74,7 @@ public class VideoRepository extends IntentService {
                     String channelId = intent.getStringExtra(KEY_CHANNEL_PLAYLIST_ID);
                     Parent channelParent = getChannelPlaylists(channelId);
                     bundle.putParcelable(KEY_PARENT, channelParent);
+                    bundle.putString("method",VAL_CHANNEL_PLAYLIST);
                     receiver.send(1,bundle);
                     break;
 
@@ -79,6 +82,7 @@ public class VideoRepository extends IntentService {
                     String playlistId = intent.getStringExtra(KEY_PLAYLIST_ID);
                     Parent playlistParent = getPlaylistVideos(playlistId);
                     bundle.putParcelable(KEY_PARENT, playlistParent);
+                    bundle.putString("method",VAL_PLAYLIST_VIDEOS);
                     receiver.send(1,bundle);
                     break;
             }
