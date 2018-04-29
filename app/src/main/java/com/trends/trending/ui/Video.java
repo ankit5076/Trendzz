@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.trends.trending.R;
 import com.trends.trending.fragment.ChannelFragment;
+import com.trends.trending.fragment.VideoFragment;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.service.ReturnReceiver;
@@ -66,8 +67,8 @@ public class Video extends AppCompatActivity implements ReturnReceiver.Receiver 
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(ChannelFragment.newInstance(TAB_TRENDING), TAB_TRENDING);
-        adapter.addFragment(ChannelFragment.newInstance(TAB_TRAILER), TAB_TRAILER);
+        adapter.addFragment(VideoFragment.newInstance(TAB_TRENDING), TAB_TRENDING);
+        adapter.addFragment(VideoFragment.newInstance(TAB_TRAILER), TAB_TRAILER);
         adapter.addFragment(ChannelFragment.newInstance(TAB_MUSIC), TAB_MUSIC);
         adapter.addFragment(ChannelFragment.newInstance(TAB_FITNESS), TAB_FITNESS);
         adapter.addFragment(ChannelFragment.newInstance(TAB_VINES), TAB_VINES);

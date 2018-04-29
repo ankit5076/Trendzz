@@ -46,27 +46,31 @@ import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
 
-public class ChannelFragment extends Fragment  {
+public class VideoFragment extends Fragment  {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Playlist> channelList = new ArrayList();
+    private List<Item> videoList = new ArrayList<>();
+    private List<SearchItem> searchVideoList = new ArrayList<>();
     private View view;
+
+    SharedPreferences settings;
 
     ReturnReceiver mReturnReceiver;
 
-    public ChannelFragment() {
+    public VideoFragment() {
         // Required empty public constructor
     }
 
 
 
-    public static ChannelFragment newInstance(String title) {
+    public static VideoFragment newInstance(String title) {
         
         Bundle args = new Bundle();
         
-        ChannelFragment fragment = new ChannelFragment();
+        VideoFragment fragment = new VideoFragment();
         args.putString("title", title);
         fragment.setArguments(args);
         return fragment;
@@ -80,7 +84,7 @@ public class ChannelFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_channel, container, false);
+        view = inflater.inflate(R.layout.fragment_video, container, false);
         mReturnReceiver = new ReturnReceiver(new Handler());
         mReturnReceiver.setReceiver((ReturnReceiver.Receiver) getContext());
         setRecyclerView();
@@ -88,7 +92,7 @@ public class ChannelFragment extends Fragment  {
     }
 
     private void setRecyclerView() {
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_video);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -102,48 +106,64 @@ public class ChannelFragment extends Fragment  {
 
 
 
+        settings = getActivity().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
 
-        if(getTitle().equals(TAB_MUSIC)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("neeraj");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
+
+
+
+
+
+
+        if(getTitle().equals(TAB_TRENDING)){
+            Intent parent1 = new Intent(getActivity(), VideoRepository.class);
+
+            parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
+            parent1.putExtra(KEY_INTENT, VAL_TRENDING);
+            getActivity().startService(parent1);
+            String jsonParent = settings.getString("parentstring", null);
+            Gson gson = new Gson();
+            Parent parent = gson.fromJson(jsonParent, Parent.class);
+            if (parent != null) {
+                Toast.makeText(getActivity(), parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+            } else
+                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
+
+            for (Item item: parent.getItems()) {
+                videoList.add(item);
+            }
+            adapter = new VideoAdapter(videoList, getContext());
+//            for (int i = 0; i < otherTitle.length; i++) {
+//                Playlist p = new Playlist();
+//                p.setPlaylistTitle(otherTitle[i]);
+//                p.setPlaylistImage(otherImage.getResourceId(i, -1));
+//                channelList.add(p);
+//            }
         }
-        else if(getTitle().equals(TAB_FITNESS)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("ankit");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_VINES)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("HYD");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_COMEDY)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("SBC");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_NEWS)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("BSP");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_TECHNOLOGY)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("Youtube");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
+        else if(getTitle().equals(TAB_TRAILER)){
+            Intent parent1 = new Intent(getActivity(), VideoRepository.class);
+
+            parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
+            parent1.putExtra(KEY_INTENT, VAL_SEARCH);
+//            getActivity().startService(parent1);
+//            String jsonParent = settings.getString("searchParentString", null);
+//            Gson gson = new Gson();
+//            SearchParent searchParent = gson.fromJson(jsonParent, SearchParent.class);
+//            if (searchParent != null) {
+//                Toast.makeText(getActivity(), searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+//            } else
+//                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
+//            for (SearchItem item: searchParent.getItems()) {
+//                searchVideoList.add(item);
+//            }
+//            adapter = new VideoAdapter(searchVideoList, getContext());
+            //            for (int i = 0; i < musicTitle.length; i++) {
+//                Playlist p = new Playlist();
+//                p.setPlaylistTitle(musicTitle[i]);
+//                p.setPlaylistImage(musicImage.getResourceId(i, -1));
+//                channelList.add(p);
+//            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
         }
         else {
             Toast.makeText(getActivity(), "else", Toast.LENGTH_SHORT).show();
