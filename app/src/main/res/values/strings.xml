@@ -9,100 +9,172 @@
     <string name="channel_name">Channel Name</string>
     <!--Videos chanel names-->
 
-    <!--Bollywood Music Start-->
+    <!--channel Start-->
     <string name="zee_music_company">Zee Music Company</string>
     <string name="t_series">T-Series</string>
     <string name="yrf_music">YRF Music</string>
     <string name="sony_music_india">Sony Music India</string>
-    <!--Bollywood Music End-->
-
-    <!--Hollywood Music Start-->
     <string name="taylor_swift_vevo">TaylorSwiftVEVO</string>
     <string name="akon_vevo">TaylorSwiftVEVO</string>
-    <!--Hollywood Music End-->
-
-    <!--StandupComedy Start-->
     <string name="zakir_khan">Zakir Khan</string>
-    <!--StandupComedy End-->
-
-    <!--Vines Start-->
+    <string name="abish_mathew">Abish Mathew</string>
+    <string name="nishant_tanwar">Nishant Tanwar</string>
+    <string name="jeeveshu_ahluwalia">Jeeveshu Ahluwalia</string>
     <string name="ashish_chanchlani_vines">ashish chanchlani vines</string>
     <string name="amit_bhadana">Amit Bhadana</string>
     <string name="be_younick">Be YouNick</string>
     <string name="carryminati">CarryMinati</string>
-    <!--Vines End-->
-
-    <!--Fitness Start-->
     <string name="guru_mann_fitness">Guru Mann Fitness</string>
     <string name="fitmuscle_tv">FitMuscle TV</string>
-    <!--Fitness End-->
+    <string name="aaj_tak">Aaj Tak</string>
+    <string name="abp_news">Aaj Tak</string>
+    <string name="india_today">India Today</string>
+    <string name="zee_news">Zee News</string>
+    <string name="bbc_news">BBC News</string>
+    <string name="the_viral_fever">The Viral Fever</string>
+    <string name="all_india_bakchod">All India Bakchod</string>
+    <string name="bindass">bindass</string>
+    <string name="the_timeliners">The Timeliners</string>
+    <string name="technical_guruji">Technical Guruji</string>
+    <string name="unbox_therapy">Unbox Therapy</string>
+    <string name="geekyranjit">Geekyranjit</string>
+    <!--channel End-->
 
-    <!--Video chanel list-->
+    <string-array name="technology_chhanel_title">
+        <item>@string/technical_guruji</item>
+        <item>@string/unbox_therapy</item>
+        <item>@string/geekyranjit</item>
+    </string-array>
+    <string-array name="technology_chhanel_id">
+        <item>UCOhHO2ICt0ti9KAh-QHvttQ</item>
+        <item>UCsTcErHg8oDvUnTzoqsYeNw</item>
+        <item>UCO2WJZKQoDW4Te6NHx4KfTg</item>
+    </string-array>
+    <array name="technology_chhanel_image">
+        <item>@drawable/technical_guruji</item>
+        <item>@drawable/unbox_therapy</item>
+        <item>@drawable/geekyranjit</item>
+    </array>
+
+    <string-array name="web_series_chhanel_title">
+        <item>@string/the_viral_fever</item>
+        <item>@string/all_india_bakchod</item>
+        <item>@string/bindass</item>
+        <item>@string/the_timeliners</item>
+    </string-array>
+    <string-array name="web_series_chhanel_id">
+        <item>UCNJcSUSzUeFm8W9P7UUlSeQ</item>
+        <item>UCzUYuC_9XdUUdrnyLii8WYg</item>
+        <item>UCzo5sreD2cVGu2T2mNu__1Q</item>
+        <item>UCTlnaHHQ75zlDg_fLr7tGEg</item>
+    </string-array>
+    <array name="web_series_chhanel_image">
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/all_india_bakchod</item>
+        <item>@drawable/bindass</item>
+        <item>@drawable/the_timeliners</item>
+    </array>
+
     <string-array name="music_chhanel_title">
-
         <item>@string/zee_music_company</item>
         <item>@string/t_series</item>
         <item>@string/yrf_music</item>
         <item>@string/sony_music_india</item>
-
-    </string-array>
-
-    <string-array name="others_chhanel_title">
         <item>@string/taylor_swift_vevo</item>
         <item>@string/akon_vevo</item>
-
-        <item>@string/zakir_khan</item>
-
-        <item>@string/ashish_chanchlani_vines</item>
-        <item>@string/amit_bhadana</item>
-        <item>@string/be_younick</item>
-        <item>@string/carryminati</item>
-
-        <item>@string/guru_mann_fitness</item>
-        <item>@string/fitmuscle_tv</item>
-
     </string-array>
-
-    <!--Video chanel id list-->
     <string-array name="music_chhanel_id">
         <item>UCFFbwnve3yF62-tVXkTyHqg</item>
         <item>UCq-Fj5jknLsUf-MWSy4_brA</item>
         <item>UCjeD2I8jwXg2l_nvXb_6Hzw</item>
         <item>UC56gTxNs4f9xZ7Pa2i5xNzg</item>
-    </string-array>
-
-    <string-array name="other_chhanel_id">
         <item>UCANLZYMidaCbLQFWXBC95Jg</item>
         <item>UCX2v47KsDKqajrEYFV7GbBg</item>
-        <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
-        <item>UC7eHZXheF8nVOfwB2PEslMw</item>
-        <item>UC_vcKmg67vjMP7ciLnSxSHQ</item>
-        <item>UC7sRFTKIbH4NNpFXmpUAWuA</item>
-        <item>UCj22tfcQrWG7EMEKS0qLeEg</item>
-        <item>UCGMOauU8dOd4mv2bT3Tx57w</item>
-        <item>PLghtQOauHTUqjqZBn3YiZstjIl9rVYUfC</item>
     </string-array>
-
-    <!--Video chanel image list-->
     <array name="music_chhanel_image">
         <item>@drawable/zee_music_company</item>
         <item>@drawable/t_series</item>
         <item>@drawable/yrf_music</item>
         <item>@drawable/sony_music_india</item>
-    </array>
-
-    <array name="other_chhanel_image">
         <item>@drawable/taylor_swift_vevo</item>
         <item>@drawable/akon_vevo</item>
-        <item>@drawable/zakir_khan</item>
+    </array>
+
+
+    <string-array name="standup_comedy_chhanel_title">
+        <item>@string/zakir_khan</item>
+        <item>@string/abish_mathew</item>
+        <item>@string/nishant_tanwar</item>
+        <item>@string/jeeveshu_ahluwalia</item>
+    </string-array>
+    <string-array name="standup_comedy_chhanel_id">
+        <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
+        <item>UCtWoDeegvTPfuuNm_ilJntg</item>
+        <item>UCUK8HXeI3WqXczgMkT5XUWQ</item>
+        <item>UCHYLyMLVx6DNvg3-kf4qOuw</item>
+    </string-array>
+    <array name="standup_comedy_chhanel_image">
+        <item>@drawable/zee_music_company</item>
+        <item>@drawable/abish_mathew</item>
+        <item>@drawable/nishant_tanwar</item>
+        <item>@drawable/jeeveshu_ahluwalia</item>
+    </array>
+
+
+    <string-array name="vine_chhanel_title">
+        <item>@string/ashish_chanchlani_vines</item>
+        <item>@string/amit_bhadana</item>
+        <item>@string/be_younick</item>
+        <item>@string/carryminati</item>
+    </string-array>
+    <string-array name="vine_chhanel_id">
+        <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
+        <item>UC7eHZXheF8nVOfwB2PEslMw</item>
+        <item>UC_vcKmg67vjMP7ciLnSxSHQ</item>
+        <item>UC7sRFTKIbH4NNpFXmpUAWuA</item>
+    </string-array>
+    <array name="vine_chhanel_image">
         <item>@drawable/ashish_chanchlani_vines</item>
         <item>@drawable/amit_bhadana</item>
         <item>@drawable/be_younick</item>
         <item>@drawable/carryminati</item>
+    </array>
+
+
+    <string-array name="fitness_chhanel_title">
+        <item>@string/guru_mann_fitness</item>
+        <item>@string/fitmuscle_tv</item>
+    </string-array>
+    <string-array name="fitness_chhanel_id">
+        <item>UCj22tfcQrWG7EMEKS0qLeEg</item>
+        <item>UCGMOauU8dOd4mv2bT3Tx57w</item>
+    </string-array>
+    <array name="fitness_chhanel_image">
         <item>@drawable/guru_mann_fitness</item>
         <item>@drawable/fitmuscle_tv</item>
     </array>
 
+    <string-array name="news_chhanel_title">
+        <item>@string/aaj_tak</item>
+        <item>@string/abp_news</item>
+        <item>@string/india_today</item>
+        <item>@string/zee_news</item>
+        <item>@string/bbc_news</item>
+    </string-array>
+    <string-array name="news_chhanel_id">
+        <item>UCt4t-jeY85JegMlZ-E5UWtA</item>
+        <item>UCRWFSbif-RFENbBrSiez1DA</item>
+        <item>UCYPvAwZP8pZhSMW8qs7cVCw</item>
+        <item>UCIvaYmXn910QMdemBG3v1pQ</item>
+        <item>UC16niRr50-MSBwiO3YDb3RA</item>
+    </string-array>
+    <array name="news_chhanel_image">
+        <item>@drawable/aaj_tak</item>
+        <item>@drawable/abp_news</item>
+        <item>@drawable/india_today</item>
+        <item>@drawable/zee_news</item>
+        <item>@drawable/bbc_news</item>
+    </array>
 
     <string name="Hello_World">Hello World!</string>
 
