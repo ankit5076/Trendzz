@@ -8,6 +8,10 @@
         <!--android:id="@+id/video_player"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="200dp"/>-->
+    <FrameLayout
+        android:id="@+id/youtube_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_video"
