@@ -2,11 +2,13 @@ package com.trends.trending.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.trends.trending.R;
@@ -41,11 +43,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHo
 //        holder.image.setImageResource(R.drawable.akon_vevo);
         Picasso.get()
                 .load(videoList.get(position).getSnippet().getThumbnails().getMedium().getUrl())
-                .placeholder(R.drawable.akon_vevo)
+                .resize(90, 70)
+                .placeholder(R.drawable.loading)
                 .error(R.drawable.amit_bhadana)
                 .into(holder.image);
         holder.title.setText(videoList.get(position).getSnippet().getTitle());
         holder.channelTtile.setText(videoList.get(position).getSnippet().getChannelTitle());
+        Log.d("height", "onBindViewHolder: "+videoList.get(position).getSnippet().getThumbnails().getMedium().getHeight());
+        Log.d("width", "onBindViewHolder: "+videoList.get(position).getSnippet().getThumbnails().getMedium().getWidth());
     }
 
     @Override

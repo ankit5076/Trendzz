@@ -99,7 +99,7 @@ public class VideoFragment extends Fragment  {
 //                    YPlayer.loadVideo("2zNSgSzhBfM");
 //                    YPlayer.play();
 
-                    YPlayer.cueVideo("2zNSgSzhBfM");
+                    YPlayer.cueVideo("oZF0xUA6xCc");
                 }
             }
 

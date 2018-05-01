@@ -95,8 +95,8 @@ public class ChannelFragment extends Fragment  {
         String[] musicTitle = getResources().getStringArray(R.array.music_chhanel_title);
         TypedArray musicImage = getResources().obtainTypedArray(R.array.music_chhanel_image);
 
-        String[] otherTitle = getResources().getStringArray(R.array.others_chhanel_title);
-        TypedArray otherImage = getResources().obtainTypedArray(R.array.other_chhanel_image);
+//        String[] otherTitle = getResources().getStringArray(R.array.others_chhanel_title);
+//        TypedArray otherImage = getResources().obtainTypedArray(R.array.other_chhanel_image);
 
         channelList.clear();
 
