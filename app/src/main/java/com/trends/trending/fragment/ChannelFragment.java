@@ -129,7 +129,7 @@ public class ChannelFragment extends Fragment {
             for (int i = 0; i < fitnessTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(fitnessTitle[i]);
-                p.setPlaylistImage(fitnessImage.getResourceId(0, -1));
+                p.setPlaylistImage(fitnessImage.getResourceId(i, -1));
                 channelList.add(p);
             }
 //            adapter = new PlaylistAdapter(channelList, getContext());
@@ -137,7 +137,7 @@ public class ChannelFragment extends Fragment {
             for (int i = 0; i < vineTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(vineTitle[i]);
-                p.setPlaylistImage(vineImage.getResourceId(0, -1));
+                p.setPlaylistImage(vineImage.getResourceId(i, -1));
                 channelList.add(p);
             }
 //            adapter = new PlaylistAdapter(channelList, getContext());
@@ -145,7 +145,7 @@ public class ChannelFragment extends Fragment {
             for (int i = 0; i < webSeriesTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(webSeriesTitle[i]);
-                p.setPlaylistImage(webSeriesImage.getResourceId(0, -1));
+                p.setPlaylistImage(webSeriesImage.getResourceId(i, -1));
                 channelList.add(p);
             }
 //            adapter = new PlaylistAdapter(channelList, getContext());
@@ -153,7 +153,7 @@ public class ChannelFragment extends Fragment {
             for (int i = 0; i < comedyTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(comedyTitle[i]);
-                p.setPlaylistImage(comedyImage.getResourceId(0, -1));
+                p.setPlaylistImage(comedyImage.getResourceId(i, -1));
                 channelList.add(p);
             }
 //            adapter = new PlaylistAdapter(channelList, getContext());
@@ -161,7 +161,7 @@ public class ChannelFragment extends Fragment {
             for (int i = 0; i < newsTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(newsTitle[i]);
-                p.setPlaylistImage(newsImage.getResourceId(0, -1));
+                p.setPlaylistImage(newsImage.getResourceId(i, -1));
                 channelList.add(p);
             }
 //            adapter = new PlaylistAdapter(channelList, getContext());
@@ -169,7 +169,7 @@ public class ChannelFragment extends Fragment {
             for (int i = 0; i < techTitle.length; i++) {
                 Playlist p = new Playlist();
                 p.setPlaylistTitle(techTitle[i]);
-                p.setPlaylistImage(techImage.getResourceId(0, -1));
+                p.setPlaylistImage(techImage.getResourceId(i, -1));
                 channelList.add(p);
             }
 //            adapter = new PlaylistAdapter(channelList, getContext());
