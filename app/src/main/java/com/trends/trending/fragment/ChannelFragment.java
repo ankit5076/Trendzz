@@ -43,10 +43,11 @@ import static com.trends.trending.utils.Keys.VideoInfo.TAB_TECHNOLOGY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRAILER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_WEBSERIES;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
 
-public class ChannelFragment extends Fragment  {
+public class ChannelFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -61,11 +62,10 @@ public class ChannelFragment extends Fragment  {
     }
 
 
-
     public static ChannelFragment newInstance(String title) {
-        
+
         Bundle args = new Bundle();
-        
+
         ChannelFragment fragment = new ChannelFragment();
         args.putString("title", title);
         fragment.setArguments(args);
@@ -95,64 +95,89 @@ public class ChannelFragment extends Fragment  {
         String[] musicTitle = getResources().getStringArray(R.array.music_chhanel_title);
         TypedArray musicImage = getResources().obtainTypedArray(R.array.music_chhanel_image);
 
-//        String[] otherTitle = getResources().getStringArray(R.array.others_chhanel_title);
-//        TypedArray otherImage = getResources().obtainTypedArray(R.array.other_chhanel_image);
+        String[] techTitle = getResources().getStringArray(R.array.technology_chhanel_title);
+        TypedArray techImage = getResources().obtainTypedArray(R.array.technology_chhanel_image);
+
+        String[] webSeriesTitle = getResources().getStringArray(R.array.web_series_chhanel_title);
+        TypedArray webSeriesImage = getResources().obtainTypedArray(R.array.web_series_chhanel_image);
+
+        String[] comedyTitle = getResources().getStringArray(R.array.standup_comedy_chhanel_title);
+        TypedArray comedyImage = getResources().obtainTypedArray(R.array.standup_comedy_chhanel_image);
+
+        String[] vineTitle = getResources().getStringArray(R.array.vine_chhanel_title);
+        TypedArray vineImage = getResources().obtainTypedArray(R.array.vine_chhanel_image);
+
+        String[] fitnessTitle = getResources().getStringArray(R.array.fitness_chhanel_title);
+        TypedArray fitnessImage = getResources().obtainTypedArray(R.array.fitness_chhanel_image);
+
+        String[] newsTitle = getResources().getStringArray(R.array.news_chhanel_title);
+        TypedArray newsImage = getResources().obtainTypedArray(R.array.news_chhanel_image);
+
 
         channelList.clear();
 
 
-
-
-        if(getTitle().equals(TAB_MUSIC)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("neeraj");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_FITNESS)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("ankit");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_VINES)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("HYD");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_COMEDY)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("SBC");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_NEWS)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("BSP");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else if(getTitle().equals(TAB_TECHNOLOGY)){
-            Playlist p = new Playlist();
-            p.setPlaylistTitle("Youtube");
-            p.setPlaylistImage(musicImage.getResourceId(0, -1));
-            channelList.add(p);
-            adapter = new PlaylistAdapter(channelList, getContext());
-        }
-        else {
+        if (getTitle().equals(TAB_MUSIC)) {
+            for (int i = 0; i < musicTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(musicTitle[i]);
+                p.setPlaylistImage(musicImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        } else if (getTitle().equals(TAB_FITNESS)) {
+            for (int i = 0; i < fitnessTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(fitnessTitle[i]);
+                p.setPlaylistImage(fitnessImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        } else if (getTitle().equals(TAB_VINES)) {
+            for (int i = 0; i < vineTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(vineTitle[i]);
+                p.setPlaylistImage(vineImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        }else if (getTitle().equals(TAB_WEBSERIES)) {
+            for (int i = 0; i < webSeriesTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(webSeriesTitle[i]);
+                p.setPlaylistImage(webSeriesImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        } else if (getTitle().equals(TAB_COMEDY)) {
+            for (int i = 0; i < comedyTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(comedyTitle[i]);
+                p.setPlaylistImage(comedyImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        } else if (getTitle().equals(TAB_NEWS)) {
+            for (int i = 0; i < newsTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(newsTitle[i]);
+                p.setPlaylistImage(newsImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        } else if (getTitle().equals(TAB_TECHNOLOGY)) {
+            for (int i = 0; i < techTitle.length; i++) {
+                Playlist p = new Playlist();
+                p.setPlaylistTitle(techTitle[i]);
+                p.setPlaylistImage(techImage.getResourceId(i, -1));
+                channelList.add(p);
+            }
+//            adapter = new PlaylistAdapter(channelList, getContext());
+        } else {
             Toast.makeText(getActivity(), "else", Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-
+        adapter = new PlaylistAdapter(channelList, getContext());
 
         recyclerView.setAdapter(adapter);
         // Inflate the layout for this fragment
@@ -162,7 +187,6 @@ public class ChannelFragment extends Fragment  {
         Bundle args = getArguments();
         return args.getString("title", "NO TITLE FOUND");
     }
-
 
 
 }
