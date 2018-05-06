@@ -70,8 +70,6 @@
     </string-array>
     <array name="web_series_chhanel_image">
         <item>@drawable/the_viral_fever</item>
-        <item>@drawable/all_india_bakchod</item>
-        <item>@drawable/bindass</item>
         <item>@drawable/the_timeliners</item>
     </array>
 

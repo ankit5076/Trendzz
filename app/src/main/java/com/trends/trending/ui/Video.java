@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -24,8 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_METHOD;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_SEARCH;
+import static com.trends.trending.utils.Keys.VideoInfo.PARENT_TO_STRING;
+import static com.trends.trending.utils.Keys.VideoInfo.SEARCH_PARENT_TO_STRING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_MUSIC;
@@ -80,8 +84,8 @@ public class Video extends AppCompatActivity implements ReturnReceiver.Receiver 
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        Parent parent = null;
-        SearchParent searchParent = null;
+        Parent parent;
+        SearchParent searchParent;
         SharedPreferences settings;
         SharedPreferences.Editor editor;
         settings = getSharedPreferences(PREFS_NAME,
@@ -89,19 +93,21 @@ public class Video extends AppCompatActivity implements ReturnReceiver.Receiver 
         editor = settings.edit();
         Gson gson = new Gson();
 
-        if (resultData.getString("method").equals(VAL_SEARCH)) {
+        if (TextUtils.equals(resultData.getString(KEY_METHOD),VAL_SEARCH)) {
             searchParent = resultData.getParcelable(KEY_PARENT);
+            if (searchParent != null)
+                Toast.makeText(this, "video:: "+searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(this, "nulllllllllllll", Toast.LENGTH_SHORT).show();
             String parentString = gson.toJson(searchParent);
 
-            editor.putString("searchParentString", parentString);
+            editor.putString(SEARCH_PARENT_TO_STRING, parentString);
             editor.commit();
-        }
-
-        else {
+        } else {
             parent = resultData.getParcelable(KEY_PARENT);
             String parentString = gson.toJson(parent);
 
-            editor.putString("parentstring", parentString);
+            editor.putString(PARENT_TO_STRING, parentString);
             editor.commit();
         }
 

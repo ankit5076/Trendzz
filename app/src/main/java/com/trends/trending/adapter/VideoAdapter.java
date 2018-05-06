@@ -23,11 +23,15 @@ import java.util.List;
  * Created by ankit.a.vishwakarma on 28-Mar-18.
  */
 
-public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHolder> {
+public abstract class VideoAdapter<T> extends RecyclerView.Adapter<VideoAdapter.PlanetViewHolder> {
 
-    List<Item> videoList;
+//    public abstract RecyclerView.ViewHolder setViewHolder(ViewGroup parent);
 
-    public VideoAdapter(List<Item> videoList, Context context) {
+    public abstract void onBindData(VideoAdapter.PlanetViewHolder holder, T val);
+
+    List<T> videoList;
+
+    public VideoAdapter(List<T> videoList, Context context) {
         this.videoList = videoList;
     }
 
@@ -41,16 +45,17 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHo
     @Override
     public void onBindViewHolder(VideoAdapter.PlanetViewHolder holder, int position) {
 //        holder.image.setImageResource(R.drawable.akon_vevo);
-        Picasso.get()
-                .load(videoList.get(position).getSnippet().getThumbnails().getMedium().getUrl())
-                .resize(90, 70)
-                .placeholder(R.drawable.loading)
-                .error(R.drawable.amit_bhadana)
-                .into(holder.image);
-        holder.title.setText(videoList.get(position).getSnippet().getTitle());
-        holder.channelTtile.setText(videoList.get(position).getSnippet().getChannelTitle());
-        Log.d("height", "onBindViewHolder: "+videoList.get(position).getSnippet().getThumbnails().getMedium().getHeight());
-        Log.d("width", "onBindViewHolder: "+videoList.get(position).getSnippet().getThumbnails().getMedium().getWidth());
+        onBindData(holder, videoList.get(position));
+//        Picasso.get()
+//                .load(videoList.get(position).getSnippet().getThumbnails().getMedium().getUrl())
+//                .resize(90, 70)
+//                .placeholder(R.drawable.loading)
+//                .error(R.drawable.amit_bhadana)
+//                .into(holder.image);
+//        holder.title.setText(videoList.get(position).getSnippet().getTitle());
+//        holder.channelTtile.setText(videoList.get(position).getSnippet().getChannelTitle());
+//        Log.d("height", "onBindViewHolder: "+videoList.get(position).getSnippet().getThumbnails().getMedium().getHeight());
+//        Log.d("width", "onBindViewHolder: "+videoList.get(position).getSnippet().getThumbnails().getMedium().getWidth());
     }
 
     @Override
@@ -60,9 +65,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.PlanetViewHo
 
     public static class PlanetViewHolder extends RecyclerView.ViewHolder{
 
-        protected ImageView image;
-        protected TextView title;
-        protected TextView channelTtile;
+        public ImageView image;
+        public TextView title;
+        public TextView channelTtile;
 
         public PlanetViewHolder(View itemView) {
             super(itemView);

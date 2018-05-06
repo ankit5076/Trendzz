@@ -23,12 +23,15 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 import com.trends.trending.R;
+import com.trends.trending.adapter.PlaylistAdapter;
 import com.trends.trending.adapter.VideoAdapter;
 import com.trends.trending.model.youtube.Item;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.model.youtube.Playlist;
 import com.trends.trending.model.youtube.SearchItem;
+import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
 
@@ -39,6 +42,10 @@ import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_API;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_SEARCH;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_TRAILERS;
+import static com.trends.trending.utils.Keys.VideoInfo.PARENT_TO_STRING;
+import static com.trends.trending.utils.Keys.VideoInfo.SEARCH_PARENT_TO_STRING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRAILER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
@@ -120,23 +127,10 @@ public class VideoFragment extends Fragment  {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        String[] musicTitle = getResources().getStringArray(R.array.music_chhanel_title);
-        TypedArray musicImage = getResources().obtainTypedArray(R.array.music_chhanel_image);
-
-//        String[] otherTitle = getResources().getStringArray(R.array.others_chhanel_title);
-//        TypedArray otherImage = getResources().obtainTypedArray(R.array.other_chhanel_image);
-
         channelList.clear();
-
-
 
         settings = getActivity().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
-
-
-
-
-
 
 
         if(getTitle().equals(TAB_TRENDING)){
@@ -144,8 +138,9 @@ public class VideoFragment extends Fragment  {
 
             parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
             parent1.putExtra(KEY_INTENT, VAL_TRENDING);
+
             getActivity().startService(parent1);
-            String jsonParent = settings.getString("parentstring", null);
+            String jsonParent = settings.getString(PARENT_TO_STRING, null);
             Gson gson = new Gson();
             Parent parent = gson.fromJson(jsonParent, Parent.class);
             if (parent != null) {
@@ -156,50 +151,69 @@ public class VideoFragment extends Fragment  {
             for (Item item: parent.getItems()) {
                 videoList.add(item);
             }
-            adapter = new VideoAdapter(videoList, getContext());
-//            for (int i = 0; i < otherTitle.length; i++) {
-//                Playlist p = new Playlist();
-//                p.setPlaylistTitle(otherTitle[i]);
-//                p.setPlaylistImage(otherImage.getResourceId(i, -1));
-//                channelList.add(p);
-//            }
+
+            adapter = new VideoAdapter<Item>(videoList,getActivity()) {
+
+                @Override
+                public void onBindData(VideoAdapter.PlanetViewHolder holder1, Item val) {
+                    Item userModel = val;
+
+                    VideoAdapter.PlanetViewHolder holder =  holder1;
+                    Picasso.get()
+                .load(userModel.getSnippet().getThumbnails().getMedium().getUrl())
+                .resize(90, 70)
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.amit_bhadana)
+                .into(holder.image);
+                    holder.title.setText(userModel.getSnippet().getTitle());
+                    holder.channelTtile.setText(userModel.getSnippet().getChannelTitle());
+
+                }
+            };
+
         }
         else if(getTitle().equals(TAB_TRAILER)){
             Intent parent1 = new Intent(getActivity(), VideoRepository.class);
 
             parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
             parent1.putExtra(KEY_INTENT, VAL_SEARCH);
-//            getActivity().startService(parent1);
-//            String jsonParent = settings.getString("searchParentString", null);
-//            Gson gson = new Gson();
-//            SearchParent searchParent = gson.fromJson(jsonParent, SearchParent.class);
-//            if (searchParent != null) {
-//                Toast.makeText(getActivity(), searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-//            } else
-//                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
-//            for (SearchItem item: searchParent.getItems()) {
-//                searchVideoList.add(item);
-//            }
-//            adapter = new VideoAdapter(searchVideoList, getContext());
-            //            for (int i = 0; i < musicTitle.length; i++) {
-//                Playlist p = new Playlist();
-//                p.setPlaylistTitle(musicTitle[i]);
-//                p.setPlaylistImage(musicImage.getResourceId(i, -1));
-//                channelList.add(p);
-//            }
-//            adapter = new PlaylistAdapter(channelList, getContext());
+            parent1.putExtra(KEY_SEARCH, KEY_TRAILERS);
+            getActivity().startService(parent1);
+            String jsonParent = settings.getString(SEARCH_PARENT_TO_STRING, null);
+            Gson gson = new Gson();
+            SearchParent searchParent = gson.fromJson(jsonParent, SearchParent.class);
+            if (searchParent != null) {
+                Toast.makeText(getActivity(), "frag::"+searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+            } else
+                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
+            for (SearchItem item: searchParent.getItems()) {
+                searchVideoList.add(item);
+            }
+            adapter = new VideoAdapter<SearchItem>(searchVideoList,getActivity()) {
+
+                @Override
+                public void onBindData(VideoAdapter.PlanetViewHolder holder1, SearchItem val) {
+
+                    SearchItem userModel = val;
+
+                    Picasso.get()
+                            .load(userModel.getSnippet().getThumbnails().getMedium().getUrl())
+                            .resize(90, 70)
+                            .placeholder(R.drawable.loading)
+                            .error(R.drawable.amit_bhadana)
+                            .into(holder1.image);
+
+                    holder1.title.setText(userModel.getSnippet().getTitle());
+                    holder1.channelTtile.setText(userModel.getSnippet().getChannelTitle());
+
+                }
+            };
         }
         else {
             Toast.makeText(getActivity(), "else", Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-
-
         recyclerView.setAdapter(adapter);
-        // Inflate the layout for this fragment
     }
 
     private String getTitle() {
