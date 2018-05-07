@@ -133,7 +133,7 @@ public class VideoFragment extends Fragment  {
                 Context.MODE_PRIVATE);
 
 
-        if(getTitle().equals(TAB_TRENDING)){
+       // if(getTitle().equals(TAB_TRENDING)){
             Intent parent1 = new Intent(getActivity(), VideoRepository.class);
 
             parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
@@ -171,47 +171,47 @@ public class VideoFragment extends Fragment  {
                 }
             };
 
-        }
-        else if(getTitle().equals(TAB_TRAILER)){
-            Intent parent1 = new Intent(getActivity(), VideoRepository.class);
-
-            parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
-            parent1.putExtra(KEY_INTENT, VAL_SEARCH);
-            parent1.putExtra(KEY_SEARCH, KEY_TRAILERS);
-            getActivity().startService(parent1);
-            String jsonParent = settings.getString(SEARCH_PARENT_TO_STRING, null);
-            Gson gson = new Gson();
-            SearchParent searchParent = gson.fromJson(jsonParent, SearchParent.class);
-            if (searchParent != null) {
-                Toast.makeText(getActivity(), "frag::"+searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-            } else
-                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
-            for (SearchItem item: searchParent.getItems()) {
-                searchVideoList.add(item);
-            }
-            adapter = new VideoAdapter<SearchItem>(searchVideoList,getActivity()) {
-
-                @Override
-                public void onBindData(VideoAdapter.PlanetViewHolder holder1, SearchItem val) {
-
-                    SearchItem userModel = val;
-
-                    Picasso.get()
-                            .load(userModel.getSnippet().getThumbnails().getMedium().getUrl())
-                            .resize(90, 70)
-                            .placeholder(R.drawable.loading)
-                            .error(R.drawable.amit_bhadana)
-                            .into(holder1.image);
-
-                    holder1.title.setText(userModel.getSnippet().getTitle());
-                    holder1.channelTtile.setText(userModel.getSnippet().getChannelTitle());
-
-                }
-            };
-        }
-        else {
-            Toast.makeText(getActivity(), "else", Toast.LENGTH_SHORT).show();
-        }
+        //}
+//        else if(getTitle().equals(TAB_TRAILER)){
+//            Intent parent1 = new Intent(getActivity(), VideoRepository.class);
+//
+//            parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
+//            parent1.putExtra(KEY_INTENT, VAL_SEARCH);
+//            parent1.putExtra(KEY_SEARCH, KEY_TRAILERS);
+//            getActivity().startService(parent1);
+//            String jsonParent = settings.getString(SEARCH_PARENT_TO_STRING, null);
+//            Gson gson = new Gson();
+//            SearchParent searchParent = gson.fromJson(jsonParent, SearchParent.class);
+//            if (searchParent != null) {
+//                Toast.makeText(getActivity(), "frag::"+searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+//            } else
+//                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
+//            for (SearchItem item: searchParent.getItems()) {
+//                searchVideoList.add(item);
+//            }
+//            adapter = new VideoAdapter<SearchItem>(searchVideoList,getActivity()) {
+//
+//                @Override
+//                public void onBindData(VideoAdapter.PlanetViewHolder holder1, SearchItem val) {
+//
+//                    SearchItem userModel = val;
+//
+//                    Picasso.get()
+//                            .load(userModel.getSnippet().getThumbnails().getMedium().getUrl())
+//                            .resize(90, 70)
+//                            .placeholder(R.drawable.loading)
+//                            .error(R.drawable.amit_bhadana)
+//                            .into(holder1.image);
+//
+//                    holder1.title.setText(userModel.getSnippet().getTitle());
+//                    holder1.channelTtile.setText(userModel.getSnippet().getChannelTitle());
+//
+//                }
+//            };
+//        }
+//        else {
+//            Toast.makeText(getActivity(), "else", Toast.LENGTH_SHORT).show();
+//        }
 
         recyclerView.setAdapter(adapter);
     }
