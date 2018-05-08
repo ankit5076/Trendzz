@@ -37,18 +37,35 @@ import static com.trends.trending.utils.Keys.VideoInfo.PARENT_TO_STRING;
 import static com.trends.trending.utils.Keys.VideoInfo.SEARCH_PARENT_TO_STRING;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import com.plumillonforge.android.chipview.Chip;
+import com.plumillonforge.android.chipview.ChipView;
+import com.plumillonforge.android.chipview.ChipViewAdapter;
+import com.plumillonforge.android.chipview.OnChipClickListener;
+import com.trends.trending.adapter.MainChipViewAdapter;
+import com.trends.trending.service.ReturnReceiver;
+import com.trends.trending.utils.Tag;
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Created by USER on 5/6/2018.
  */
 
-public class DummyBottom extends AppCompatActivity implements ReturnReceiver.Receiver {
-
+public class DummyBottom extends AppCompatActivity implements OnChipClickListener, ReturnReceiver.Receiver {
     @BindView(R.id.bottom_sheet)
     LinearLayout layoutBottomSheet;
 
-    @BindView(R.id.bottom_sheet_recycler)
+    //    @BindView(R.id.bottom_sheet_recycler)
     RecyclerView mRecyclerView;
 
+    private List<Chip> mTagList1;
+    private List<Chip> mTagList2;
+
+    private ChipView mTextChipOverride;
 
     private RecyclerView.LayoutManager layoutManager;
 
@@ -60,26 +77,37 @@ public class DummyBottom extends AppCompatActivity implements ReturnReceiver.Rec
         setContentView(R.layout.dummy_bottom_main);
 
         ButterKnife.bind(this);
-        layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
+
+
+
+        mTagList2 = new ArrayList<>();
+        mTagList2.add(new Tag("Music", 1));
+        mTagList2.add(new Tag("Vines", 2));
+        mTagList2.add(new Tag("Standup comedy", 3));
+        mTagList2.add(new Tag("News", 4));
+        mTagList2.add(new Tag("Fitness", 5));
+        mTagList2.add(new Tag("Web series", 6));
+
+        // Adapter
+        ChipViewAdapter adapterLayout = new MainChipViewAdapter(this);
+        ChipViewAdapter adapterOverride = new MainChipViewAdapter(this);
+
+
+        // Chip override
+        mTextChipOverride = (ChipView) findViewById(R.id.text_chip_override);
+        mTextChipOverride.setAdapter(adapterOverride);
+        mTextChipOverride.setChipList(mTagList2);
+        mTextChipOverride.setOnChipClickListener(this);
+
+
+
+
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
-        String[] musicTitle = getResources().getStringArray(R.array.music_chhanel_title);
-        TypedArray musicImage = getResources().obtainTypedArray(R.array.music_chhanel_image);
 
-        ArrayList<Playlist> channelList = new ArrayList();
 
-        RecyclerView.Adapter adapter;
-channelList.clear();
-        for (int i = 0; i < musicTitle.length; i++) {
-            Playlist p = new Playlist();
-            p.setPlaylistTitle(musicTitle[i]);
-            p.setPlaylistImage(musicImage.getResourceId(i, -1));
-            channelList.add(p);
-        }
-        adapter = new PlaylistAdapter(channelList, this);
 
-        mRecyclerView.setAdapter(adapter);
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         VideoFragment videoFragment = new VideoFragment();
@@ -94,7 +122,7 @@ channelList.clear();
                     case BottomSheetBehavior.STATE_HIDDEN:
                         break;
                     case BottomSheetBehavior.STATE_EXPANDED: {
-                       // btnBottomSheet.setText("Close Sheet");
+                        // btnBottomSheet.setText("Close Sheet");
                     }
                     break;
                     case BottomSheetBehavior.STATE_COLLAPSED: {
@@ -117,7 +145,14 @@ channelList.clear();
 
     }
 
+    @Override
+    public void onChipClick(Chip chip) {
 
+//        mTextChipLayout.remove(chip);
+
+        Toast.makeText(this, chip.getText(), Toast.LENGTH_SHORT).show();
+
+    }
 
     public void toggleBottomSheet(View view) {
 
@@ -163,5 +198,5 @@ channelList.clear();
 
             editor.putString(PARENT_TO_STRING, parentString);
             editor.commit();
-    }
-}}
+        }
+    }}

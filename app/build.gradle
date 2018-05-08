@@ -38,6 +38,7 @@ dependencies {
     compile 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     compile 'com.squareup.picasso:picasso:2.71828'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.github.Plumillon:ChipView:1.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

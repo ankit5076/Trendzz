@@ -148,11 +148,13 @@ public class VideoFragment extends Fragment  {
             } else
                 Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
 
+        if (parent != null) {
             for (Item item: parent.getItems()) {
                 videoList.add(item);
             }
+        }
 
-            adapter = new VideoAdapter<Item>(videoList,getActivity()) {
+        adapter = new VideoAdapter<Item>(videoList,getActivity()) {
 
                 @Override
                 public void onBindData(VideoAdapter.PlanetViewHolder holder1, Item val) {

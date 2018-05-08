@@ -9,6 +9,12 @@
     <string name="channel_name">Channel Name</string>
     <!--Videos chanel names-->
 
+    <!--chip view-->
+    <string name="default_chip">Default</string>
+    <string name="attrs_chip">With custom XML attributes</string>
+    <string name="with_layout">With overall layout res, background color and click listener</string>
+    <string name="with_override">With overrided ChipViewAdapter getLayoutRes and getBackgroundColor</string>
+
     <!--channel Start-->
     <string name="zee_music_company">Zee Music Company</string>
     <string name="t_series">T-Series</string>
