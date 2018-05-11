@@ -19,6 +19,8 @@ import com.trends.trending.model.youtube.Video;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by ankit.a.vishwakarma on 28-Mar-18.
  */
@@ -65,13 +67,13 @@ public abstract class VideoAdapter<T> extends RecyclerView.Adapter<VideoAdapter.
 
     public static class PlanetViewHolder extends RecyclerView.ViewHolder{
 
-        public ImageView image;
+        public CircleImageView image;
         public TextView title;
         public TextView channelTtile;
 
         public PlanetViewHolder(View itemView) {
             super(itemView);
-            image= (ImageView) itemView.findViewById(R.id.video_image);
+            image =  itemView.findViewById(R.id.video_image);
             title= (TextView) itemView.findViewById(R.id.video_title);
             channelTtile= (TextView) itemView.findViewById(R.id.video_channel_title);
         }

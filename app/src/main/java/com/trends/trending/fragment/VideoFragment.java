@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,10 +35,12 @@ import com.trends.trending.model.youtube.SearchItem;
 import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
+import com.trends.trending.utils.RecyclerDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.support.v7.widget.RecyclerView.HORIZONTAL;
 import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_API;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
@@ -51,7 +54,7 @@ import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
 
-public class VideoFragment extends Fragment  {
+public class VideoFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -71,11 +74,10 @@ public class VideoFragment extends Fragment  {
     }
 
 
-
     public static VideoFragment newInstance(String title) {
-        
+
         Bundle args = new Bundle();
-        
+
         VideoFragment fragment = new VideoFragment();
         args.putString("title", title);
         fragment.setArguments(args);
@@ -126,52 +128,53 @@ public class VideoFragment extends Fragment  {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_video);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-
+        // RecyclerDividerItemDecoration itemDecor = new RecyclerDividerItemDecoration(getActivity(), HORIZONTAL);
+        recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(getContext()));
         channelList.clear();
 
         settings = getActivity().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
 
 
-       // if(getTitle().equals(TAB_TRENDING)){
-            Intent parent1 = new Intent(getActivity(), VideoRepository.class);
+        // if(getTitle().equals(TAB_TRENDING)){
+        Intent parent1 = new Intent(getActivity(), VideoRepository.class);
 
-            parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
-            parent1.putExtra(KEY_INTENT, VAL_TRENDING);
+        parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
+        parent1.putExtra(KEY_INTENT, VAL_TRENDING);
 
-            getActivity().startService(parent1);
-            String jsonParent = settings.getString(PARENT_TO_STRING, null);
-            Gson gson = new Gson();
-            Parent parent = gson.fromJson(jsonParent, Parent.class);
-            if (parent != null) {
-                Toast.makeText(getActivity(), parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-            } else
-                Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
+        getActivity().startService(parent1);
+        String jsonParent = settings.getString(PARENT_TO_STRING, null);
+        Gson gson = new Gson();
+        Parent parent = gson.fromJson(jsonParent, Parent.class);
+        if (parent != null) {
+            Toast.makeText(getActivity(), parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
 
         if (parent != null) {
-            for (Item item: parent.getItems()) {
+            for (Item item : parent.getItems()) {
                 videoList.add(item);
             }
         }
 
-        adapter = new VideoAdapter<Item>(videoList,getActivity()) {
+        adapter = new VideoAdapter<Item>(videoList, getActivity()) {
 
-                @Override
-                public void onBindData(VideoAdapter.PlanetViewHolder holder1, Item val) {
-                    Item userModel = val;
+            @Override
+            public void onBindData(VideoAdapter.PlanetViewHolder holder1, Item val) {
+                Item userModel = val;
 
-                    VideoAdapter.PlanetViewHolder holder =  holder1;
-                    Picasso.get()
-                .load(userModel.getSnippet().getThumbnails().getMedium().getUrl())
-                .resize(90, 70)
-                .placeholder(R.drawable.loading)
-                .error(R.drawable.amit_bhadana)
-                .into(holder.image);
-                    holder.title.setText(userModel.getSnippet().getTitle());
-                    holder.channelTtile.setText(userModel.getSnippet().getChannelTitle());
+                VideoAdapter.PlanetViewHolder holder = holder1;
+                Picasso.get()
+                        .load(userModel.getSnippet().getThumbnails().getHigh().getUrl())
+                        .resize(70, 70)
+                        .placeholder(R.drawable.loading)
+                        .error(R.drawable.amit_bhadana)
+                        .into(holder.image);
+                holder.title.setText(userModel.getSnippet().getTitle());
+                holder.channelTtile.setText(userModel.getSnippet().getChannelTitle());
 
-                }
-            };
+            }
+        };
 
         //}
 //        else if(getTitle().equals(TAB_TRAILER)){

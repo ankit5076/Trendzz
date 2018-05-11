@@ -38,6 +38,16 @@
                 android:textColor="#000000"
                 android:textSize="25sp"
                 tool:text="&quot;I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.&quot;" />
+            <TextView
+                android:id="@+id/uploadedBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:layout_gravity="end"
+                tool:text="Uploaded by Admin" />
+
 
             <Button
                 android:layout_width="wrap_content"

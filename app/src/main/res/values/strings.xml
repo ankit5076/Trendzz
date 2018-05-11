@@ -30,6 +30,10 @@
     <string name="amit_bhadana">Amit Bhadana</string>
     <string name="be_younick">Be YouNick</string>
     <string name="carryminati">CarryMinati</string>
+
+
+
+
     <string name="guru_mann_fitness">Guru Mann Fitness</string>
     <string name="fitmuscle_tv">FitMuscle TV</string>
     <string name="aaj_tak">Aaj Tak</string>
@@ -45,6 +49,41 @@
     <string name="unbox_therapy">Unbox Therapy</string>
     <string name="geekyranjit">Geekyranjit</string>
     <!--channel End-->
+
+    <string-array name="fitness_playlist_title">
+        <item>Coordination, Agility and Balance Workouts</item>
+        <item>Mass Building Workouts for Muscle</item>
+        <item>Flexibility, Stretching, Warm Up and Cool Down Workout Videos</item>
+        <item>HOW TO: Barbell and Dumbbell Exercise </item>
+        <item>MUSCLE GAIN Routines</item>
+        <item>Reviews on Protein</item>
+        <item>Top 3 Guru Mann's Pick</item>
+        <item>Diet</item>
+        <item>Muscleblaze transformation</item>
+
+    </string-array>
+    <string-array name="fitness_playlist_id">
+        <item>PL5lPziO_t_Vjq5bzvW1HrEE3gnnySBn5w</item>
+        <item>PL5lPziO_t_ViCGfTMuco8iAD4Z-psEfkn</item>
+        <item>PLFD9A7697E965FB1B</item>
+        <item>PLacPhVACI3MNgGaNdQfNfcMyupRfSiMmQ</item>
+        <item>PLacPhVACI3MPdcVw_Or3g0fd2npcc4mLj</item>
+        <item>PLjlSxZrKIR8RelrmVtbs_LtRy1kK12T7B</item>
+        <item>PLjlSxZrKIR8SCVK-pe_06SQ415UO0kjui</item>
+        <item>PLghtQOauHTUrFnCr1YxO-y99Bl-JSM82h</item>
+        <item>PLghtQOauHTUqGhMY3vQNhVq5fa_YhPiYH</item>
+    </string-array>
+    <array name="fitness_playlist_image">
+        <item>@drawable/fitness_blender</item>
+        <item>@drawable/fitness_blender</item>
+        <item>@drawable/fitness_blender</item>
+        <item>@drawable/scott_herman_fitness</item>
+        <item>@drawable/scott_herman_fitness</item>
+        <item>@drawable/guru_mann_fitness</item>
+        <item>@drawable/guru_mann_fitness</item>
+        <item>@drawable/fitmuscle_tv</item>
+        <item>@drawable/fitmuscle_tv</item>
+    </array>
 
     <string-array name="technology_chhanel_title">
         <item>@string/technical_guruji</item>
@@ -181,6 +220,8 @@
     </array>
 
     <string name="Hello_World">Hello World!</string>
+    <string name="swipe_up">Swipe up</string>
+    <string name="swipe_down">Swipe Down</string>
 
 
 </resources>

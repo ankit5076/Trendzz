@@ -1,6 +1,7 @@
 package com.trends.trending.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -26,12 +27,40 @@ public class MainChipViewAdapter extends ChipViewAdapter {
 
     @Override
     public int getBackgroundColor(int position) {
-        return 0;
+        Tag tag = (Tag) getChip(position);
+
+        switch (tag.getType()) {
+            default:
+                return 0;
+
+            case 1:
+                return Color.parseColor("#f44336");
+            case 2:
+                return Color.parseColor("#009688");
+            case 3:
+                return Color.parseColor("#3f51b5");
+
+            case 4:
+                return Color.parseColor("#4caf50");
+
+            case 5:
+                return Color.parseColor("#00bcd4");
+
+            case 6:
+                return Color.parseColor("#4caf50");
+
+            case 7:
+                return Color.parseColor("#3f51b5");
+
+            case 8:
+                return Color.parseColor("#009688");
+
+        }
     }
 
     @Override
     public int getBackgroundColorSelected(int position) {
-        return 0;
+        return Color.parseColor("#ffffff");
     }
 
     @Override
@@ -42,8 +71,12 @@ public class MainChipViewAdapter extends ChipViewAdapter {
     @Override
     public void onLayout(View view, int position) {
         Tag tag = (Tag) getChip(position);
-
+        ((TextView) view.findViewById(android.R.id.text1)).setTextSize(20);
+        ((TextView) view.findViewById(android.R.id.text1)).setPadding(10,10,10,10);
         if (tag.getType() == 2)
-            ((TextView) view.findViewById(android.R.id.text1)).setTextColor(getColor(R.color.blue));
+            //((TextView) view.findViewById(android.R.id.text1)).setTextColor(getColor(R.color.blue));
+        {}
+        if (tag.getType() == 1){}
+            //((TextView) view.findViewById(android.R.id.text1)).setTextColor(getColor(R.color.blue));
     }
 }
