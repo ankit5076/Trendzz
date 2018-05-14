@@ -30,10 +30,6 @@
     <string name="amit_bhadana">Amit Bhadana</string>
     <string name="be_younick">Be YouNick</string>
     <string name="carryminati">CarryMinati</string>
-
-
-
-
     <string name="guru_mann_fitness">Guru Mann Fitness</string>
     <string name="fitmuscle_tv">FitMuscle TV</string>
     <string name="aaj_tak">Aaj Tak</string>
@@ -49,6 +45,55 @@
     <string name="unbox_therapy">Unbox Therapy</string>
     <string name="geekyranjit">Geekyranjit</string>
     <!--channel End-->
+
+
+
+    <string-array name="web_series_playlist_title">
+        <item>TVF Tech Conversations With Dad</item>
+        <item>TVF Pitchers | Season 01</item>
+        <item>TVF Permanent Roommates | Season 01</item>
+        <item>TVF Permanent Roommates | Season 02</item>
+        <item>FLAMES #PadhaiAurPyaar</item>
+        <item>Official Chukyagiri | Full Episodes</item>
+        <item>Binge Watch Official CEOgiri</item>
+        <item>Rise | Web Series | Vikrant Massey | Cheers!</item>
+        <item>It Happened In Hong Kong | Aahana Kumra | Amol</item>
+        <item>Dice Media | What The Folks (WTF!)</item>
+        <item>Dice Media | Little Things | Season 1</item>
+        <item>AIB : Honest Bars and Restaurants</item>
+        <item>TSP Zeroes</item>
+    </string-array>
+    <string-array name="web_series_playlist_id">
+        <item>PLTB0eCoUXErb0NYOXVgZyHJW6Cx_3HWWm</item>
+        <item>PLTB0eCoUXErbtRa6MYRnPCQMXT57TG2on</item>
+        <item>PLTB0eCoUXErZe2pMrH3qO4tHtw-K0QKb_</item>
+        <item>PLTB0eCoUXErZpnOUF1CD_syEKkrReXdF7</item>
+        <item>PLbZboRRHE3b14pFvT26golxysQKbWGOSg</item>
+        <item>PLcvCQa6KHYRnAxKJi6mDLbdV7XzDMTOzL</item>
+        <item>PLcvCQa6KHYRn6n1yfE3oD_mZmBrJXgvJx</item>
+        <item>PLQrvCvrWprVT21z8Bz3KcfGQgZ7kfu5D4</item>
+        <item>PLNoppEJMkKSoAtm623dulddYV0UOXFxdK</item>
+        <item>PL4x7Of-X4XhiK_gmCcJF8xfrlQN_46nmj</item>
+        <item>PL4x7Of-X4XhgNBVfFpd1N4cSU_X1x96gU</item>
+        <item>PLF05eR2VJLBkmUtRT15g73AYApfHZiNGH</item>
+        <item>PLcxtukvbdUtA_PEYIV3-zSNNppNrTX06_</item>
+
+    </string-array>
+    <array name="web_series_playlist_image">
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_timeliners</item>
+        <item>@drawable/arre</item>
+        <item>@drawable/arre</item>
+        <item>@drawable/cheers</item>
+        <item>@drawable/viu</item>
+        <item>@drawable/dice_media</item>
+        <item>@drawable/dice_media</item>
+        <item>@drawable/aib</item>
+        <item>@drawable/tsp</item>
+    </array>
 
     <string-array name="fitness_playlist_title">
         <item>Coordination, Agility and Balance Workouts</item>

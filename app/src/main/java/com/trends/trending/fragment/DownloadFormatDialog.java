@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,6 +28,7 @@ import com.trends.trending.service.DownloadService;
 import com.trends.trending.utils.ExtraHelper;
 
 import at.huber.youtubeExtractor.YtFile;
+import butterknife.BindView;
 
 import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
 import static com.trends.trending.utils.ExtraHelper.VIDEO_TYPE;
@@ -48,6 +50,8 @@ public class DownloadFormatDialog extends DialogFragment {
     String vUrl;
     String videoFileName;
     String vTitle;
+    @BindView(R.id.progress_bar)
+    ProgressBar mProgressBar;
 
     @Nullable
     @Override
@@ -64,6 +68,7 @@ public class DownloadFormatDialog extends DialogFragment {
             String jsonVideoLink = settings.getString(VIDEO_TYPE, null);
             Gson gson = new Gson();
             videoLink = gson.fromJson(jsonVideoLink, VideoLink.class);
+            mainLayout.removeView(mProgressBar);
             for (YtFile ytFile:videoLink.getYtFiles()){
                 if (ytFile.getFormat().getHeight() == -1 || ytFile.getFormat().getHeight() >= 360) {
                     addButtonToMainLayout(videoLink.getVideoMeta().getTitle(), ytFile);
@@ -101,10 +106,12 @@ public class DownloadFormatDialog extends DialogFragment {
                     editor = settings.edit();
                     editor.remove(VIDEO_TYPE);
                     editor.commit();
+                    Toast.makeText(getContext(), "Downloading...", Toast.LENGTH_SHORT).show();
 
                 } else {
                     requestPermission();
                 }
+                dismiss();
                 //finish();
             }
         });
@@ -125,18 +132,6 @@ public class DownloadFormatDialog extends DialogFragment {
         ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},PERMISSION_REQUEST_CODE);
     }
 
-
-    private void downloadFromUrl(String youtubeDlUrl, String downloadTitle, String fileName) {
-        Uri uri = Uri.parse(youtubeDlUrl);
-        DownloadManager.Request request = new DownloadManager.Request(uri);
-        request.setTitle(downloadTitle);
-        request.allowScanningByMediaScanner();
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
-
-        DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
-        manager.enqueue(request);
-    }
 
 //    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 //        @Override

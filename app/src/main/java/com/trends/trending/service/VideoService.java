@@ -35,6 +35,13 @@ public interface VideoService {
                                      @Query("maxResults") int resultsPerPage,
                                      @Query("key") String apiKey);
 
+    @GET(SEARCH)
+    Call<SearchParent> channelVideos(@Query("part") String part,
+                                     @Query("channelId") String channelId,
+                                     @Query("maxResults") int resultsPerPage,
+                                     @Query("order") String orderBy,
+                                     @Query("key") String apiKey);
+
     @GET(TRENDING)
     Call<Parent> trendingVideos(@Query("part") String part,
                                 @Query("chart") String chart,

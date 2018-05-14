@@ -22,7 +22,6 @@ import com.plumillonforge.android.chipview.ChipViewAdapter;
 import com.plumillonforge.android.chipview.OnChipClickListener;
 import com.trends.trending.adapter.MainChipViewAdapter;
 import com.trends.trending.fragment.ChannelFragment;
-import com.trends.trending.fragment.TrailerFragment;
 import com.trends.trending.fragment.VideoFragment;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.model.youtube.SearchParent;
@@ -69,9 +68,7 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
     @BindView(R.id.bottom_sheet)
     NestedScrollView layoutBottomSheet;
 
-
     private ActionBar actionBar;
-    private BottomSheetBehavior sheetBehavior;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,13 +101,12 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
         textChipOverride.setOnChipClickListener(this);
 
 
-        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+        BottomSheetBehavior sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        VideoFragment videoFragment = new VideoFragment();
         fragmentManager.beginTransaction()
-                .add(R.id.frag, videoFragment)
+                .add(R.id.frag, VideoFragment.newInstance(TAB_TRENDING))
                 .commit();
 
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -153,16 +149,10 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
             Toast.makeText(this, chip.getText(), Toast.LENGTH_SHORT).show();
             switch (title) {
                 case TAB_TRENDING:
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.frag, new VideoFragment())
-                            .commit();
-
-                    break;
                 case TAB_TRAILER:
                     fragmentManager.beginTransaction()
-                            .replace(R.id.frag, new TrailerFragment())
+                            .replace(R.id.frag, VideoFragment.newInstance(title))
                             .commit();
-
                     break;
                 case TAB_MUSIC:
                 case TAB_FITNESS:
@@ -174,6 +164,8 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
                     fragmentManager.beginTransaction()
                             .replace(R.id.frag, ChannelFragment.newInstance(title))
                             .commit();
+                    break;
+                default:
                     break;
 
             }

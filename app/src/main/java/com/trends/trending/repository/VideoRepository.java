@@ -16,18 +16,22 @@ import java.io.IOException;
 import retrofit2.Call;
 
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_API;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_CHANNEL_ID;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_CHANNEL_PART;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_CHANNEL_PLAYLIST_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_CHART;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_COUNTRY_CODE;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_METHOD;
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_ORDER_BY;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PART;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PLAYLIST_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_RESULTS_PER_PAGE;
+import static com.trends.trending.utils.Keys.VideoInfo.NUMBER_OF_VIDEOS_RETURNED;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_SEARCH;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_CHANNEL_PLAYLIST;
+import static com.trends.trending.utils.Keys.VideoInfo.VAL_CHANNEL_VIDEOS;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_PLAYLIST_VIDEOS;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
@@ -42,7 +46,6 @@ public class VideoRepository extends IntentService {
 
     public VideoRepository() {
         super("Background service");
-        Log.d(TAG, "VideoRepository: ");
     }
 
     @Override
@@ -80,11 +83,23 @@ public class VideoRepository extends IntentService {
                     break;
 
                 case VAL_PLAYLIST_VIDEOS:
-                    String playlistId = intent.getStringExtra(KEY_PLAYLIST_ID);
+                    String playlistId = intent.getStringExtra(KEY_CHANNEL_ID);
                     Parent playlistParent = getPlaylistVideos(playlistId);
                     bundle.putParcelable(KEY_PARENT, playlistParent);
                     bundle.putString(KEY_METHOD,VAL_PLAYLIST_VIDEOS);
                     receiver.send(1,bundle);
+                    break;
+
+                case VAL_CHANNEL_VIDEOS:
+                    String mChannelId = intent.getStringExtra(KEY_CHANNEL_ID);
+                    SearchParent channelVideoParent = getChannelVideos(mChannelId);
+                    bundle.putParcelable(KEY_PARENT, channelVideoParent);
+                    bundle.putString(KEY_METHOD,VAL_CHANNEL_VIDEOS);
+                    receiver.send(1,bundle);
+                    break;
+
+
+                default:
                     break;
             }
 
@@ -95,7 +110,13 @@ public class VideoRepository extends IntentService {
     public SearchParent getSearchResults(String search){
         VideoService videoService = VideoService.retrofit.create(VideoService.class);
         Call<SearchParent> call = videoService.searchResults
-                (KEY_PART,search, KEY_RESULTS_PER_PAGE, KEY_API);
+                (KEY_PART,search, NUMBER_OF_VIDEOS_RETURNED, KEY_API);
+        return getResult(call);
+    }
+
+    public SearchParent getChannelVideos(String channelId){
+        VideoService videoService = VideoService.retrofit.create(VideoService.class);
+        Call<SearchParent> call = videoService.channelVideos(KEY_CHANNEL_PART, channelId, NUMBER_OF_VIDEOS_RETURNED, KEY_ORDER_BY, KEY_API);
         return getResult(call);
     }
 
@@ -103,7 +124,7 @@ public class VideoRepository extends IntentService {
 
         VideoService videoService = VideoService.retrofit.create(VideoService.class);
         Call<Parent> call = videoService.trendingVideos
-                (KEY_PART, KEY_CHART, KEY_COUNTRY_CODE, KEY_RESULTS_PER_PAGE, KEY_API);
+                (KEY_PART, KEY_CHART, KEY_COUNTRY_CODE, NUMBER_OF_VIDEOS_RETURNED, KEY_API);
 
 //        call.enqueue(new Callback<SearchParent>() {
 //            @Override
@@ -124,7 +145,7 @@ public class VideoRepository extends IntentService {
 
         VideoService videoService = VideoService.retrofit.create(VideoService.class);
         Call<Parent> call = videoService.channelPlaylists
-                (KEY_PART, channelId, KEY_RESULTS_PER_PAGE, KEY_API);
+                (KEY_PART, channelId, NUMBER_OF_VIDEOS_RETURNED, KEY_API);
 
 
         return getResultTrending(call);
@@ -134,7 +155,7 @@ public class VideoRepository extends IntentService {
 
         VideoService videoService = VideoService.retrofit.create(VideoService.class);
         Call<Parent> call = videoService.playlistsVideos
-                (KEY_PART, playlistId, KEY_RESULTS_PER_PAGE, KEY_API);
+                (KEY_PART, playlistId, NUMBER_OF_VIDEOS_RETURNED, KEY_API);
 
         return getResultTrending(call);
     }
