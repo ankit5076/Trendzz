@@ -1,18 +1,25 @@
 package com.trends.trending.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rilixtech.materialfancybutton.MaterialFancyButton;
+import com.trends.trending.DummyUploadQuote;
 import com.trends.trending.R;
 import com.trends.trending.utils.ShadowTransformer;
 import com.trends.trending.adapter.QuotePagerAdapter;
@@ -34,21 +41,38 @@ public class FamousQuote extends AppCompatActivity {
     private QuotePagerAdapter mCardAdapter;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseHelper mFirebaseHelper;
+    private Toolbar toolbar;
+    private ShimmerFrameLayout mShimmerViewContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_famous_quote);
     //    ButterKnife.bind(this);
+        toolbar = findViewById(R.id.toolbar_quote);
+        setSupportActionBar(toolbar);
+        MaterialFancyButton btnUserQuoteUpload = findViewById(R.id.toolbar_user_upload);
         mViewPager = findViewById(R.id.viewPager);
         mCardAdapter = new QuotePagerAdapter(FamousQuote.this);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("quotes");
         mFirebaseHelper = new FirebaseHelper(mFirebaseDatabase, FamousQuote.this);
+        mShimmerViewContainer = findViewById(R.id.shimmer_view_quote_container);
+        mShimmerViewContainer.startShimmerAnimation();
 
         if(NetworkHelper.hasNetworkAccess(this))
             fetchQuote();
-        else
+        else {
+            mShimmerViewContainer.stopShimmerAnimation();
+            mShimmerViewContainer.setVisibility(View.GONE);
             Toast.makeText(this, R.string.no_network, Toast.LENGTH_SHORT).show();
+        }
+        btnUserQuoteUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FamousQuote.this, UserUploadQuote.class));
+            }
+        });
     }
 
     private void fetchQuote() {
@@ -56,13 +80,19 @@ public class FamousQuote extends AppCompatActivity {
         mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                mShimmerViewContainer.stopShimmerAnimation();
+                mShimmerViewContainer.setVisibility(View.GONE);
+
                 mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
                 displayData();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                mShimmerViewContainer.stopShimmerAnimation();
+                mShimmerViewContainer.setVisibility(View.GONE);
 
+                Toast.makeText(FamousQuote.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
 //

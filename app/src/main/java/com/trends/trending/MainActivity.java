@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     }
 
     public void goToTab(View view) {
-        startActivity(new Intent(this, Video.class));
+        //startActivity(new Intent(this, Video.class));
+        startActivity(new Intent(this, DummyBottom.class));
     }
 }

@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="quote"
         android:inputType="text"
         />
 
@@ -18,8 +19,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="author name"
         android:inputType="textPersonName"
          />
+
+    <EditText
+        android:id="@+id/uploadedBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="uploaded by"
+        android:inputType="textPersonName"
+        />
 
     <Button
         android:id="@+id/upload"

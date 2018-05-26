@@ -13,18 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DummyBottom">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.FamousQuote" />
+        <!--<activity android:name=".DummyBottom">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity android:name=".ui.FamousQuote"
+            android:theme="@style/MyMaterialTheme"/>
         <activity android:name=".ui.Video"
             android:theme="@style/MyMaterialTheme"/>
+        <activity android:name=".DummyBottom"/>
         <activity android:name=".DummyUploadQuote" />
         <activity android:name=".ui.PlaylistVideo" />
+        <activity android:name=".ui.UserUploadQuote" />
 
         <service android:name="com.trends.trending.repository.VideoRepository" />
         <service android:name=".service.DownloadService" />

@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:id="@+id/quoteCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,20 +19,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="12dp">
 
             <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="wrap_content"
+                android:id="@+id/authorName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:textColor="#000000"
                 android:textSize="27sp"
                 tool:text="Mahatma Gandhi" />
 
             <TextView
-                android:id="@+id/contentTextView"
+                android:id="@+id/quoteText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -43,17 +44,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:padding="5dp"
                 android:layout_gravity="end"
-                tool:text="Uploaded by Admin" />
+                tool:text="- Uploaded by Admin" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
-
-            <Button
+            <com.rilixtech.materialfancybutton.MaterialFancyButton
+                android:id="@+id/btn_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Share" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp"
+                fancy:mfb_borderColor="#000000"
+                fancy:mfb_borderWidth="1dp"
+                tool:mfb_defaultColor="#ffffff"
+                fancy:mfb_fontIconSize="20sp"
+                fancy:mfb_iconPaddingRight="5dp"
+                fancy:mfb_focusColor="@color/light_green"
+                fancy:mfb_icon="@string/mdii_share"
+                fancy:mfb_iconPosition="left"
+                fancy:mfb_radius="5dp"
+                fancy:mfb_text="Share"
+                fancy:mfb_textColor="#000000" /></RelativeLayout>
         </LinearLayout>
 
     </FrameLayout>

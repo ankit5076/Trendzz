@@ -72,7 +72,7 @@ public class MainChipViewAdapter extends ChipViewAdapter {
     public void onLayout(View view, int position) {
         Tag tag = (Tag) getChip(position);
         ((TextView) view.findViewById(android.R.id.text1)).setTextSize(20);
-        ((TextView) view.findViewById(android.R.id.text1)).setPadding(10,10,10,10);
+        view.findViewById(android.R.id.text1).setPadding(10,10,10,10);
         if (tag.getType() == 2)
             //((TextView) view.findViewById(android.R.id.text1)).setTextColor(getColor(R.color.blue));
         {}

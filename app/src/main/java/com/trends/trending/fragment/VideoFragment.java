@@ -16,8 +16,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
@@ -64,6 +66,9 @@ public class VideoFragment extends Fragment {
     private View view;
     private YouTubePlayer YPlayer;
     private ReturnReceiver mReturnReceiver;
+    private ShimmerFrameLayout mShimmerViewContainer;
+    private LinearLayout mContainer;
+
 
 
     public VideoFragment() {
@@ -90,6 +95,9 @@ public class VideoFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_video, container, false);
 
+        mShimmerViewContainer = view.findViewById(R.id.shimmer_view_video_container);
+        mContainer = view.findViewById(R.id.video_container);
+        mShimmerViewContainer.startShimmerAnimation();
         mReturnReceiver = new ReturnReceiver(new Handler());
         mReturnReceiver.setReceiver((ReturnReceiver.Receiver) getContext());
         setRecyclerView();
@@ -117,6 +125,8 @@ public class VideoFragment extends Fragment {
             Gson gson = new Gson();
             Parent parent = gson.fromJson(jsonParent, Parent.class);
             if (parent != null) {
+                mShimmerViewContainer.stopShimmerAnimation();
+                mContainer.removeView(mShimmerViewContainer);
                 videoList.addAll(parent.getItems());
             } else
                 Toast.makeText(getActivity(), "Parent null", Toast.LENGTH_LONG).show();
@@ -167,6 +177,8 @@ public class VideoFragment extends Fragment {
             Gson gson = new Gson();
             SearchParent searchParent = gson.fromJson(jsonParent, SearchParent.class);
             if (searchParent != null) {
+                mShimmerViewContainer.stopShimmerAnimation();
+                mContainer.removeView(mShimmerViewContainer);
                 searchVideoList.addAll(searchParent.getItems());
             } else
                 Toast.makeText(getActivity(), "MainActivity null", Toast.LENGTH_LONG).show();
@@ -258,5 +270,19 @@ public class VideoFragment extends Fragment {
         DownloadFormatDialog downloadFormatDialog = new DownloadFormatDialog();
         downloadFormatDialog.show(getFragmentManager(), "DIALOG_FRAGMENT");
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        mContainer.addView(mShimmerViewContainer);
+        mShimmerViewContainer.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        mShimmerViewContainer.stopShimmerAnimation();
+        mContainer.removeView(mShimmerViewContainer);
+        super.onPause();
     }
 }

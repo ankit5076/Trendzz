@@ -39,6 +39,8 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.71828'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     compile 'com.github.Plumillon:ChipView:1.2.0'
+    compile 'com.rilixtech:materialfancybuttons:1.8.7'
+    compile 'com.rilixtech:material-design-iconic-typeface:2.2.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

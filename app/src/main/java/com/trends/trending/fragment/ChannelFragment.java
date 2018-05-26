@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.trends.trending.R;
 import com.trends.trending.adapter.PlaylistAdapter;
 import com.trends.trending.model.youtube.Playlist;
@@ -36,6 +37,7 @@ public class ChannelFragment extends Fragment {
     private View view;
 
     ReturnReceiver mReturnReceiver;
+
 
     public ChannelFragment() {
         // Required empty public constructor
@@ -61,6 +63,7 @@ public class ChannelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_channel, container, false);
+
         mReturnReceiver = new ReturnReceiver(new Handler());
         mReturnReceiver.setReceiver((ReturnReceiver.Receiver) getContext());
         setRecyclerView();

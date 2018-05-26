@@ -8,13 +8,23 @@ public class Quote {
 
     private String authorName;
     private String famousQuote;
+    private String uploadedBy;
 
     public Quote() {
     }
 
-    public Quote(String authorName, String famousQuote) {
+    public Quote(String authorName, String famousQuote, String uploadedBy) {
         this.authorName = authorName;
         this.famousQuote = famousQuote;
+        this.uploadedBy = uploadedBy;
+    }
+
+    public String getUploadedBy() {
+        return uploadedBy;
+    }
+
+    public void setUploadedBy(String uploadedBy) {
+        this.uploadedBy = uploadedBy;
     }
 
     public String getAuthorName() {
