@@ -1,12 +1,16 @@
 package com.trends.trending.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
+import com.trends.trending.adapter.FactPagerAdapter;
 import com.trends.trending.adapter.QuotePagerAdapter;
+import com.trends.trending.model.FactModel;
 import com.trends.trending.model.Quote;
+import com.trends.trending.ui.Fact;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +25,7 @@ public class FirebaseHelper {
     private DatabaseReference mDatabaseReference;
     private Context mContext;
     private List<Quote> quotes = new ArrayList<>();
+    private List<FactModel> facts = new ArrayList<>();
 
     public FirebaseHelper(DatabaseReference databaseReference, Context context) {
         mDatabaseReference = databaseReference;
@@ -56,5 +61,24 @@ public class FirebaseHelper {
             }
         }
         return quotePagerAdapter;
+    }
+
+    public FactPagerAdapter fetchfacts(DataSnapshot dataSnapshot) {
+        FactPagerAdapter factPagerAdapter = new FactPagerAdapter(mContext);
+        if (dataSnapshot.exists()) {
+            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                FactModel fact = ds.getValue(FactModel.class);
+                facts.add(fact);
+                Log.d("factttttt:", "fetchfacts: "+ fact.getFactContent());
+//                Log.d("facttttttttttt:", "fetchfacts: "+ dataSnapshot.toString());
+//                Log.d("facttttttttttttttt:", "fetchfacts: "+ dataSnapshot.getChildren().toString());
+//                //quotePagerAdapter.addCardItem(quote);^
+            }
+            Collections.shuffle(facts);
+            for (FactModel factModel : facts) {
+                factPagerAdapter.addCardItem(factModel);
+            }
+        }
+        return factPagerAdapter;
     }
 }

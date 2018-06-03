@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
@@ -61,14 +63,20 @@ public class PlaylistVideo extends AppCompatActivity implements ReturnReceiver.R
     private List<Item> mVideoList = new ArrayList<>();
     private List<SearchItem> mSearchVideoList = new ArrayList<>();
     private YouTubePlayer YPlayer;
+    private ShimmerFrameLayout mShimmerFrameLayout;
+    private LinearLayout mContainer;
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_video);
+        mContainer = findViewById(R.id.video_container);
         mReturnReceiver = new ReturnReceiver(new Handler());
         mReturnReceiver.setReceiver(this);
+        mShimmerFrameLayout = findViewById(R.id.shimmer_view_video_container);
+        mShimmerFrameLayout.startShimmerAnimation();
         Bundle extras = getIntent().getExtras();
         mTitle = (extras == null) ? "" : extras.getString(CURRENT_TITLE);
         id = (extras == null) ? "" : extras.getString(CHANNEL_OR_PLAYLIST_ID);
@@ -102,11 +110,12 @@ public class PlaylistVideo extends AppCompatActivity implements ReturnReceiver.R
         recyclerView.addItemDecoration(new RecyclerDividerItemDecoration(this));
         RecyclerView.Adapter adapter;
 
-
+        mShimmerFrameLayout.stopShimmerAnimation();
+        mContainer.removeView(mShimmerFrameLayout);
         if ((resultData.getParcelable(KEY_PARENT)) instanceof Parent) {
             parent = resultData.getParcelable(KEY_PARENT);
             if (parent != null) {
-                Toast.makeText(this, parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
                 mVideoList.addAll(parent.getItems());
 
                 adapter = new VideoAdapter<Item>(mVideoList, new ItemClickListener<Item>() {
@@ -153,7 +162,7 @@ public class PlaylistVideo extends AppCompatActivity implements ReturnReceiver.R
         {
             searchParent = resultData.getParcelable(KEY_PARENT);
             if (searchParent != null) {
-                Toast.makeText(this, searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
                 mSearchVideoList.addAll(searchParent.getItems());
 
                 adapter = new VideoAdapter<SearchItem>(mSearchVideoList, new ItemClickListener<SearchItem>() {

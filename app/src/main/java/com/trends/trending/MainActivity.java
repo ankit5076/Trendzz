@@ -10,7 +10,9 @@ import android.widget.Toast;
 import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.ReturnReceiver;
+import com.trends.trending.ui.Fact;
 import com.trends.trending.ui.FamousQuote;
+import com.trends.trending.ui.Home;
 import com.trends.trending.ui.Video;
 import com.trends.trending.utils.ExtraHelper;
 
@@ -82,5 +84,13 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     public void goToTab(View view) {
         //startActivity(new Intent(this, Video.class));
         startActivity(new Intent(this, DummyBottom.class));
+    }
+
+    public void goToKnow(View view) {
+        startActivity(new Intent(this, Fact.class));
+    }
+
+    public void goToHome(View view) {
+        startActivity(new Intent(this, Home.class));
     }
 }

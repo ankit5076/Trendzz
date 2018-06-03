@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:id="@+id/factCard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="18dp"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true">
+
+    <FrameLayout
+        android:id="@+id/quoteFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/fact_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/highway" />
+
+            <TextView
+                android:id="@+id/fact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                tool:text="India is the world's largest democracy, with 1.2 billion people. 100 million people come to India's Kumbh Mela Festival, the world's biggest gathering of humans. India's Hindu calendar has 6 seasons: spring, summer, monsoon, autumn, winter and prevernal. Photo by Jesse Bowser on Unsplash"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="4dp">
+
+                <com.rilixtech.materialfancybutton.MaterialFancyButton
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:padding="5dp"
+                    fancy:mfb_borderColor="#000000"
+                    fancy:mfb_borderWidth="0.7dp"
+                    fancy:mfb_focusColor="@color/light_green"
+                    fancy:mfb_fontIconSize="20sp"
+                    fancy:mfb_icon="@string/mdii_share"
+                    fancy:mfb_iconPaddingRight="5dp"
+                    fancy:mfb_iconPosition="left"
+                    fancy:mfb_radius="2dp"
+                    fancy:mfb_text="Share"
+                    fancy:mfb_textColor="#000000"
+                    fancy:mfb_defaultColor="@color/colorPrimary" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>
