@@ -5,14 +5,14 @@ package com.trends.trending.model.youtube;
  */
 public class Item {
 
-    private Id id;
+    private String id;
     private Snippet snippet;
 
-    public Id getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Id id) {
+    public void setId(String id) {
         this.id = id;
     }
 

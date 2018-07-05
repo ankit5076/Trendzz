@@ -1,10 +1,406 @@
 <resources>
-    <string name="app_name">Trending</string>
 
+    <!--Common message-->
+    <string name="app_name">Trending</string>
     <string name="no_network">Network not available</string>
     <string name="slow_network">Slow internet connection</string>
     <string name="double_quote">\"</string>
     <string name="quote_msg">\"%s\"</string>
+    <string name="channel_name">Channel Name</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--Places to visit-->
+    <string-array name="place_to_visit">
+        <item>Srinagar - Heaven on Earth</item>
+        <item>Leh-Ladakh</item>
+        <item>Taj-Mahal</item>
+        <item>Kutch (Kachchh)</item>
+        <item>Abode of clouds</item>
+        <item>Mysore (Mysuru)</item>
+        <item>Rishikesh - Yoga Capital of the World</item>
+        <item>Manali</item>
+        <item>Ranthambore - National Park</item>
+        <item>Jaipur - Pink City</item>
+        <item>Shimla</item>
+        <item>Mumbai - City of dreams</item>
+        <item>Lonavala</item>
+        <item>Mahabaleshwar</item>
+        <item>Sikkim</item>
+        <item>Darjeeling - Queen of the hills</item>
+        <item>Coorg</item>
+        <item>Chikmagalur</item>
+        <item>Wayanad</item>
+        <item>Alleppey (Alappuzha)</item>
+        <item>Munnar</item>
+        <item>Hampi</item>
+        <item>Ooty</item>
+        <item>Pondicherry</item>
+        <item>Andaman-Nicobar</item>
+        <item>Lakshadweep</item>
+
+    </string-array>
+
+    <!--Places to visit more info-->
+    <string-array name="place_to_visit_info">
+        <item>Kashmir</item>
+        <item>Kashmir</item>
+        <item>Agra</item>
+        <item>Gujarat</item>
+        <item>Meghalaya</item>
+        <item>Karnataka</item>
+        <item>Uttarakhand</item>
+        <item>Himachal Pradesh</item>
+        <item>Rajasthan</item>
+        <item>Rajasthan</item>
+        <item>Himachal Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Maharashtra</item>
+        <item>Maharashtra</item>
+        <item>Gangtok</item>
+        <item>West Bengal</item>
+        <item>Karnataka</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Kerala</item>
+        <item>Kerala</item>
+        <item>Karnataka</item>
+        <item>Tamil Nadu</item>
+        <item>Tamil Nadu</item>
+        <item>Andaman-Nicobar</item>
+        <item>Lakshadweep</item>
+
+    </string-array>
+
+    <string-array name="place_rating">
+        <item>4.2</item>
+        <item>4.4</item>
+        <item>4.6</item>
+        <item>4.2</item>
+        <item>4.0</item>
+        <item>4.1</item>
+        <item>4.3</item>
+        <item>4.3</item>
+        <item>4.3</item>
+        <item>4.0</item>
+        <item>4.1</item>
+        <item>4.2</item>
+        <item>4.1</item>
+        <item>4.2</item>
+        <item>4.1</item>
+        <item>4.2</item>
+        <item>4.0</item>
+        <item>4.0</item>
+        <item>4.3</item>
+        <item>4.0</item>
+        <item>4.4</item>
+        <item>4.3</item>
+        <item>4.4</item>
+        <item>4.1</item>
+        <item>4.6</item>
+        <item>4.3</item>
+
+    </string-array>
+
+    <string-array name="place_image">
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSrinagar.jpg?alt=media&token=cde78230-a3a8-4f10-a130-de06191901a3]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLeh-Ladakh.jpg?alt=media&token=52a8ec51-a6ba-494d-b359-d833a78d8fef]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FTaj-Mahal.jpg?alt=media&token=210dc15f-0eba-46ae-89fd-5fb2c040120a]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FKachchh.jpg?alt=media&token=d68ea79d-4e9b-4975-a224-e02f05bc4e03]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAbode%20of%20clouds.jpg?alt=media&token=4974e9f3-f975-477b-91c1-cfa36beb4854]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMysore.jpg?alt=media&token=0150309d-b0d6-4d2b-b463-f8a21e7e6a43]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRishikesh.jpg?alt=media&token=4f542b2f-e7c6-4f07-9f8d-590cee215fa9]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FManali.jpg?alt=media&token=97002599-075a-4729-b831-685c2ef4dae6]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRanthambore.jpg?alt=media&token=e031b824-2d77-45d5-be33-79b5e1aed7d7]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FJaipur.jpg?alt=media&token=a44f28b4-72b0-4eaa-93a4-f8ab1d7e5c77]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FShimla.jpg?alt=media&token=769ae815-0b51-48fa-823f-b295cf1ca1af]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMumbai.jpg?alt=media&token=37c69956-8b66-4099-9bf5-2ae1cc311c8f]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLonavala.jpg?alt=media&token=fd10384d-7e31-476d-9e40-154b6c992810]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMahabaleshwar.jpg?alt=media&token=4dd83370-6ad0-4b43-b490-343eb1815408]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSikkim.jpg?alt=media&token=aa415953-474b-4f1e-936c-275c399c31bc]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FDarjeeling.jpg?alt=media&token=a0612ca1-7dba-48c1-93b5-f20d099242f6]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FCoorg.jpg?alt=media&token=67a8bb32-c2bc-484f-a0cf-c9994255c805]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FChikmagalur.jpg?alt=media&token=7abb7c0b-5a15-49fa-b9c7-ddd71fa96902]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FWayanad.jpg?alt=media&token=f9fdcf21-fc62-46ba-9871-b221ed9488f5]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAlleppey.jpg?alt=media&token=9e939d5b-755a-4c36-a35e-507494a52a3d]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMunnar.jpg?alt=media&token=d87a6ebf-364d-4a11-a33e-43384d06b3db]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FHampi.jpg?alt=media&token=73270c19-790c-4e2c-a9d6-5068027a39ba]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FOoty.jpg?alt=media&token=096a7b40-6e97-40c5-8367-8f122e9a0bde]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FPondicherry.jpg?alt=media&token=fc809f6f-cb89-45f9-adab-2992de9c6cf3]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAndaman.jpg?alt=media&token=5a5eb500-9b31-4371-a5fb-a981fdb35680]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLakshadweep.jpg?alt=media&token=35177213-6667-413f-9977-993c7d1ad323]]></item>
+
+    </string-array>
+
+
+    <!--Videos chanel names-->
+
+    <!--chip view-->
+    <string name="default_chip">Default</string>
+    <string name="attrs_chip">With custom XML attributes</string>
+    <string name="with_layout">With overall layout res, background color and click listener</string>
+    <string name="with_override">With overrided ChipViewAdapter getLayoutRes and getBackgroundColor</string>
+
+    <!--channel Start-->
+    <string name="zee_music_company">Zee Music Company</string>
+    <string name="t_series">T-Series</string>
+    <string name="yrf_music">YRF Music</string>
+    <string name="sony_music_india">Sony Music India</string>
+    <string name="taylor_swift_vevo">TaylorSwiftVEVO</string>
+    <string name="akon_vevo">TaylorSwiftVEVO</string>
+    <string name="zakir_khan">Zakir Khan</string>
+    <string name="abish_mathew">Abish Mathew</string>
+    <string name="nishant_tanwar">Nishant Tanwar</string>
+    <string name="jeeveshu_ahluwalia">Jeeveshu Ahluwalia</string>
+    <string name="ashish_chanchlani_vines">ashish chanchlani vines</string>
+    <string name="amit_bhadana">Amit Bhadana</string>
+    <string name="be_younick">Be YouNick</string>
+    <string name="carryminati">CarryMinati</string>
+    <string name="guru_mann_fitness">Guru Mann Fitness</string>
+    <string name="fitmuscle_tv">FitMuscle TV</string>
+    <string name="aaj_tak">Aaj Tak</string>
+    <string name="abp_news">Aaj Tak</string>
+    <string name="india_today">India Today</string>
+    <string name="zee_news">Zee News</string>
+    <string name="bbc_news">BBC News</string>
+    <string name="the_viral_fever">The Viral Fever</string>
+    <string name="all_india_bakchod">All India Bakchod</string>
+    <string name="bindass">bindass</string>
+    <string name="the_timeliners">The Timeliners</string>
+    <string name="technical_guruji">Technical Guruji</string>
+    <string name="unbox_therapy">Unbox Therapy</string>
+    <string name="geekyranjit">Geekyranjit</string>
+    <!--channel End-->
+
+
+    <string-array name="web_series_playlist_title">
+        <item>TVF Tech Conversations With Dad</item>
+        <item>TVF Pitchers | Season 01</item>
+        <item>TVF Permanent Roommates | Season 01</item>
+        <item>TVF Permanent Roommates | Season 02</item>
+        <item>FLAMES #PadhaiAurPyaar</item>
+        <item>Official Chukyagiri | Full Episodes</item>
+        <item>Binge Watch Official CEOgiri</item>
+        <item>Rise | Web Series | Vikrant Massey | Cheers!</item>
+        <item>It Happened In Hong Kong | Aahana Kumra | Amol</item>
+        <item>Dice Media | What The Folks (WTF!)</item>
+        <item>Dice Media | Little Things | Season 1</item>
+        <item>AIB : Honest Bars and Restaurants</item>
+        <item>TSP Zeroes</item>
+    </string-array>
+    <string-array name="web_series_playlist_id">
+        <item>PLTB0eCoUXErb0NYOXVgZyHJW6Cx_3HWWm</item>
+        <item>PLTB0eCoUXErbtRa6MYRnPCQMXT57TG2on</item>
+        <item>PLTB0eCoUXErZe2pMrH3qO4tHtw-K0QKb_</item>
+        <item>PLTB0eCoUXErZpnOUF1CD_syEKkrReXdF7</item>
+        <item>PLbZboRRHE3b14pFvT26golxysQKbWGOSg</item>
+        <item>PLcvCQa6KHYRnAxKJi6mDLbdV7XzDMTOzL</item>
+        <item>PLcvCQa6KHYRn6n1yfE3oD_mZmBrJXgvJx</item>
+        <item>PLQrvCvrWprVT21z8Bz3KcfGQgZ7kfu5D4</item>
+        <item>PLNoppEJMkKSoAtm623dulddYV0UOXFxdK</item>
+        <item>PL4x7Of-X4XhiK_gmCcJF8xfrlQN_46nmj</item>
+        <item>PL4x7Of-X4XhgNBVfFpd1N4cSU_X1x96gU</item>
+        <item>PLF05eR2VJLBkmUtRT15g73AYApfHZiNGH</item>
+        <item>PLcxtukvbdUtA_PEYIV3-zSNNppNrTX06_</item>
+
+    </string-array>
+    <array name="web_series_playlist_image">
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_timeliners</item>
+        <item>@drawable/arre</item>
+        <item>@drawable/arre</item>
+        <item>@drawable/cheers</item>
+        <item>@drawable/viu</item>
+        <item>@drawable/dice_media</item>
+        <item>@drawable/dice_media</item>
+        <item>@drawable/aib</item>
+        <item>@drawable/tsp</item>
+    </array>
+
+    <string-array name="fitness_playlist_title">
+        <item>Coordination, Agility and Balance Workouts</item>
+        <item>Mass Building Workouts for Muscle</item>
+        <item>Flexibility, Stretching, Warm Up and Cool Down Workout Videos</item>
+        <item>HOW TO: Barbell and Dumbbell Exercise </item>
+        <item>MUSCLE GAIN Routines</item>
+        <item>Reviews on Protein</item>
+        <item>Top 3 Guru Mann's Pick</item>
+        <item>Diet</item>
+        <item>Muscleblaze transformation</item>
+
+    </string-array>
+    <string-array name="fitness_playlist_id">
+        <item>PL5lPziO_t_Vjq5bzvW1HrEE3gnnySBn5w</item>
+        <item>PL5lPziO_t_ViCGfTMuco8iAD4Z-psEfkn</item>
+        <item>PLFD9A7697E965FB1B</item>
+        <item>PLacPhVACI3MNgGaNdQfNfcMyupRfSiMmQ</item>
+        <item>PLacPhVACI3MPdcVw_Or3g0fd2npcc4mLj</item>
+        <item>PLjlSxZrKIR8RelrmVtbs_LtRy1kK12T7B</item>
+        <item>PLjlSxZrKIR8SCVK-pe_06SQ415UO0kjui</item>
+        <item>PLghtQOauHTUrFnCr1YxO-y99Bl-JSM82h</item>
+        <item>PLghtQOauHTUqGhMY3vQNhVq5fa_YhPiYH</item>
+    </string-array>
+    <array name="fitness_playlist_image">
+        <item>@drawable/fitness_blender</item>
+        <item>@drawable/fitness_blender</item>
+        <item>@drawable/fitness_blender</item>
+        <item>@drawable/scott_herman_fitness</item>
+        <item>@drawable/scott_herman_fitness</item>
+        <item>@drawable/guru_mann_fitness</item>
+        <item>@drawable/guru_mann_fitness</item>
+        <item>@drawable/fitmuscle_tv</item>
+        <item>@drawable/fitmuscle_tv</item>
+    </array>
+
+    <string-array name="technology_chhanel_title">
+        <item>@string/technical_guruji</item>
+        <item>@string/unbox_therapy</item>
+        <item>@string/geekyranjit</item>
+    </string-array>
+    <string-array name="technology_chhanel_id">
+        <item>UCOhHO2ICt0ti9KAh-QHvttQ</item>
+        <item>UCsTcErHg8oDvUnTzoqsYeNw</item>
+        <item>UCO2WJZKQoDW4Te6NHx4KfTg</item>
+    </string-array>
+    <array name="technology_chhanel_image">
+        <item>@drawable/technical_guruji</item>
+        <item>@drawable/unbox_therapy</item>
+        <item>@drawable/geekyranjit</item>
+    </array>
+
+    <string-array name="web_series_chhanel_title">
+        <item>@string/the_viral_fever</item>
+        <item>@string/all_india_bakchod</item>
+        <item>@string/bindass</item>
+        <item>@string/the_timeliners</item>
+    </string-array>
+    <string-array name="web_series_chhanel_id">
+        <item>UCNJcSUSzUeFm8W9P7UUlSeQ</item>
+        <item>UCzUYuC_9XdUUdrnyLii8WYg</item>
+        <item>UCzo5sreD2cVGu2T2mNu__1Q</item>
+        <item>UCTlnaHHQ75zlDg_fLr7tGEg</item>
+    </string-array>
+    <array name="web_series_chhanel_image">
+        <item>@drawable/the_viral_fever</item>
+        <item>@drawable/the_timeliners</item>
+    </array>
+
+    <string-array name="music_chhanel_title">
+        <item>@string/zee_music_company</item>
+        <item>@string/t_series</item>
+        <item>@string/yrf_music</item>
+        <item>@string/sony_music_india</item>
+        <item>@string/taylor_swift_vevo</item>
+        <item>@string/akon_vevo</item>
+    </string-array>
+    <string-array name="music_chhanel_id">
+        <item>UCFFbwnve3yF62-tVXkTyHqg</item>
+        <item>UCq-Fj5jknLsUf-MWSy4_brA</item>
+        <item>UCjeD2I8jwXg2l_nvXb_6Hzw</item>
+        <item>UC56gTxNs4f9xZ7Pa2i5xNzg</item>
+        <item>UCANLZYMidaCbLQFWXBC95Jg</item>
+        <item>UCX2v47KsDKqajrEYFV7GbBg</item>
+    </string-array>
+    <array name="music_chhanel_image">
+        <item>@drawable/zee_music_company</item>
+        <item>@drawable/t_series</item>
+        <item>@drawable/yrf_music</item>
+        <item>@drawable/sony_music_india</item>
+        <item>@drawable/taylor_swift_vevo</item>
+        <item>@drawable/akon_vevo</item>
+    </array>
+
+
+    <string-array name="standup_comedy_chhanel_title">
+        <item>@string/zakir_khan</item>
+        <item>@string/abish_mathew</item>
+        <item>@string/nishant_tanwar</item>
+        <item>@string/jeeveshu_ahluwalia</item>
+    </string-array>
+    <string-array name="standup_comedy_chhanel_id">
+        <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
+        <item>UCtWoDeegvTPfuuNm_ilJntg</item>
+        <item>UCUK8HXeI3WqXczgMkT5XUWQ</item>
+        <item>UCHYLyMLVx6DNvg3-kf4qOuw</item>
+    </string-array>
+    <array name="standup_comedy_chhanel_image">
+        <item>@drawable/zakir_khan</item>
+        <item>@drawable/abish_mathew</item>
+        <item>@drawable/nishant_tanwar</item>
+        <item>@drawable/jeeveshu_ahluwalia</item>
+    </array>
+
+
+    <string-array name="vine_chhanel_title">
+        <item>@string/ashish_chanchlani_vines</item>
+        <item>@string/amit_bhadana</item>
+        <item>@string/be_younick</item>
+        <item>@string/carryminati</item>
+    </string-array>
+    <string-array name="vine_chhanel_id">
+        <item>UCkS7Vxu4PjM99w0Is6idjcg</item>
+        <item>UC7eHZXheF8nVOfwB2PEslMw</item>
+        <item>UC_vcKmg67vjMP7ciLnSxSHQ</item>
+        <item>UC7sRFTKIbH4NNpFXmpUAWuA</item>
+    </string-array>
+    <array name="vine_chhanel_image">
+        <item>@drawable/ashish_chanchlani_vines</item>
+        <item>@drawable/amit_bhadana</item>
+        <item>@drawable/be_younick</item>
+        <item>@drawable/carryminati</item>
+    </array>
+
+
+    <string-array name="fitness_chhanel_title">
+        <item>@string/guru_mann_fitness</item>
+        <item>@string/fitmuscle_tv</item>
+    </string-array>
+    <string-array name="fitness_chhanel_id">
+        <item>UCj22tfcQrWG7EMEKS0qLeEg</item>
+        <item>UCGMOauU8dOd4mv2bT3Tx57w</item>
+    </string-array>
+    <array name="fitness_chhanel_image">
+        <item>@drawable/guru_mann_fitness</item>
+        <item>@drawable/fitmuscle_tv</item>
+    </array>
+
+    <string-array name="news_chhanel_title">
+        <item>@string/aaj_tak</item>
+        <item>@string/abp_news</item>
+        <item>@string/india_today</item>
+        <item>@string/zee_news</item>
+        <item>@string/bbc_news</item>
+    </string-array>
+    <string-array name="news_chhanel_id">
+        <item>UCt4t-jeY85JegMlZ-E5UWtA</item>
+        <item>UCRWFSbif-RFENbBrSiez1DA</item>
+        <item>UCYPvAwZP8pZhSMW8qs7cVCw</item>
+        <item>UCIvaYmXn910QMdemBG3v1pQ</item>
+        <item>UC16niRr50-MSBwiO3YDb3RA</item>
+    </string-array>
+    <array name="news_chhanel_image">
+        <item>@drawable/aaj_tak</item>
+        <item>@drawable/abp_news</item>
+        <item>@drawable/india_today</item>
+        <item>@drawable/zee_news</item>
+        <item>@drawable/bbc_news</item>
+    </array>
+
+    <string name="Hello_World">Hello World!</string>
+    <string name="swipe_up">Swipe up</string>
+    <string name="swipe_down">Swipe Down</string>
+    <string name="title_activity_place">Place</string>
+
+    <string name="hello_world">Hello world!</string>
 
 
 </resources>

@@ -1,12 +1,16 @@
 package com.trends.trending.service;
 
+import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.model.youtube.Parent;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 /**
  * Created by USER on 3/4/2018.
@@ -26,10 +30,17 @@ public interface VideoService {
             .build();
 
     @GET(SEARCH)
-    Call<Parent> searchResults(@Query("part") String part,
-                               @Query("q") String search,
-                               @Query("maxResults") int resultsPerPage,
-                               @Query("key") String apiKey);
+    Call<SearchParent> searchResults(@Query("part") String part,
+                                     @Query("q") String search,
+                                     @Query("maxResults") int resultsPerPage,
+                                     @Query("key") String apiKey);
+
+    @GET(SEARCH)
+    Call<SearchParent> channelVideos(@Query("part") String part,
+                                     @Query("channelId") String channelId,
+                                     @Query("maxResults") int resultsPerPage,
+                                     @Query("order") String orderBy,
+                                     @Query("key") String apiKey);
 
     @GET(TRENDING)
     Call<Parent> trendingVideos(@Query("part") String part,
@@ -52,5 +63,8 @@ public interface VideoService {
                                  @Query("maxResults") int resultsPerPage,
                                  @Query("key") String apiKey);
 
+    @GET
+    @Streaming
+    Call<ResponseBody> downloadVideo(@Url String videoUrl);
 
 }
