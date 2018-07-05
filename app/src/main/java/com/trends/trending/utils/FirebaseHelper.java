@@ -9,8 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.trends.trending.adapter.FactPagerAdapter;
 import com.trends.trending.adapter.QuotePagerAdapter;
 import com.trends.trending.model.FactModel;
-import com.trends.trending.model.Quote;
-import com.trends.trending.ui.Fact;
+import com.trends.trending.model.QuoteModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +23,7 @@ public class FirebaseHelper {
 
     private DatabaseReference mDatabaseReference;
     private Context mContext;
-    private List<Quote> quotes = new ArrayList<>();
+    private List<QuoteModel> quotes = new ArrayList<>();
     private List<FactModel> facts = new ArrayList<>();
 
     public FirebaseHelper(DatabaseReference databaseReference, Context context) {
@@ -32,7 +31,7 @@ public class FirebaseHelper {
         mContext = context;
     }
 
-    public Boolean uploadQuote(Quote quote, String node) {
+    public Boolean uploadQuote(QuoteModel quote, String node) {
         Boolean isSaved;
         if (quote == null || quote.getAuthorName().trim().length()==0 || quote.getFamousQuote().trim().length()==0 || quote.getUploadedBy().trim().length()==0) isSaved = false;
         else {
@@ -51,12 +50,12 @@ public class FirebaseHelper {
         QuotePagerAdapter quotePagerAdapter = new QuotePagerAdapter(mContext);
         if (dataSnapshot.exists()) {
             for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                Quote quote = ds.getValue(Quote.class);
+                QuoteModel quote = ds.getValue(QuoteModel.class);
                 quotes.add(quote);
                 //quotePagerAdapter.addCardItem(quote);
             }
             Collections.shuffle(quotes);
-            for (Quote quote : quotes) {
+            for (QuoteModel quote : quotes) {
                 quotePagerAdapter.addCardItem(quote);
             }
         }

@@ -2,7 +2,6 @@ package com.trends.trending;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -11,9 +10,9 @@ import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.ReturnReceiver;
 import com.trends.trending.ui.Fact;
-import com.trends.trending.ui.FamousQuote;
+import com.trends.trending.ui.Quote;
 import com.trends.trending.ui.Home;
-import com.trends.trending.ui.Video;
+import com.trends.trending.ui.Place;
 import com.trends.trending.utils.ExtraHelper;
 
 import butterknife.ButterKnife;
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     }
 
     public void goToQuote(View view) {
-        startActivity(new Intent(this, FamousQuote.class));
+        startActivity(new Intent(this, Quote.class));
     }
 
     @Override
@@ -92,5 +91,10 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 
     public void goToHome(View view) {
         startActivity(new Intent(this, Home.class));
+    }
+
+    public void goToPlace(View view) {
+        startActivity(new Intent(this, Place.class));
+
     }
 }

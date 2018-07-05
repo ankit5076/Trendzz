@@ -4,16 +4,16 @@ package com.trends.trending.model;
  * Created by USER on 3/5/2018.
  */
 
-public class Quote {
+public class QuoteModel {
 
     private String authorName;
     private String famousQuote;
     private String uploadedBy;
 
-    public Quote() {
+    public QuoteModel() {
     }
 
-    public Quote(String authorName, String famousQuote, String uploadedBy) {
+    public QuoteModel(String authorName, String famousQuote, String uploadedBy) {
         this.authorName = authorName;
         this.famousQuote = famousQuote;
         this.uploadedBy = uploadedBy;

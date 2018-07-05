@@ -3,15 +3,13 @@ package com.trends.trending.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.trends.trending.DummyUploadQuote;
 import com.trends.trending.R;
-import com.trends.trending.model.Quote;
+import com.trends.trending.model.QuoteModel;
 import com.trends.trending.utils.FirebaseHelper;
 
 import butterknife.BindView;
@@ -45,7 +43,7 @@ public class UserUploadQuote extends AppCompatActivity {
 
     @OnClick(R.id.btn_upload)
     public void onViewClicked() {
-        if(firebaseHelper.uploadQuote(new Quote(mQuoteAuthor.getText().toString(), mUserQuote.getText().toString(), mQuoteUpload.getText().toString()), QUOTE_REVIEW))
+        if(firebaseHelper.uploadQuote(new QuoteModel(mQuoteAuthor.getText().toString(), mUserQuote.getText().toString(), mQuoteUpload.getText().toString()), QUOTE_REVIEW))
             Toast.makeText(this, "Uploaded", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "some error occurred", Toast.LENGTH_SHORT).show();

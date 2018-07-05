@@ -16,7 +16,7 @@
 
         <com.rilixtech.materialfancybutton.MaterialFancyButton
 
-        android:id="@+id/toolbar_user_upload"
+            android:id="@+id/toolbar_user_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -30,7 +30,6 @@
             android:layout_gravity="right"/>
 
     </android.support.v7.widget.Toolbar>
-
     <com.facebook.shimmer.ShimmerFrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/shimmer_view_quote_container"

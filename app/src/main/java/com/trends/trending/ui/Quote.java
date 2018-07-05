@@ -6,36 +6,29 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
-import com.trends.trending.DummyUploadQuote;
 import com.trends.trending.R;
 import com.trends.trending.utils.ShadowTransformer;
 import com.trends.trending.adapter.QuotePagerAdapter;
 import com.trends.trending.utils.FirebaseHelper;
 import com.trends.trending.utils.NetworkHelper;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by USER on 3/7/2018.
  */
 
-public class FamousQuote extends AppCompatActivity {
+public class Quote extends AppCompatActivity {
 
-    public static final String TAG = FamousQuote.class.getSimpleName();
+    public static final String TAG = Quote.class.getSimpleName();
 
     private ViewPager mViewPager;
     private QuotePagerAdapter mCardAdapter;
@@ -54,9 +47,9 @@ public class FamousQuote extends AppCompatActivity {
         setSupportActionBar(toolbar);
         MaterialFancyButton btnUserQuoteUpload = findViewById(R.id.toolbar_user_upload);
         mViewPager = findViewById(R.id.viewPager);
-        mCardAdapter = new QuotePagerAdapter(FamousQuote.this);
+        mCardAdapter = new QuotePagerAdapter(Quote.this);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("quotes");
-        mFirebaseHelper = new FirebaseHelper(mFirebaseDatabase, FamousQuote.this);
+        mFirebaseHelper = new FirebaseHelper(mFirebaseDatabase, Quote.this);
         mShimmerViewContainer = findViewById(R.id.shimmer_view_quote_container);
         mShimmerViewContainer.startShimmerAnimation();
 
@@ -70,7 +63,7 @@ public class FamousQuote extends AppCompatActivity {
         btnUserQuoteUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FamousQuote.this, UserUploadQuote.class));
+                startActivity(new Intent(Quote.this, UserUploadQuote.class));
             }
         });
     }
@@ -92,7 +85,7 @@ public class FamousQuote extends AppCompatActivity {
                 mShimmerViewContainer.stopShimmerAnimation();
                 mShimmerViewContainer.setVisibility(View.GONE);
 
-                Toast.makeText(FamousQuote.this, "Server Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Quote.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
 //

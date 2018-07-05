@@ -8,18 +8,16 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
 import com.trends.trending.R;
 import com.trends.trending.interfaces.QuoteRule;
-import com.trends.trending.model.Quote;
+import com.trends.trending.model.QuoteModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +31,7 @@ import static com.trends.trending.utils.Keys.Common.SHARE_INTENT_TITLE;
 public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
 
     private List<CardView> mViews;
-    private List<Quote> mData;
+    private List<QuoteModel> mData;
     private float mBaseElevation;
     private Context mContext;
 
@@ -48,7 +46,7 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
         mViews = new ArrayList<>();
     }
 
-    public void addCardItem(Quote item) {
+    public void addCardItem(QuoteModel item) {
         mViews.add(null);
         mData.add(item);
     }
@@ -77,7 +75,7 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.item_quote, container, false);
         container.addView(view);
-        final Quote quote = mData.get(position);
+        final QuoteModel quote = mData.get(position);
         bind(quote, view);
         CardView cardView =  view.findViewById(R.id.quoteCard);
         MaterialFancyButton fancyShare = view.findViewById(R.id.btn_share);
@@ -93,9 +91,10 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
             @Override
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/html");
+                sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Quote");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(quote.getFamousQuote()+"\n<b>- By "+quote.getAuthorName()+"</b>"));
+//                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(quote.getFamousQuote()+"\n<b>- By "+quote.getAuthorName()+"</b>"));
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, quote.getFamousQuote()+"\n\t\t\t\t- By "+quote.getAuthorName());
                 mContext.startActivity(Intent.createChooser(sharingIntent,SHARE_INTENT_TITLE));
                 //Toast.makeText(mContext, quote.getAuthorName(), Toast.LENGTH_SHORT).show();
             }
@@ -110,7 +109,7 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
         mViews.set(position, null);
     }
 
-    private void bind(Quote item, View view) {
+    private void bind(QuoteModel item, View view) {
         TextView authorName =  view.findViewById(R.id.authorName);
         TextView quote = view.findViewById(R.id.quoteText);
         TextView uploadedBy = view.findViewById(R.id.uploadedBy);

@@ -37,7 +37,6 @@ public class Fact extends AppCompatActivity {
     private FactPagerAdapter mCardAdapter;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseHelper mFirebaseHelper;
-    private Toolbar toolbar;
     private ShimmerFrameLayout mShimmerViewContainer;
 
 
@@ -46,9 +45,8 @@ public class Fact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_famous_quote);
     //    ButterKnife.bind(this);
-        toolbar = findViewById(R.id.toolbar_quote);
-        setSupportActionBar(toolbar);
         MaterialFancyButton btnUserQuoteUpload = findViewById(R.id.toolbar_user_upload);
+        btnUserQuoteUpload.setVisibility(View.GONE);
         mViewPager = findViewById(R.id.viewPager);
         mCardAdapter = new FactPagerAdapter(Fact.this);
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("fact");
@@ -63,12 +61,6 @@ public class Fact extends AppCompatActivity {
             mShimmerViewContainer.setVisibility(View.GONE);
             Toast.makeText(this, R.string.no_network, Toast.LENGTH_SHORT).show();
         }
-        btnUserQuoteUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Fact.this, UserUploadQuote.class));
-            }
-        });
     }
 
     private void fetchFact() {
@@ -78,9 +70,7 @@ public class Fact extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mShimmerViewContainer.stopShimmerAnimation();
                 mShimmerViewContainer.setVisibility(View.GONE);
-
                 mCardAdapter = mFirebaseHelper.fetchfacts(dataSnapshot);
-               // Log.d(TAG, "onDataChange: "+mCardAdapter.getFactItem(0).getFact());
                 displayData();
             }
 
@@ -92,33 +82,6 @@ public class Fact extends AppCompatActivity {
                 Toast.makeText(Fact.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
-//
-//        mFirebaseDatabase.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-//                displayData();
-//            }
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-//                displayData();
-//            }
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-//                displayData();
-//            }
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//                mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
-//                displayData();
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                Log.d(TAG, "onCancelled: ");
-//            }
-//        });
     }
 
     private void displayData(){
@@ -127,10 +90,6 @@ public class Fact extends AppCompatActivity {
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, cardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
-    }
-
-    public static float dpToPixels(int dp, Context context) {
-        return dp * (context.getResources().getDisplayMetrics().density);
     }
 
     @Override

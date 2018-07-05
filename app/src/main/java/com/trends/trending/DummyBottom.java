@@ -188,10 +188,10 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
 
         if (TextUtils.equals(resultData.getString(KEY_METHOD), VAL_SEARCH)) {
             searchParent = resultData.getParcelable(KEY_PARENT);
-            if (searchParent != null)
-                Toast.makeText(this, "video:: " + searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(this, "nulllllllllllll", Toast.LENGTH_SHORT).show();
+//            if (searchParent != null)
+//                Toast.makeText(this, "video:: " + searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
+//            else
+//                Toast.makeText(this, "nulllllllllllll", Toast.LENGTH_SHORT).show();
             String parentString = gson.toJson(searchParent);
 
             editor.putString(SEARCH_PARENT_TO_STRING, parentString);

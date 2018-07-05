@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.trends.trending.model.Quote;
+import com.trends.trending.model.QuoteModel;
 import com.trends.trending.utils.FirebaseHelper;
 
 import butterknife.BindView;
@@ -47,7 +47,7 @@ public class DummyUploadQuote extends AppCompatActivity {
         if (name.equals(""))
             name = "Admin";
 
-        if (firebaseHelper.uploadQuote(new Quote(author.getText().toString(), quote.getText().toString(), name), QUOTENODE))
+        if (firebaseHelper.uploadQuote(new QuoteModel(author.getText().toString(), quote.getText().toString(), name), QUOTENODE))
             Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();

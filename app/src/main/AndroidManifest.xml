@@ -30,7 +30,7 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
         <activity
-            android:name=".ui.FamousQuote"
+            android:name=".ui.Quote"
             android:theme="@style/MyMaterialTheme" />
         <activity
             android:name=".ui.Video"
@@ -46,7 +46,16 @@
         <service android:name=".repository.VideoRepository" />
         <service android:name=".service.DownloadService" />
 
-        <activity android:name=".ui.Home"></activity>
+        <activity android:name=".ui.Home"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.Place"
+            android:label="@string/title_activity_place"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".ui.PlaceDetail"
+            android:theme="@style/MyMaterialTheme" />
+        <activity android:name=".ui.TopTen" />
     </application>
 
 </manifest>

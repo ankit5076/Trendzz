@@ -7,6 +7,138 @@
     <string name="double_quote">\"</string>
     <string name="quote_msg">\"%s\"</string>
     <string name="channel_name">Channel Name</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--Places to visit-->
+    <string-array name="place_to_visit">
+        <item>Srinagar - Heaven on Earth</item>
+        <item>Leh-Ladakh</item>
+        <item>Taj-Mahal</item>
+        <item>Kutch (Kachchh)</item>
+        <item>Abode of clouds</item>
+        <item>Mysore (Mysuru)</item>
+        <item>Rishikesh - Yoga Capital of the World</item>
+        <item>Manali</item>
+        <item>Ranthambore - National Park</item>
+        <item>Jaipur - Pink City</item>
+        <item>Shimla</item>
+        <item>Mumbai - City of dreams</item>
+        <item>Lonavala</item>
+        <item>Mahabaleshwar</item>
+        <item>Sikkim</item>
+        <item>Darjeeling - Queen of the hills</item>
+        <item>Coorg</item>
+        <item>Chikmagalur</item>
+        <item>Wayanad</item>
+        <item>Alleppey (Alappuzha)</item>
+        <item>Munnar</item>
+        <item>Hampi</item>
+        <item>Ooty</item>
+        <item>Pondicherry</item>
+        <item>Andaman-Nicobar</item>
+        <item>Lakshadweep</item>
+
+    </string-array>
+
+    <!--Places to visit more info-->
+    <string-array name="place_to_visit_info">
+        <item>Kashmir</item>
+        <item>Kashmir</item>
+        <item>Agra</item>
+        <item>Gujarat</item>
+        <item>Meghalaya</item>
+        <item>Karnataka</item>
+        <item>Uttarakhand</item>
+        <item>Himachal Pradesh</item>
+        <item>Rajasthan</item>
+        <item>Rajasthan</item>
+        <item>Himachal Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Maharashtra</item>
+        <item>Maharashtra</item>
+        <item>Gangtok</item>
+        <item>West Bengal</item>
+        <item>Karnataka</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Kerala</item>
+        <item>Kerala</item>
+        <item>Karnataka</item>
+        <item>Tamil Nadu</item>
+        <item>Tamil Nadu</item>
+        <item>Andaman-Nicobar</item>
+        <item>Lakshadweep</item>
+
+    </string-array>
+
+    <string-array name="place_rating">
+        <item>4.2</item>
+        <item>4.4</item>
+        <item>4.6</item>
+        <item>4.2</item>
+        <item>4.0</item>
+        <item>4.1</item>
+        <item>4.3</item>
+        <item>4.3</item>
+        <item>4.3</item>
+        <item>4.0</item>
+        <item>4.1</item>
+        <item>4.2</item>
+        <item>4.1</item>
+        <item>4.2</item>
+        <item>4.1</item>
+        <item>4.2</item>
+        <item>4.0</item>
+        <item>4.0</item>
+        <item>4.3</item>
+        <item>4.0</item>
+        <item>4.4</item>
+        <item>4.3</item>
+        <item>4.4</item>
+        <item>4.1</item>
+        <item>4.6</item>
+        <item>4.3</item>
+
+    </string-array>
+
+    <string-array name="place_image">
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSrinagar.jpg?alt=media&token=cde78230-a3a8-4f10-a130-de06191901a3]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLeh-Ladakh.jpg?alt=media&token=52a8ec51-a6ba-494d-b359-d833a78d8fef]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FTaj-Mahal.jpg?alt=media&token=210dc15f-0eba-46ae-89fd-5fb2c040120a]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FKachchh.jpg?alt=media&token=d68ea79d-4e9b-4975-a224-e02f05bc4e03]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAbode%20of%20clouds.jpg?alt=media&token=4974e9f3-f975-477b-91c1-cfa36beb4854]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMysore.jpg?alt=media&token=0150309d-b0d6-4d2b-b463-f8a21e7e6a43]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRishikesh.jpg?alt=media&token=4f542b2f-e7c6-4f07-9f8d-590cee215fa9]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FManali.jpg?alt=media&token=97002599-075a-4729-b831-685c2ef4dae6]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRanthambore.jpg?alt=media&token=e031b824-2d77-45d5-be33-79b5e1aed7d7]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FJaipur.jpg?alt=media&token=a44f28b4-72b0-4eaa-93a4-f8ab1d7e5c77]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FShimla.jpg?alt=media&token=769ae815-0b51-48fa-823f-b295cf1ca1af]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMumbai.jpg?alt=media&token=37c69956-8b66-4099-9bf5-2ae1cc311c8f]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLonavala.jpg?alt=media&token=fd10384d-7e31-476d-9e40-154b6c992810]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMahabaleshwar.jpg?alt=media&token=4dd83370-6ad0-4b43-b490-343eb1815408]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSikkim.jpg?alt=media&token=aa415953-474b-4f1e-936c-275c399c31bc]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FDarjeeling.jpg?alt=media&token=a0612ca1-7dba-48c1-93b5-f20d099242f6]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FCoorg.jpg?alt=media&token=67a8bb32-c2bc-484f-a0cf-c9994255c805]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FChikmagalur.jpg?alt=media&token=7abb7c0b-5a15-49fa-b9c7-ddd71fa96902]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FWayanad.jpg?alt=media&token=f9fdcf21-fc62-46ba-9871-b221ed9488f5]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAlleppey.jpg?alt=media&token=9e939d5b-755a-4c36-a35e-507494a52a3d]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMunnar.jpg?alt=media&token=d87a6ebf-364d-4a11-a33e-43384d06b3db]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FHampi.jpg?alt=media&token=73270c19-790c-4e2c-a9d6-5068027a39ba]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FOoty.jpg?alt=media&token=096a7b40-6e97-40c5-8367-8f122e9a0bde]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FPondicherry.jpg?alt=media&token=fc809f6f-cb89-45f9-adab-2992de9c6cf3]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAndaman.jpg?alt=media&token=5a5eb500-9b31-4371-a5fb-a981fdb35680]]></item>
+        <item><![CDATA[https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLakshadweep.jpg?alt=media&token=35177213-6667-413f-9977-993c7d1ad323]]></item>
+
+    </string-array>
+
+
     <!--Videos chanel names-->
 
     <!--chip view-->
@@ -266,6 +398,9 @@
     <string name="Hello_World">Hello World!</string>
     <string name="swipe_up">Swipe up</string>
     <string name="swipe_down">Swipe Down</string>
+    <string name="title_activity_place">Place</string>
+
+    <string name="hello_world">Hello world!</string>
 
 
 </resources>

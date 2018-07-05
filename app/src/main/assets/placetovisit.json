@@ -1,0 +1,220 @@
+{
+  "placeToVisit": [
+    {
+      "placeName": "Srinagar - Heaven on Earth",
+      "rating": "4.2",
+      "state": "Kashmir",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSrinagar.jpg?alt=media&token=cde78230-a3a8-4f10-a130-de06191901a3",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Srinagar - Heaven on Earth",
+      "rating": "4.2",
+      "state": "Kashmir",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSrinagar.jpg?alt=media&token=cde78230-a3a8-4f10-a130-de06191901a3",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Leh-Ladakh",
+      "rating": "4.4",
+      "state": "Kashmir",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLeh-Ladakh.jpg?alt=media&token=52a8ec51-a6ba-494d-b359-d833a78d8fef",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Taj-Mahal",
+      "rating": "4.6",
+      "state": "Agra",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FTaj-Mahal.jpg?alt=media&token=210dc15f-0eba-46ae-89fd-5fb2c040120a",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Kutch (Kachchh)",
+      "rating": "4.2",
+      "state": "Gujarat",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FKachchh.jpg?alt=media&token=d68ea79d-4e9b-4975-a224-e02f05bc4e03",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Abode of clouds",
+      "rating": "4.0",
+      "state": "Meghalaya",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAbode%20of%20clouds.jpg?alt=media&token=4974e9f3-f975-477b-91c1-cfa36beb4854",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Mysore (Mysuru)",
+      "rating": "4.1",
+      "state": "Karnataka",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMysore.jpg?alt=media&token=0150309d-b0d6-4d2b-b463-f8a21e7e6a43",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Rishikesh - Yoga Capital of the World",
+      "rating": "4.3",
+      "state": "Uttarakhand",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRishikesh.jpg?alt=media&token=4f542b2f-e7c6-4f07-9f8d-590cee215fa9",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Manali",
+      "rating": "4.3",
+      "state": "Himachal Pradesh",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FManali.jpg?alt=media&token=97002599-075a-4729-b831-685c2ef4dae6",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Ranthambore - National Park",
+      "rating": "4.3",
+      "state": "Rajasthan",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRanthambore.jpg?alt=media&token=e031b824-2d77-45d5-be33-79b5e1aed7d7",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Jaipur - Pink City",
+      "rating": "4.0",
+      "state": "Rajasthan",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FJaipur.jpg?alt=media&token=a44f28b4-72b0-4eaa-93a4-f8ab1d7e5c77",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Shimla",
+      "rating": "4.1",
+      "state": "Himachal Pradesh",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FShimla.jpg?alt=media&token=769ae815-0b51-48fa-823f-b295cf1ca1af",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Mumbai - City of dreams",
+      "rating": "4.2",
+      "state": "Maharashtra",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMumbai.jpg?alt=media&token=37c69956-8b66-4099-9bf5-2ae1cc311c8f",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Lonavala",
+      "rating": "4.1",
+      "state": "Maharashtra",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLonavala.jpg?alt=media&token=fd10384d-7e31-476d-9e40-154b6c992810",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Mahabaleshwar",
+      "rating": "4.2",
+      "state": "Maharashtra",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMahabaleshwar.jpg?alt=media&token=4dd83370-6ad0-4b43-b490-343eb1815408",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Sikkim",
+      "rating": "4.1",
+      "state": "Gangtok",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSikkim.jpg?alt=media&token=aa415953-474b-4f1e-936c-275c399c31bc",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Darjeeling - Queen of the hills",
+      "rating": "4.2",
+      "state": "West Bengal",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FDarjeeling.jpg?alt=media&token=a0612ca1-7dba-48c1-93b5-f20d099242f6",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Coorg",
+      "rating": "4.0",
+      "state": "Karnataka",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FCoorg.jpg?alt=media&token=67a8bb32-c2bc-484f-a0cf-c9994255c805",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Chikmagalur",
+      "rating": "4.0",
+      "state": "Karnataka",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FChikmagalur.jpg?alt=media&token=7abb7c0b-5a15-49fa-b9c7-ddd71fa96902",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Wayanad",
+      "rating": "4.3",
+      "state": "Kerala",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FWayanad.jpg?alt=media&token=f9fdcf21-fc62-46ba-9871-b221ed9488f5",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Alleppey (Alappuzha)",
+      "rating": "4.0",
+      "state": "Kerala",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAlleppey.jpg?alt=media&token=9e939d5b-755a-4c36-a35e-507494a52a3d",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Munnar",
+      "rating": "4.4",
+      "state": "Kerala",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMunnar.jpg?alt=media&token=d87a6ebf-364d-4a11-a33e-43384d06b3db",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Hampi",
+      "rating": "4.3",
+      "state": "Karnataka",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FHampi.jpg?alt=media&token=73270c19-790c-4e2c-a9d6-5068027a39ba",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Ooty",
+      "rating": "4.4",
+      "state": "Tamil Nadu",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FOoty.jpg?alt=media&token=096a7b40-6e97-40c5-8367-8f122e9a0bde",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Pondicherry",
+      "rating": "4.1",
+      "state": "Tamil Nadu",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FPondicherry.jpg?alt=media&token=fc809f6f-cb89-45f9-adab-2992de9c6cf3",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Andaman-Nicobar",
+      "rating": "4.6",
+      "state": "Andaman-Nicobar",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAndaman.jpg?alt=media&token=5a5eb500-9b31-4371-a5fb-a981fdb35680",
+      "bestTimeToVisit": "",
+      "summary": ""
+    },
+    {
+      "placeName": "Lakshadweep",
+      "rating": "4.3",
+      "state": "Lakshadweep",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLakshadweep.jpg?alt=media&token=35177213-6667-413f-9977-993c7d1ad323",
+      "bestTimeToVisit": "",
+      "summary": ""
+    }
+  ]
+}

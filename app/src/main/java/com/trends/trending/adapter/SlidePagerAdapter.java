@@ -51,7 +51,7 @@ public class SlidePagerAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_slider, null);
 
-        TextView textView = (TextView) view.findViewById(R.id.textView);
+        TextView textView = view.findViewById(R.id.textView);
         //LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout);
 
         textView.setText(Html.fromHtml("&#34;<b>"+colorName.get(position)+"</b>&#34;"));
