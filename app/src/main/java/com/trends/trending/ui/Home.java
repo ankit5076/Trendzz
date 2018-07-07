@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.trends.trending.R;
 import com.trends.trending.adapter.SlidePagerAdapter;
@@ -40,6 +41,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            getSupportActionBar().setElevation(0);
