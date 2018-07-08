@@ -5,24 +5,27 @@
       "rating": "4.2",
       "state": "Kashmir",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSrinagar.jpg?alt=media&token=cde78230-a3a8-4f10-a130-de06191901a3",
-      "bestTimeToVisit": "",
-      "summary": ""
+      "bestTimeToVisit": "November to February",
+      "summary": "Srinagar is one of several places that have been called the \"Venice of the East\".Lakes around the city include Dal Lake – noted for its houseboats – and Nigeen Lake. Apart from Dal Lake and Nigeen Lake, Wular Lake and Manasbal Lake both lie to the north of Srinagar. Wular Lake is one of the largest fresh water lakes in Asia.",
+      "places": "Dal Lake, Nigeen Lake, Wular Lake, Manasbal Lake, Mughal gardens, Chashma Shahi (the royal fountains), Pari Mahal (the palace of the fairies), Nishat Bagh (the garden of spring), Shalimar Bagh, Jawaharlal Nehru Memorial Botanical Garden, Sher Garhi Palace, Gulab Bhavan, Shankaracharya Temple, Kheer Bhawani Temple"
     },
     {
       "placeName": "Srinagar - Heaven on Earth",
       "rating": "4.2",
       "state": "Kashmir",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSrinagar.jpg?alt=media&token=cde78230-a3a8-4f10-a130-de06191901a3",
-      "bestTimeToVisit": "",
-      "summary": ""
+      "bestTimeToVisit": "November to February",
+      "summary": "Srinagar is one of several places that have been called the \"Venice of the East\".Lakes around the city include Dal Lake – noted for its houseboats – and Nigeen Lake. Apart from Dal Lake and Nigeen Lake, Wular Lake and Manasbal Lake both lie to the north of Srinagar. Wular Lake is one of the largest fresh water lakes in Asia.",
+      "places": "Dal Lake, Nigeen Lake, Wular Lake, Manasbal Lake, Mughal gardens, Chashma Shahi (the royal fountains), Pari Mahal (the palace of the fairies), Nishat Bagh (the garden of spring), Shalimar Bagh, Jawaharlal Nehru Memorial Botanical Garden, Sher Garhi Palace, Gulab Bhavan, Shankaracharya Temple, Kheer Bhawani Temple"
     },
     {
       "placeName": "Leh-Ladakh",
       "rating": "4.4",
       "state": "Kashmir",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLeh-Ladakh.jpg?alt=media&token=52a8ec51-a6ba-494d-b359-d833a78d8fef",
-      "bestTimeToVisit": "",
-      "summary": ""
+      "bestTimeToVisit": "May to September",
+      "summary": "Ladakh a word which means \"land of high passes\", is a region in the state of Jammu and Kashmir of Northern India sandwiched between the Karakoram mountain range to the north and the Himalayas to the south and is situated at the height of 11,400 ft.The Indian portion of Ladakh is composed of the Leh and Kargil districts. The Leh district is the second largest district of India, covering more than half the area of Jammu and Kashmir, of which it is the eastern part.",
+      "places": "Razi khar (Chiktan Khar), Suru valley, Kargil, Zangskar, Zangla, Rangdum, Padum, Phukthal, Sani Monastery, Stongdey, Shayok Valley, Sankoo, Salt Valley, <trek>Manali to Ladakh, the Nubra valley, Pangong tso, Tso moriri, the Indus valley, Markha valley, Ladakh monastery trek, South Zangskar, Trans-Zangskar Expedition, Spiti to Ladakh, Spiti to Pitok to Hemis, Rupshu, the Great Salt lakes, Chadar Ice trek, Padum-Phuktal, Padam to Darcha, Panikhar to Heniskot, Padum to Manali, Lamayuru-Martselang, Lamayuru - Alchi, Kala Pattar trek, Pahal</trek>"
     },
     {
       "placeName": "Taj-Mahal",
@@ -30,7 +33,8 @@
       "state": "Agra",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FTaj-Mahal.jpg?alt=media&token=210dc15f-0eba-46ae-89fd-5fb2c040120a",
       "bestTimeToVisit": "",
-      "summary": ""
+      "summary": "",
+      "places": ""
     },
     {
       "placeName": "Kutch (Kachchh)",
@@ -38,7 +42,8 @@
       "state": "Gujarat",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FKachchh.jpg?alt=media&token=d68ea79d-4e9b-4975-a224-e02f05bc4e03",
       "bestTimeToVisit": "",
-      "summary": ""
+      "summary": "",
+      "places": ""
     },
     {
       "placeName": "Abode of clouds",
@@ -46,7 +51,8 @@
       "state": "Meghalaya",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAbode%20of%20clouds.jpg?alt=media&token=4974e9f3-f975-477b-91c1-cfa36beb4854",
       "bestTimeToVisit": "",
-      "summary": ""
+      "summary": "",
+      "places": ""
     },
     {
       "placeName": "Mysore (Mysuru)",
@@ -54,7 +60,8 @@
       "state": "Karnataka",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMysore.jpg?alt=media&token=0150309d-b0d6-4d2b-b463-f8a21e7e6a43",
       "bestTimeToVisit": "",
-      "summary": ""
+      "summary": "",
+      "places": ""
     },
     {
       "placeName": "Rishikesh - Yoga Capital of the World",
@@ -62,7 +69,8 @@
       "state": "Uttarakhand",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FRishikesh.jpg?alt=media&token=4f542b2f-e7c6-4f07-9f8d-590cee215fa9",
       "bestTimeToVisit": "",
-      "summary": ""
+      "summary": "",
+      "places": ""
     },
     {
       "placeName": "Manali",
@@ -70,7 +78,8 @@
       "state": "Himachal Pradesh",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FManali.jpg?alt=media&token=97002599-075a-4729-b831-685c2ef4dae6",
       "bestTimeToVisit": "",
-      "summary": ""
+      "summary": "",
+      "places": ""
     },
     {
       "placeName": "Ranthambore - National Park",

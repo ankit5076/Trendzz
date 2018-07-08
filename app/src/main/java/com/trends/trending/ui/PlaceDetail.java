@@ -11,8 +11,10 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.view.View;
 import android.widget.ImageView;
 
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.trends.trending.R;
@@ -47,7 +49,7 @@ public class PlaceDetail extends AppCompatActivity {
         placeImage = intent.getExtras().getString(KEY_PLACE_IMAGE);
         final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(placeTitle);
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+//        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         Picasso.get().load(placeImage)
                 .placeholder(R.drawable.loading).error(R.drawable.aaj_tak).into((ImageView) findViewById(R.id.place_detail_image));
     }
@@ -76,6 +78,11 @@ public class PlaceDetail extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void expandableButton4(View view) {
+        ExpandableRelativeLayout expandableLayout4 = findViewById(R.id.expandableAbout);
+        expandableLayout4.toggle(); // toggle expand and collapse
     }
 
     public Uri getLocalBitmapUri(Bitmap bmp) {
