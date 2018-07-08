@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class PlaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             genericViewHolder.itemTxtTitle.setText(model.getPlaceName());
             genericViewHolder.itemTxtMessage.setText(model.getPlaceInfo());
             genericViewHolder.rating.setText(model.getPlaceRating());
+            genericViewHolder.placeRatingBar.setRating(Float.parseFloat(model.getPlaceRating()));
+            genericViewHolder.placeRatingBar.setStepSize(0.1f);
+
             Picasso.get()
                     .load(model.getPlaceImage())
                     .fit()
@@ -95,6 +99,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private TextView itemTxtTitle;
         private TextView itemTxtMessage;
         private ImageView placeImage;
+        private RatingBar placeRatingBar;
 
 
         // @BindView(R.id.img_user)
@@ -116,6 +121,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             this.itemTxtTitle = itemView.findViewById(R.id.item_txt_title);
             this.itemTxtMessage = itemView.findViewById(R.id.item_txt_message);
             this.placeImage = itemView.findViewById(R.id.place_image);
+            this.placeRatingBar = itemView.findViewById(R.id.placeRatingBar);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
