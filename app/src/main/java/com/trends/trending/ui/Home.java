@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.trends.trending.R;
 import com.trends.trending.adapter.SlidePagerAdapter;
 
@@ -33,6 +37,8 @@ public class Home extends AppCompatActivity {
     TabLayout indicator;
     @BindView(R.id.greet_user)
     TextView mGreetUser;
+    @BindView(R.id.adView)
+    AdView mBannerAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        mGreetUser.setText(greetText()+" MR. NEERAJ!!");
+        mGreetUser.setText(greetText() + " MR. NEERAJ!!");
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            getSupportActionBar().setElevation(0);
 //        }
@@ -56,6 +62,51 @@ public class Home extends AppCompatActivity {
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new SliderTimer(), 4000, 6000);
+
+        adViewSetup();
+
+    }
+
+    private void adViewSetup() {
+        mBannerAd = findViewById(R.id.adView);
+//        mBannerAd.setAdSize(AdSize.BANNER);
+//        mBannerAd.setAdUnitId(getString(R.string.banner_home_footer));
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                // Check the LogCat to get your test device ID
+                .addTestDevice("54F2A2C6318B029B2338389DB10AFDBE")
+                .build();
+
+        mBannerAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdLoaded() {
+            }
+
+            @Override
+            public void onAdClosed() {
+                Toast.makeText(getApplicationContext(), "Ad is closed!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Toast.makeText(getApplicationContext(), "Ad failed to load! error code: " + errorCode, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                Toast.makeText(getApplicationContext(), "Ad left application!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+        });
+
+        mBannerAd.loadAd(adRequest);
     }
 
     private String greetText() {
@@ -63,11 +114,11 @@ public class Home extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
-        if(timeOfDay >= 0 && timeOfDay < 12){
+        if (timeOfDay >= 0 && timeOfDay < 12) {
             return GOOD_MORNING;
-        }else if(timeOfDay >= 12 && timeOfDay < 16){
+        } else if (timeOfDay >= 12 && timeOfDay < 16) {
             return GOOD_AFTERNOON;
-        }else{
+        } else {
             return GOOD_EVENING;
         }
     }
@@ -87,6 +138,30 @@ public class Home extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onPause() {
+        if (mBannerAd != null) {
+            mBannerAd.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mBannerAd != null) {
+            mBannerAd.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mBannerAd != null) {
+            mBannerAd.destroy();
+        }
+        super.onDestroy();
     }
 
 

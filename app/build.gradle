@@ -43,6 +43,8 @@ dependencies {
     compile 'com.github.Plumillon:ChipView:1.2.0'
     compile 'com.rilixtech:materialfancybuttons:1.8.7'
     compile 'com.rilixtech:material-design-iconic-typeface:2.2.0.3'
+    compile 'com.google.android.gms:play-services-ads:11.8.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
