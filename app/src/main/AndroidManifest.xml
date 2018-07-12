@@ -47,7 +47,8 @@
         <service android:name=".repository.VideoRepository" />
         <service android:name=".service.DownloadService" />
 
-        <activity android:name=".ui.Home"/>
+        <activity android:name=".ui.Home"
+            android:theme="@style/MyMaterialTheme"/>
         <activity
             android:name=".ui.Place"
             android:label="@string/title_activity_place"
