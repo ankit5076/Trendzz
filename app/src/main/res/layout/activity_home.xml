@@ -90,7 +90,7 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="20dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/play_button_96"
+                        android:src="@drawable/home_play_button_96"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="20dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/quote_96"
+                        android:src="@drawable/home_quote_96"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="20dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/light_on_96"
+                        android:src="@drawable/home_light_on_96"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -203,7 +203,7 @@
                             android:layout_height="60dp"
                             android:layout_marginTop="20dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/travel_96"
+                            android:src="@drawable/home_travel_96"
                             />
                         <TextView
                             android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                             android:layout_height="60dp"
                             android:layout_marginTop="20dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/top10_96"
+                            android:src="@drawable/home_top10_96"
                             />
                         <TextView
                             android:layout_width="match_parent"
@@ -271,7 +271,7 @@
                             android:layout_height="60dp"
                             android:layout_marginTop="20dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/feedback_96"
+                            android:src="@drawable/home_feedback_96"
                             />
                         <TextView
                             android:layout_width="match_parent"

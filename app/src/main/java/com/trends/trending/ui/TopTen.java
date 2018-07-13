@@ -29,7 +29,7 @@ public class TopTen extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        //setContentView(R.layout.activity_home);
         Gson gson = new Gson();
         if (parseJson() != null) {
             BollywoodSongsResponseList bollywoodSongsResponseList = gson.fromJson(parseJson(), BollywoodSongsResponseList.class);

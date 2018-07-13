@@ -75,7 +75,7 @@ public class Place extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        getMenuInflater().inflate(R.menu.menu_search, menu);
+        getMenuInflater().inflate(R.menu.place_search, menu);
 
 
         // Retrieve the SearchView and plug it into SearchManager
