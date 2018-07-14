@@ -1,5 +1,6 @@
 package com.trends.trending.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -100,6 +101,43 @@ public class Home extends AppCompatActivity {
 
                 //Check to see which item was being clicked and perform appropriate action
 
+                switch (menuItem.getItemId()) {
+
+                    case R.id.nav_home:
+                        Toast.makeText(Home.this, "Home", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_video:
+                        Toast.makeText(Home.this, "Video", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_quote:
+                        Toast.makeText(Home.this, "Quote", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_fact:
+                        Toast.makeText(Home.this, "Fact", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_best_place:
+                        Toast.makeText(Home.this, "Place to visit", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_top_ten:
+                        Toast.makeText(Home.this, "Top 10", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_feedback:
+                        Toast.makeText(Home.this, "Feedback", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.nav_setting:
+                        Toast.makeText(Home.this, "Setting", Toast.LENGTH_SHORT).show();
+                        break;
+
+
+                }
+
 
                 //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) {
@@ -138,6 +176,10 @@ public class Home extends AppCompatActivity {
 
     }
 
+    public void startActivity(final Class<? extends Activity> clz){
+        startActivity(new Intent(Home.this, clz));
+    }
+
     private void adViewSetup() {
         mBannerAd = findViewById(R.id.adView);
 //        mBannerAd.setAdSize(AdSize.BANNER);
@@ -149,7 +191,7 @@ public class Home extends AppCompatActivity {
                 .addTestDevice("54F2A2C6318B029B2338389DB10AFDBE")
                 .build();
 
-        mBannerAd.setAdListener(new AdListener(){
+        mBannerAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdLoaded() {
