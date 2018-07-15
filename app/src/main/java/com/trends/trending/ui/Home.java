@@ -3,6 +3,7 @@ package com.trends.trending.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,15 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.trends.trending.MainActivity;
 import com.trends.trending.R;
 import com.trends.trending.adapter.SlidePagerAdapter;
 
@@ -32,6 +30,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class Home extends AppCompatActivity {
 
@@ -49,12 +48,13 @@ public class Home extends AppCompatActivity {
     TextView mGreetUser;
     @BindView(R.id.adView)
     AdView mBannerAd;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
 
-    private NavigationView navigationView;
-    private DrawerLayout drawer;
-    private View navHeader;
-    private TextView txtName, txtWebsite;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +62,9 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_ho);
         ButterKnife.bind(this);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(mToolbar);
 
-        drawer = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        mNavigationView = findViewById(R.id.nav_view);
 
         setUpNavigationView();
 
@@ -93,11 +91,11 @@ public class Home extends AppCompatActivity {
 
     private void setUpNavigationView() {
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             // This method will trigger on item Click of navigation menu
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 //Check to see which item was being clicked and perform appropriate action
 
@@ -153,30 +151,30 @@ public class Home extends AppCompatActivity {
         });
 
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.openDrawer, R.string.closeDrawer) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                // Code here will be triggered once the mDrawerLayout closes as we dont want anything to happen so we leave this blank
                 super.onDrawerClosed(drawerView);
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+                // Code here will be triggered once the mDrawerLayout open as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
             }
         };
 
-        //Setting the actionbarToggle to drawer layout
-        drawer.setDrawerListener(actionBarDrawerToggle);
+        //Setting the actionbarToggle to mDrawerLayout layout
+        mDrawerLayout.setDrawerListener(actionBarDrawerToggle);
 
         //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 
     }
 
-    public void startActivity(final Class<? extends Activity> clz){
+    public void startActivity(final Class<? extends Activity> clz) {
         startActivity(new Intent(Home.this, clz));
     }
 
@@ -233,6 +231,29 @@ public class Home extends AppCompatActivity {
             return GOOD_AFTERNOON;
         } else {
             return GOOD_EVENING;
+        }
+    }
+
+    @OnClick({R.id.home_video, R.id.home_quote, R.id.home_fact, R.id.home_place, R.id.home_top10, R.id.home_feedback})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.home_video:
+                startActivity(PlaylistVideo.class);
+                break;
+            case R.id.home_quote:
+                startActivity(Quote.class);
+                break;
+            case R.id.home_fact:
+                startActivity(Fact.class);
+                break;
+            case R.id.home_place:
+                startActivity(Place.class);
+                break;
+            case R.id.home_top10:
+                //startActivity();
+                break;
+            case R.id.home_feedback:
+                break;
         }
     }
 
