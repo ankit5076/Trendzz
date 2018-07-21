@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -82,26 +83,69 @@
                         android:layout_height="match_parent"
                         android:padding="8dp"
                         app:ael_duration="400"
-                        app:ael_expanded="false"
+                        app:ael_expanded="true"
                         app:ael_interpolator="accelerate"
                         app:ael_orientation="vertical">
 
                         <TextView
-                            android:id="@+id/description"
+                            android:id="@+id/aboutPlace"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition. Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition."
+                            tools:text="Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition. Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition."
                             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle" />
                     </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/places"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/about"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#066da1"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:text="Best Places"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                    <TextView
+                        android:id="@+id/place_names"
+                        android:textSize="18sp"
+                        android:padding="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewPlaceDetail"
+                android:layout_below="@id/places"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_home_footer">
+            </com.google.android.gms.ads.AdView>
+
             <LinearLayout
                 android:id="@+id/transport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/about"
+                android:layout_below="@id/adViewPlaceDetail"
                 android:layout_marginBottom="26dp"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
@@ -191,7 +235,6 @@
                         android:textSize="11.1dp" />
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:id="@+id/llAddPhotos"
                     android:layout_width="0dp"
@@ -207,7 +250,8 @@
                         android:background="@drawable/detail_circle"
                         android:elevation="2dp"
                         android:padding="15dp"
-                        android:src="@drawable/ic_share_teal_500_24dp" />
+                        app:srcCompat="@drawable/ic_share_teal_500_24dp"
+                        tools:targetApi="lollipop" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,7 +265,6 @@
 
 
             </LinearLayout>
-
 
 
         </RelativeLayout>

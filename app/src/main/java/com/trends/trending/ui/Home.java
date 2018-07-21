@@ -85,7 +85,7 @@ public class Home extends AppCompatActivity {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new SliderTimer(), 4000, 6000);
 
-        adViewSetup();
+        adViewSetup1();
 
     }
 
@@ -178,7 +178,7 @@ public class Home extends AppCompatActivity {
         startActivity(new Intent(Home.this, clz));
     }
 
-    private void adViewSetup() {
+    private void adViewSetup1() {
         mBannerAd = findViewById(R.id.adView);
 //        mBannerAd.setAdSize(AdSize.BANNER);
 //        mBannerAd.setAdUnitId(getString(R.string.banner_home_footer));

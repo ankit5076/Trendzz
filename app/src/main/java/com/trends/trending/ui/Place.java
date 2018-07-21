@@ -6,16 +6,17 @@ import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
 
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.trends.trending.R;
 import com.trends.trending.adapter.PlaceAdapter;
-import com.trends.trending.model.PlaceModel;
+import com.trends.trending.model.PlaceToVisitModel;
+import com.trends.trending.repository.PlaceResponseList;
+import com.trends.trending.utils.ExtraHelper;
 
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
@@ -29,8 +30,8 @@ import android.graphics.Color;
 import android.text.InputFilter;
 import android.text.Spanned;
 
-import static com.trends.trending.utils.Keys.PlaceInfo.KEY_PLACE_IMAGE;
-import static com.trends.trending.utils.Keys.PlaceInfo.KEY_PLACE_NAME;
+import static com.trends.trending.utils.Keys.PlaceInfo.KEY_PLACE_OBJECT;
+import static com.trends.trending.utils.Keys.VideoInfo.PLACE_TO_VISIT;
 
 
 public class Place extends AppCompatActivity {
@@ -46,7 +47,7 @@ public class Place extends AppCompatActivity {
 
     private PlaceAdapter mAdapter;
 
-    private ArrayList<PlaceModel> modelList = new ArrayList<>();
+    private ArrayList<PlaceToVisitModel> modelList = new ArrayList<>();
 
 
     @Override
@@ -122,7 +123,7 @@ public class Place extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                ArrayList<PlaceModel> filterList = new ArrayList<PlaceModel>();
+                ArrayList<PlaceToVisitModel> filterList = new ArrayList<PlaceToVisitModel>();
                 if (s.length() > 0) {
                     for (int i = 0; i < modelList.size(); i++) {
                         if (modelList.get(i).getPlaceName().toLowerCase().contains(s.toString().toLowerCase())) {
@@ -144,43 +145,41 @@ public class Place extends AppCompatActivity {
 
 
     private void setAdapter() {
-        String[] placeName = getResources().getStringArray(R.array.place_to_visit);
-        String[] placeInfo = getResources().getStringArray(R.array.place_to_visit_info);
-        String[] placeRating = getResources().getStringArray(R.array.place_rating);
-        String[] placeImage = getResources().getStringArray(R.array.place_image);
 
-        for(int i = 0; i < placeName.length; i++)
-            modelList.add(new PlaceModel(placeName[i], placeInfo[i], placeRating[i], placeImage[i]));
+        Gson gson = new Gson();
+        String jsonString = ExtraHelper.parseJson(Place.this, PLACE_TO_VISIT);
+        if (jsonString != null) {
+            PlaceResponseList placeResponseList = gson.fromJson(jsonString, PlaceResponseList.class);
+            modelList.addAll(placeResponseList.getBestPlaces());
+        } else {
+            modelList = null;
+            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
+        }
 
         mAdapter = new PlaceAdapter(Place.this, modelList);
 
         recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(layoutManager);
 
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
-        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(Place.this, R.drawable.divider_recyclerview));
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        // DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        // dividerItemDecoration.setDrawable(ContextCompat.getDrawable(Place.this, R.drawable.divider_recyclerview));
+        //recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerView.setAdapter(mAdapter);
 
 
         mAdapter.SetOnItemClickListener(new PlaceAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position, PlaceModel model) {
-
+            public void onItemClick(View view, int position, PlaceToVisitModel model) {
                 //handle item click events here
                 Toast.makeText(Place.this, model.getPlaceName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Place.this, PlaceDetail.class);
-                intent.putExtra(KEY_PLACE_NAME, model.getPlaceName());
-                intent.putExtra(KEY_PLACE_IMAGE, model.getPlaceImage());
+                intent.putExtra(KEY_PLACE_OBJECT, model);
                 startActivity(intent);
-
             }
         });
 
