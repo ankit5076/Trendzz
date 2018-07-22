@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.trends.trending.R;
 import com.trends.trending.model.PlaceToVisitModel;
+import com.trends.trending.utils.CustomTabs;
 import com.trends.trending.utils.ExtraHelper;
 
 import java.io.File;
@@ -28,10 +29,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.trends.trending.utils.Keys.PlaceInfo.GOOGLE_IMAGE_URL_PART_1;
+import static com.trends.trending.utils.Keys.PlaceInfo.GOOGLE_IMAGE_URL_PART_2;
 import static com.trends.trending.utils.Keys.PlaceInfo.KEY_PLACE_OBJECT;
+import static com.trends.trending.utils.Keys.PlaceInfo.WIKIPEDIA_SEARCH;
 
 public class PlaceDetail extends AppCompatActivity {
-
 
     @BindView(R.id.share_place)
     ImageView mSharePlace;
@@ -41,6 +44,8 @@ public class PlaceDetail extends AppCompatActivity {
     TextView mAboutPlace;
     @BindView(R.id.adViewPlaceDetail)
     AdView mAdViewPlaceDetail;
+    @BindView(R.id.bestTimeToVisit)
+    TextView mBestTimeToVisit;
 
     private PlaceToVisitModel mPlace;
 
@@ -61,9 +66,12 @@ public class PlaceDetail extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(mPlace.getPlaceName());
 //        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         Picasso.get().load(mPlace.getPlaceImageUrl())
-                .placeholder(R.drawable.loading).error(R.drawable.aaj_tak).into((ImageView) findViewById(R.id.place_detail_image));
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.aaj_tak)
+                .into((ImageView) findViewById(R.id.place_detail_image));
         mPlaceNames.setText(mPlace.getPlaces().replace(",", "#"));
         mAboutPlace.setText(mPlace.getAboutPlace());
+        mBestTimeToVisit.setText(mPlace.getBestTimeToVisit());
 
     }
 
@@ -86,7 +94,7 @@ public class PlaceDetail extends AppCompatActivity {
         return bmpUri;
     }
 
-    @OnClick({R.id.share_place})
+    @OnClick({R.id.share_place, R.id.google_map, R.id.google_images, R.id.wiki})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.share_place:
@@ -112,6 +120,22 @@ public class PlaceDetail extends AppCompatActivity {
 
                     }
                 });
+                break;
+
+            case R.id.google_map:
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(mPlace.getPlaceName()+" "+mPlace.getPlaceState()));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+                break;
+
+            case R.id.google_images:
+                CustomTabs.openTab(PlaceDetail.this, GOOGLE_IMAGE_URL_PART_1
+                        + Uri.encode(mPlace.getPlaceName()) + GOOGLE_IMAGE_URL_PART_2);
+                break;
+
+            case R.id.wiki:
+                CustomTabs.openTab(PlaceDetail.this, WIKIPEDIA_SEARCH + mPlace.getPlaceName());
                 break;
         }
     }

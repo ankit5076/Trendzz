@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -74,7 +74,7 @@
                         android:paddingEnd="10dp"
                         android:paddingStart="10dp"
                         android:paddingTop="5dp"
-                        android:text="About"
+                        android:text="@string/about"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
                     <com.github.aakira.expandablelayout.ExpandableRelativeLayout
@@ -91,8 +91,8 @@
                             android:id="@+id/aboutPlace"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:text="Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition. Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition."
-                            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle" />
+                            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+                            tools:text="Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition. Implements the expand and collapse by sliding logic for a top or a bottom view in a two children view  or layout or any widgets composition." />
                     </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
                 </LinearLayout>
 
@@ -119,37 +119,35 @@
                         android:paddingEnd="10dp"
                         android:paddingStart="10dp"
                         android:paddingTop="5dp"
-                        android:text="Best Places"
+                        android:text="@string/best_places"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
                     <TextView
                         android:id="@+id/place_names"
-                        android:textSize="18sp"
-                        android:padding="8dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adViewPlaceDetail"
-                android:layout_below="@id/places"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/places"
                 android:layout_centerHorizontal="true"
                 ads:adSize="BANNER"
-                ads:adUnitId="@string/banner_home_footer">
-            </com.google.android.gms.ads.AdView>
+                ads:adUnitId="@string/banner_home_footer"></com.google.android.gms.ads.AdView>
 
             <LinearLayout
                 android:id="@+id/transport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/adViewPlaceDetail"
-                android:layout_marginBottom="26dp"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -161,13 +159,14 @@
 
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/wiki"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
                         android:layout_gravity="center"
                         android:background="@drawable/detail_circle"
                         android:elevation="2dp"
                         android:padding="15dp"
-                        app:srcCompat="@drawable/ic_train_black_24dp" />
+                        app:srcCompat="@drawable/wikipedia_96" />
 
                     <TextView
                         android:id="@+id/tvDistance"
@@ -175,9 +174,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="Train"
+                        android:text="@string/wikipedia"
                         android:textColor="#adb3c0"
-                        android:textSize="11.1dp" />
+                        android:textSize="14sp" />
 
 
                 </LinearLayout>
@@ -190,22 +189,23 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/google_images"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
                         android:layout_gravity="center"
                         android:background="@drawable/detail_circle"
                         android:elevation="2dp"
                         android:padding="15dp"
-                        app:srcCompat="@drawable/ic_local_airport_black_24dp" />
+                        app:srcCompat="@drawable/ic_image_violet_24dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="Airport"
+                        android:text="@string/images"
                         android:textColor="#adb3c0"
-                        android:textSize="11.1dp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -216,13 +216,14 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/google_map"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
                         android:layout_gravity="center"
                         android:background="@drawable/detail_circle"
                         android:elevation="2dp"
                         android:padding="15dp"
-                        app:srcCompat="@drawable/ic_directions_bus_black_24dp" />
+                        app:srcCompat="@drawable/ic_map_red_24dp" />
 
                     <TextView
                         android:id="@+id/myTextView_Roboto_Regular"
@@ -230,9 +231,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="Bus"
+                        android:text="@string/map"
                         android:textColor="#adb3c0"
-                        android:textSize="11.1dp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -244,8 +245,8 @@
 
                     <ImageView
                         android:id="@+id/share_place"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
                         android:layout_gravity="center"
                         android:background="@drawable/detail_circle"
                         android:elevation="2dp"
@@ -258,13 +259,50 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="Share"
+                        android:text="@string/share"
                         android:textColor="#adb3c0"
-                        android:textSize="11.1dp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
 
             </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/transport"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#066da1"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/best_time_to_visit"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                    <TextView
+                        android:id="@+id/bestTimeToVisit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:ellipsize="marquee"
+                        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+                        tools:text="June to March" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
 
         </RelativeLayout>
