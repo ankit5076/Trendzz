@@ -3,6 +3,7 @@ package com.trends.trending.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.trends.trending.MainActivity;
 import com.trends.trending.R;
 import com.trends.trending.adapter.SlidePagerAdapter;
 
@@ -61,6 +64,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ho);
         ButterKnife.bind(this);
+        Log.d("videooopref", PreferenceManager.getDefaultSharedPreferences(Home.this).getBoolean((getString(R.string.notifications_video_message)), true)+"");
 
         setSupportActionBar(mToolbar);
 
@@ -130,7 +134,9 @@ public class Home extends AppCompatActivity {
                         break;
 
                     case R.id.nav_setting:
-                        Toast.makeText(Home.this, "Setting", Toast.LENGTH_SHORT).show();
+                        startActivity(Settings.class);
+                        //Toast.makeText(Home.this, "Setting", Toast.LENGTH_SHORT).show();
+
                         break;
 
 
@@ -285,6 +291,7 @@ public class Home extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("videooopref", PreferenceManager.getDefaultSharedPreferences(Home.this).getBoolean((getString(R.string.notifications_video_message)), true)+"");
         if (mBannerAd != null) {
             mBannerAd.resume();
         }
