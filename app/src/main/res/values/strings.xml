@@ -319,6 +319,7 @@
     <string name="best_time_to_visit">Best Time to Visit</string>
     <string name="about">About</string>
     <string name="best_places">Best Places</string>
+    <string name="about_detail">#%1$s</string>
     <!--End-->
 
 

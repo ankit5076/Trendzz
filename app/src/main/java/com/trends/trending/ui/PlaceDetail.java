@@ -69,7 +69,7 @@ public class PlaceDetail extends AppCompatActivity {
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.aaj_tak)
                 .into((ImageView) findViewById(R.id.place_detail_image));
-        mPlaceNames.setText(mPlace.getPlaces().replace(",", "#"));
+        mPlaceNames.setText(String.format(getResources().getString(R.string.about_detail),mPlace.getPlaces().replace(",", " #")));
         mAboutPlace.setText(mPlace.getAboutPlace());
         mBestTimeToVisit.setText(mPlace.getBestTimeToVisit());
 

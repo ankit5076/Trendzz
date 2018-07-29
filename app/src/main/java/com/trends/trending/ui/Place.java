@@ -126,7 +126,7 @@ public class Place extends AppCompatActivity {
                 ArrayList<PlaceToVisitModel> filterList = new ArrayList<PlaceToVisitModel>();
                 if (s.length() > 0) {
                     for (int i = 0; i < modelList.size(); i++) {
-                        if (modelList.get(i).getPlaceName().toLowerCase().contains(s.toString().toLowerCase())) {
+                        if (modelList.get(i).getPlaceName().toLowerCase().contains(s.toLowerCase())) {
                             filterList.add(modelList.get(i));
                             mAdapter.updateList(filterList);
                         }

@@ -72,7 +72,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     .centerCrop()
                     //.memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .placeholder(R.drawable.loading)
-                    .error(R.drawable.amit_bhadana)
+                    .error(R.drawable.sad_no_connection)
                     .into(genericViewHolder.placeImage);
         }
     }
