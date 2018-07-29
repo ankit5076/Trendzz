@@ -28,6 +28,8 @@ import com.trends.trending.utils.AppCompatPreferenceActivity;
 public class Settings extends AppCompatPreferenceActivity {
 
     private static final String TAG = Settings.class.getSimpleName();
+    private static RingtonePreference ringtonePref;
+    private static SwitchPreference videoPref, factPref, quotePref, placePref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +65,16 @@ public class Settings extends AppCompatPreferenceActivity {
 //                    return true;
 //                }
 //            });
-           // Log.d("videooopref", sharedPreferences.getBoolean((getString(R.string.notifications_video_message)), false)+"");
+            // Log.d("videooopref", sharedPreferences.getBoolean((getString(R.string.notifications_video_message)), false)+"");
 
 
             // feedback preference click listener
             Preference myPref = findPreference(getString(R.string.key_send_feedback));
+            ringtonePref = (RingtonePreference) findPreference(getString(R.string.key_notifications_new_message_ringtone));
+            videoPref = (SwitchPreference) findPreference(getString(R.string.notifications_video_message));
+            factPref = (SwitchPreference) findPreference(getString(R.string.notifications_fact_message));
+            quotePref = (SwitchPreference) findPreference(getString(R.string.notifications_quote_message));
+            placePref = (SwitchPreference) findPreference(getString(R.string.notifications_best_place_message));
 
             myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 public boolean onPreferenceClick(Preference preference) {
@@ -144,12 +151,25 @@ public class Settings extends AppCompatPreferenceActivity {
                     // update the changed gallery name to summary filed
                     preference.setSummary(stringValue);
                 }
+            } else if (preference instanceof SwitchPreference) {
+                setRingtonePreferenceState((SwitchPreference) preference);
+                return false;
             } else {
                 preference.setSummary(stringValue);
             }
             return true;
         }
     };
+
+    public static void setRingtonePreferenceState(SwitchPreference pref) {
+        if(pref.isChecked())
+            ringtonePref.setEnabled(true);
+        else {
+            Log.d(TAG,videoPref.isChecked()+" " + factPref.isChecked()+" " + quotePref.isChecked()+" "+ placePref.isChecked() +"");
+            if (!videoPref.isChecked() && !factPref.isChecked() && !quotePref.isChecked() && !placePref.isChecked())
+                ringtonePref.setEnabled(false);
+        }
+    }
 
     /**
      * Email client intent to send support mail

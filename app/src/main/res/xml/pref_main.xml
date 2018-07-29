@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="General">
         <EditTextPreference
             android:defaultValue="@string/default_gallery_storage"
@@ -46,7 +47,6 @@
 
         <RingtonePreference
             android:defaultValue="content://settings/system/notification_sound"
-            android:dependency="@string/notifications_fact_message"
             android:key="@string/key_notifications_new_message_ringtone"
             android:ringtoneType="notification"
             android:summary="@string/summary_choose_ringtone"
