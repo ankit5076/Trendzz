@@ -1,5 +1,6 @@
 {
   "placeToVisit": [
+
     {
       "placeName": "Srinagar - Heaven on Earth",
       "rating": "4.2",
@@ -140,7 +141,7 @@
       "rating": "4.1",
       "state": "Gangtok",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FSikkim.jpg?alt=media&token=aa415953-474b-4f1e-936c-275c399c31bc",
-      "bestTimeToVisit": "",
+      "bestTimeToVisit": "September to October",
       "summary": "Sikkim is a state in Northeast India. It borders the Tibet Autonomous Region of China in the north and northeast, Bhutan in the east, Nepal in the west and the Indian state of West Bengal in the south. Sikkim is also located close to India's Siliguri Corridor near Bangladesh. Sikkim is the least populous and second smallest among the Indian states. A part of the Eastern Himalaya, Sikkim is notable for its biodiversity, including alpine and subtropical climates, as well as being a host to Kanchenjunga, the highest peak in India and third highest on Earth. Sikkim's capital and largest city is Gangtok. Almost 35% of the state is covered by the Khangchendzonga National Park.",
       "places": "Lake Tsomgo, Yumthang Valley of Flowers, Gurudongmar Lake, Khangchendzonga National Park, Rumtek Monastery, Goecha La, Khecheopalri Lake, Mount Pandim, Baba Harbhajan Singh Temple, Zemu Glacier, Siniolchu Mountain, Samdruptse Statue, Banjhakri Falls and Energy Park, Buddha Park of Ravangla, Sikkim Himalayan Zoological Park"
     },
@@ -149,99 +150,100 @@
       "rating": "4.2",
       "state": "West Bengal",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FDarjeeling.jpg?alt=media&token=a0612ca1-7dba-48c1-93b5-f20d099242f6",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "mid-November to January",
+      "summary": "Darjeeling can be reached by the 88 km (55 mi) long Darjeeling Himalayan Railway from New Jalpaiguri, or by National Highway 55, from Siliguri, 77 km (48 mi) away. Bus services and hired vehicles connect Darjeeling with Siliguri and Darjeeling has road connections with Bagdogra, Gangtok and Kathmandu and the neighbouring towns of Kurseong and Kalimpong. The official languages of Darjeeling are Bengali and Nepali.",
+      "places": "Happy Valley Tea Garden, Darjeeling Himalayan Railway, Dhirdham Temple, Observatory Hill, St. Andrew's Church, War Memorial,Peace Pagoda, Chowrasta and the Mall, Darjeeling Hill Station"
     },
     {
       "placeName": "Coorg",
       "rating": "4.0",
       "state": "Karnataka",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FCoorg.jpg?alt=media&token=67a8bb32-c2bc-484f-a0cf-c9994255c805",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "October to March",
+      "summary": "Coorg is rated as one of the top hill station destinations in India. In July and August, rainfall is intense, and there are often showers into November.",
+      "places": "Kanive temple, Kaveri River in Kushalnagara, Tibetan Buddhist Golden temple, Suntikoppa temple, Onkareshwara temple"
     },
     {
       "placeName": "Chikmagalur",
       "rating": "4.0",
       "state": "Karnataka",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FChikmagalur.jpg?alt=media&token=7abb7c0b-5a15-49fa-b9c7-ddd71fa96902",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "September to March.",
+      "summary": "Chikmagalur is a town located in the Chikmagalur district in the Indian state of Karnataka. Chikmagalur district is the birthplace of coffee in India. Located in the foothills of the Mullayanagiri range, the town with its favorable climate and coffee estates attracts tourists from around the state.",
+      "places": "Mullayanagiri, Baba Budangiri (Datta Peeta), Kemmangundi, Z point, Hebbe Falls, Kallathi Falls, Ballalarayanadurga Hill, Land of Coffee"
     },
     {
       "placeName": "Wayanad",
       "rating": "4.3",
       "state": "Kerala",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FWayanad.jpg?alt=media&token=f9fdcf21-fc62-46ba-9871-b221ed9488f5",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "September to April",
+      "summary": "Wayanad is a district in the north-east of Kerala state, India with headquarters at the town of Kalpetta. It is set high on the Western Ghats with altitudes ranging from 700 to 2100 m. The district was formed on 1 November 1980 as the 12th district in Kerala by carving out areas from Kozhikode and Kannur districts.",
+      "places": "Wayanad Wildlife Sanctuary, Edakkal Caves, Soochipara Falls, Banasura Hill, Kuruvadweep, Thirunelli Temple, Pookode Lake, Ambukuthi mala, Chembra Peak, Neelimala Viewpoint, Chain Tree, Valliyoorkkavu, Lakkidi View Point, Muthanga forest, Assumption Forane Church, Aranamala Peak, Hanging Bridge, Wayanad Churam, Chembra Peak"
     },
     {
       "placeName": "Alleppey (Alappuzha)",
       "rating": "4.0",
       "state": "Kerala",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAlleppey.jpg?alt=media&token=9e939d5b-755a-4c36-a35e-507494a52a3d",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "November to February",
+      "summary": "Alappuzha is a city and a municipality in Kerala with an urban population of 174,164 and third among the districts having highest literacy rate in Kerala. In 2016, Centre for Science and Environment rated Alappuzha as the top cleanest town in India followed by Mysuru & Panaji. Alappuzha is considered to be the oldest planned city in this region and the lighthouse built on the coast of the city is the first of its kind along the Laccadive Sea coast (reference encyclopaedia of Kerala in Malayalam language).",
+      "places": "Vembanad, Alappuzha Beach, Marari Beach, Ambalappuzha Sri Krishna Temple, Basilica of St. Mary - Champakulam, Revi Karuna Karan Memorial Museum, Alappuzha lighthouse, Punnamada Kayal, Alleppey Beach, International Coir Museum, The Great Backwaters, Brackish Lagoons Alleppey, Chavara Bhavan, BoatHouse Alleppey, Mount Carmel Cathedral, Kidangamparambu Sree Bhuvaneswari Temple, Kanichukulangara devi temple, Lighthouse House Museum, St. Thomas Church, Ambalapuzha Beach"
     },
     {
       "placeName": "Munnar",
       "rating": "4.4",
       "state": "Kerala",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FMunnar.jpg?alt=media&token=d87a6ebf-364d-4a11-a33e-43384d06b3db",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "June to September",
+      "summary": "Munnar is a town and hill station located in the Idukki district of the southwestern Indian state of Kerala. Munnar is situated at around 1,600 metres (5,200 ft) above mean sea level,  in the Western Ghats mountain range. Munnar is also called the \"Kashmir of South India\" and is a favorite destination for honeymoon.",
+      "places": "Eravikulam National Park, Mattupetty Dam, Anamudi, Pothamedu View Point, Kolukkumalai Tea, KFDC Floriculture Centre, Dream Land Fun and Adventure, Wonder Valley Adventure and Amusement Park, Photo Point, Attukad Waterfall, Munnar Tent Camp, Pothamedu - Aanakkal view point, Mount Carmel Roman Catholic Church, Munnar Scenery, parvathi amman temple, Sun Moon Valley Boating Centre, Munnar Hillstation kerala, Wild Eye Adventures Jeep Safari &village Tour, Tata Tea Garden, Echo Point, Reserve Forest, Thalayar View point, Laxmi Tea Estate"
     },
     {
       "placeName": "Hampi",
       "rating": "4.3",
       "state": "Karnataka",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FHampi.jpg?alt=media&token=73270c19-790c-4e2c-a9d6-5068027a39ba",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "October to March",
+      "summary": "Hampi, also referred to as the Group of Monuments at Hampi, is a UNESCO World Heritage Site located in east-central Karnataka,India. It became the centre of the Hindu Vijayanagara Empire capital in the 14th century. Chronicles left by Persian and European travellers,particularly the Portuguese,state Hampi was a prosperous,wealthy and grand city near the Tungabhadra River, with numerous temples,farms and trading markets. By 1500 CE, Hampi-Vijayanagara was the world's second-largest medieval-era city after Beijing, and probably India's richest at that time, attracting traders from Persia and Portugal.",
+      "places": "Virupaksha Temple, Matanga Hill, Achyutaraya Temple, Vijaya Vittala Temple, Saasivekaalu Ganesha, Kadalekalu Ganesha, Hazara Rama Temple, Hemakuta Hill Temple, Lotus Mahal Hampi, Royal Enclosure, Queen's Bath, Pampa Sarovar, Ugra Narasimha Temple, Sunset point Hemakuta, Kings Balance, Mathanga Hill, Hanuman Temple, Elephant Stable, Stone chariot, Monkey Temple, Anjanadri Hill, Sunrise Sunset Point - Matanga Hill"
     },
     {
       "placeName": "Ooty",
       "rating": "4.4",
       "state": "Tamil Nadu",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FOoty.jpg?alt=media&token=096a7b40-6e97-40c5-8367-8f122e9a0bde",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "March to June",
+      "summary": "Ooty, also known as Udhagamandalam, is a hill station in the state of Tamil Nadu, in southern India. Surrounded by trees, central Ooty Lake is a huge artificial expanse of water with pleasure boats. On the slopes of nearby Elk Hill, the Rose Garden is home to over 2,000 varieties of roses. The Government Botanical Garden, created in the 19th century, features ferns, orchids and a prehistoric, fossilized tree.",
+      "places": "Botanical Gardens, Rose Garden, St. Stephen's Church, Doddabetta, Toda Temple, Elk Hill Murugan Temple, Italian garden, Pykara, Bhavani temple, Avalanche Lake, Ooty View point, Emerald Lake,  Dodobetta Tea Park, Pine forest"
     },
     {
       "placeName": "Pondicherry",
       "rating": "4.1",
       "state": "Tamil Nadu",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FPondicherry.jpg?alt=media&token=fc809f6f-cb89-45f9-adab-2992de9c6cf3",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "November - February",
+      "summary": "Pondicherry (or Puducherry), a French colonial settlement in India until 1954, is now a Union Territory town bounded by the southeastern Tamil Nadu state. Its French legacy is preserved in its French Quarter, with tree-lined streets, mustard-colored colonial villas and chic boutiques. A seaside promenade runs along the Bay of Bengal and passes several statues, including a 4m-high Gandhi Memorial.",
+      "places": "Sri Aurobindo Ashram, Promenade Beach, Arulmigu Manakula Vinayagar Temple, Rock Beach, Basilica of the Sacred Heart of Jesus, Immaculate Conception Cathedral, Aayi Mandapam, Old Lighthouse, Varadharaja Perumal Temple, Matrimandir, Auroville Beach, Puducherry Beach, Puducherry Science Centre & Planetarium, Auro Beach"
     },
     {
       "placeName": "Andaman-Nicobar",
       "rating": "4.6",
       "state": "Andaman-Nicobar",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FAndaman.jpg?alt=media&token=5a5eb500-9b31-4371-a5fb-a981fdb35680",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "October to March",
+      "summary": "The Andaman Islands are an Indian archipelago in the Bay of Bengal. These roughly 300 islands are known for their palm-lined, white-sand beaches, mangroves and tropical rainforests. Coral reefs supporting marine life such as sharks and rays make for popular diving and snorkeling sites. Indigenous Andaman Islanders inhabit the more remote islands, many of which are off limits to visitors.",
+      "places": "Havelock Island, Baratang Island, Radhanagar Beach, Viper Island, Mount Harriet National Park, Mahatma Gandhi Marine National Park, North Bay Island, Chidiya Tapu, Saddle Peak, Ross Island, South Andaman district, Forest Museum, Bharatpur Beach - Neil Island, Sri Vetrimalai Murugan Temple, Collinpur Beach, New Wandoor Beach, Laxmanpur Beach, Rajiv Gandhi Statue"
     },
     {
       "placeName": "Lakshadweep",
       "rating": "4.3",
       "state": "Lakshadweep",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trending-197008.appspot.com/o/images%2Fplace%2FLakshadweep.jpg?alt=media&token=35177213-6667-413f-9977-993c7d1ad323",
-      "bestTimeToVisit": "",
-      "summary": "",
-      "places": ""
+      "bestTimeToVisit": "October to mid May",
+      "summary": "Lakshadweep is a tropical archipelago of 36 atolls and coral reefs in the Laccadive Sea, off the coast of Kerala, India. Not all of the islands are inhabited, and only a few are open to visitors (permits required). Kavaratti, one of the more developed islands, is home to dozens of mosques, including the ornately decorated Ujra Mosque, as well as Kavaratti Aquarium, showcasing regional fish, shark and coral species.",
+      "places": "Agatti Island, Bangaram Atoll, Kadmat Island, Kalpeni, Kiltan, Minicoy Island Lighthouse, Amini Wildlife Sanctuary"
     }
+
   ]
 }

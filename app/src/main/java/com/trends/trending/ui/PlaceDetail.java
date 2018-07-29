@@ -123,7 +123,7 @@ public class PlaceDetail extends AppCompatActivity {
                 break;
 
             case R.id.google_map:
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(mPlace.getPlaceName()+" "+mPlace.getPlaceState()));
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(mPlace.getPlaceName() + " " + mPlace.getPlaceState()));
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
@@ -135,8 +135,18 @@ public class PlaceDetail extends AppCompatActivity {
                 break;
 
             case R.id.wiki:
-                CustomTabs.openTab(PlaceDetail.this, WIKIPEDIA_SEARCH + mPlace.getPlaceName());
+                String placeName = wikipediaSearch(mPlace.getPlaceName());
+                CustomTabs.openTab(PlaceDetail.this, WIKIPEDIA_SEARCH + placeName);
                 break;
         }
+    }
+
+    public String wikipediaSearch(String place) {
+        if (place.contains("-"))
+            return place.split("-")[0].trim();
+        else if (place.contains("("))
+            return place.split(" ")[0].trim();
+        else
+            return place;
     }
 }
