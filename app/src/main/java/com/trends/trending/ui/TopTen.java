@@ -3,58 +3,81 @@ package com.trends.trending.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.trends.trending.R;
+import com.trends.trending.adapter.PlaceAdapter;
+import com.trends.trending.adapter.SongAdapter;
+import com.trends.trending.model.PlaceToVisitModel;
+import com.trends.trending.model.SongModel;
 import com.trends.trending.model.youtube.TopTenModel;
-import com.trends.trending.repository.BollywoodSongsResponseList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.trends.trending.repository.PlaceResponseList;
+import com.trends.trending.repository.SongResponseList;
+import com.trends.trending.utils.ExtraHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import static com.trends.trending.utils.Keys.VideoInfo.BOLLYWOOD_TOP_SONGS;
-import static com.trends.trending.utils.Keys.VideoInfo.MOST_VIEWED;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+import static com.trends.trending.utils.Keys.TopTen.MOST_VIEWED;
 public class TopTen extends AppCompatActivity {
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    private SongAdapter mAdapter;
+    private ArrayList<SongModel> mSongModels = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_home);
-        Gson gson = new Gson();
-        if (parseJson() != null) {
-            BollywoodSongsResponseList bollywoodSongsResponseList = gson.fromJson(parseJson(), BollywoodSongsResponseList.class);
-            for (TopTenModel topTenModel : bollywoodSongsResponseList.getBollywoodTopSongs()
-                    ) {
-                Toast.makeText(this, topTenModel.getName(), Toast.LENGTH_SHORT).show();
-            }
-        } else
-            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_place);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Bollywood");
+
+        setAdapter();
+
+
     }
 
-    public String parseJson() {
-        String json;
-        try {
-            InputStream inputStream = getAssets().open(MOST_VIEWED);
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
-            inputStream.read(buffer);
-            inputStream.close();
-            json = new String(buffer, "UTF-8");
+    private void setAdapter() {
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+        Gson gson = new Gson();
+        String jsonString = ExtraHelper.parseJson(TopTen.this, MOST_VIEWED);
+        if (jsonString != null) {
+            SongResponseList songResponseList = gson.fromJson(jsonString, SongResponseList.class);
+            mSongModels.addAll(songResponseList.getBollywoodTopSongs());
+        } else {
+            mSongModels = null;
+            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
         }
-        return json;
+
+        mAdapter = new SongAdapter(TopTen.this, mSongModels);
+
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        // DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        // dividerItemDecoration.setDrawable(ContextCompat.getDrawable(Place.this, R.drawable.divider_recyclerview));
+        //recyclerView.addItemDecoration(dividerItemDecoration);
+
+        recyclerView.setAdapter(mAdapter);
+
+
     }
 }

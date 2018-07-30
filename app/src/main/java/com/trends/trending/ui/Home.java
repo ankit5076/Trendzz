@@ -250,7 +250,7 @@ public class Home extends AppCompatActivity {
                 startActivity(Place.class);
                 break;
             case R.id.home_top10:
-                //startActivity();
+                startActivity(TopTen.class);
                 break;
             case R.id.home_feedback:
                 break;
