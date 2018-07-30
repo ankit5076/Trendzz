@@ -46,6 +46,8 @@ public class PlaceDetail extends AppCompatActivity {
     AdView mAdViewPlaceDetail;
     @BindView(R.id.bestTimeToVisit)
     TextView mBestTimeToVisit;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     private PlaceToVisitModel mPlace;
 
@@ -57,14 +59,14 @@ public class PlaceDetail extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mPlace = bundle.getParcelable(KEY_PLACE_OBJECT);
+            init();
         } else
             mPlace = null;
+    }
 
+    private void init() {
         ExtraHelper.bannerAdViewSetup(mAdViewPlaceDetail);
-
-        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(mPlace.getPlaceName());
-//        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         Picasso.get().load(mPlace.getPlaceImageUrl())
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.aaj_tak)
@@ -75,10 +77,10 @@ public class PlaceDetail extends AppCompatActivity {
 
     }
 
-    public void expandableButton4(View view) {
-        ExpandableRelativeLayout expandableLayout4 = findViewById(R.id.expandableAbout);
-        expandableLayout4.toggle(); // toggle expand and collapse
-    }
+//    public void expandableButton4(View view) {
+//        ExpandableRelativeLayout expandableLayout4 = findViewById(R.id.expandableAbout);
+//        expandableLayout4.toggle(); // toggle expand and collapse
+//    }
 
     public Uri getLocalBitmapUri(Bitmap bmp) {
         Uri bmpUri = null;
