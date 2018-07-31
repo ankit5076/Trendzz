@@ -1,51 +1,58 @@
 package com.trends.trending.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.gson.Gson;
 import com.trends.trending.R;
-import com.trends.trending.adapter.PlaceAdapter;
 import com.trends.trending.adapter.SongAdapter;
-import com.trends.trending.model.PlaceToVisitModel;
 import com.trends.trending.model.SongModel;
-import com.trends.trending.model.youtube.TopTenModel;
-import com.trends.trending.repository.PlaceResponseList;
 import com.trends.trending.repository.SongResponseList;
 import com.trends.trending.utils.ExtraHelper;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.trends.trending.utils.Keys.TopTen.MOST_VIEWED;
-public class TopTen extends AppCompatActivity {
+import static com.trends.trending.utils.Keys.VideoInfo.KEY_API;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+public class TopTen extends YouTubeBaseActivity implements
+        YouTubePlayer.OnInitializedListener {
+
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
+
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    private SongAdapter mAdapter;
+    @BindView(R.id.youtube_player)
+    YouTubePlayerView mYouTubePlayerView;
     private ArrayList<SongModel> mSongModels = new ArrayList<>();
+    private String videoId;
+    private YouTubePlayer mYoutubePlayer;
 
+    protected String getVideoId() {
+        return videoId;
+    }
 
+    protected void setVideoId(String videoId) {
+        this.videoId = videoId;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_place);
+        setContentView(R.layout.activity_topten);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Bollywood");
-
         setAdapter();
 
 
@@ -63,21 +70,57 @@ public class TopTen extends AppCompatActivity {
             Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
         }
 
-        mAdapter = new SongAdapter(TopTen.this, mSongModels);
-
+        SongAdapter adapter = new SongAdapter(TopTen.this, mSongModels);
+        adapter.SetOnItemClickListener(new SongAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, SongModel model) {
+                setVideoId(model.getSongYoutubeId());
+                if(mYoutubePlayer==null) {
+                    mYouTubePlayerView.initialize(KEY_API, TopTen.this);
+                }
+                else {
+                    mYoutubePlayer.loadVideo(getVideoId());
+                }
+            }
+        });
         recyclerView.setHasFixedSize(true);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
 
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
 
-        // DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
-        // dividerItemDecoration.setDrawable(ContextCompat.getDrawable(Place.this, R.drawable.divider_recyclerview));
-        //recyclerView.addItemDecoration(dividerItemDecoration);
+        if (!wasRestored) {
+            youTubePlayer.loadVideo(getVideoId());
+            mYoutubePlayer = youTubePlayer;
+            // Hiding player controls
+//            youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
+        }
+    }
 
-        recyclerView.setAdapter(mAdapter);
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
 
+        if (youTubeInitializationResult.isUserRecoverableError()) {
+            youTubeInitializationResult.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
+        } else {
+            String errorMessage = String.format(
+                    getString(R.string.error_player), youTubeInitializationResult.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RECOVERY_DIALOG_REQUEST) {
+            // Retry initialization if user performed a recovery action
+            getYouTubePlayerProvider().initialize(KEY_API, this);
+        }
+    }
+
+    private YouTubePlayer.Provider getYouTubePlayerProvider() {
+        return (YouTubePlayerView) findViewById(R.id.youtube_player);
     }
 }
