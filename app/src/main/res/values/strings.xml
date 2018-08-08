@@ -323,6 +323,7 @@
     <!--End-->
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <string name="total_views">%1$s Million</string>
 
 
 </resources>

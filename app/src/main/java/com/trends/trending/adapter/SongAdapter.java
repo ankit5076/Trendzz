@@ -14,6 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.trends.trending.R;
+import com.trends.trending.custom.GifImageView;
 import com.trends.trending.model.PlaceToVisitModel;
 import com.trends.trending.model.SongModel;
 
@@ -87,13 +88,13 @@ public class SongAdapter extends
 
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SongModel song = list.get(position);
-        //GradientDrawable bgShape = (GradientDrawable) holder..getBackground();
         holder.divider.setBackgroundColor(getRandomMaterialColor("400"));
         holder.songName.setText(song.getSongName());
         holder.movieName.setText(song.getMovieName());
-        holder.songViews.setText(song.getSongViews()+" Million");
+//        holder.songViews.setText(context.getResources().getString(R.string.total_views, song.getSongViews()));
+        holder.songViews.setText(song.getSongViews());
 
     }
 

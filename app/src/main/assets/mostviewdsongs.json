@@ -3,62 +3,155 @@
     {
       "name": "Swag Se Swagat Song",
       "movie":"Tiger Zinda Hai",
-      "views": "482",
+      "views": "482 million",
       "id": "xmU0s2QtaEY"
     },
     {
       "name": "Guru Randhawa: Lahore",
       "movie":"Album",
-      "views": "478",
+      "views": "478 million",
       "id": "dZ0fwJojhrs"
     },
     {
       "name": "Mile Ho Tum Humko - Reprise Version",
       "movie":"Fever",
-      "views": "458",
+      "views": "458 million",
       "id": "N2-HsIYd0Go"
     },
     {
       "name": "Nashe Si Chadh Gayi Song",
       "movie":"Befikre",
-      "views": "433",
+      "views": "433 million",
       "id": "Wd2B8OAotU8"
     },
     {
       "name": "Kala Chashma",
       "movie":"Baar Baar Dekho",
-      "views": "429",
+      "views": "429 million",
       "id": "k4yXQkG2s1E"
     },
     {
       "name": "Badri Ki Dulhania (Title Track)",
       "movie":"Badri Ki Dulhania",
-      "views": "424",
+      "views": "424 million",
       "id": "1YBl3Zbt80A"
     },
     {
       "name": "Zaroori Tha",
       "movie":"Album",
-      "views": "416",
+      "views": "416 million",
       "id": "6-n_szx2XRE"
     },
     {
       "name": "Guru Randhawa: High Rated Gabru",
       "movie":"Album",
-      "views": "399",
+      "views": "399 million",
       "id": "hjWf8A0YNSE"
     },
     {
       "name": "Prem Ratan Dhan Payo Title Song",
       "movie":"Prem Ratan Dhan Payo",
-      "views": "319",
+      "views": "319 million",
       "id": "bPk9bSvQQoc"
     },
     {
       "name": "Ding Dang",
       "movie":"Munna Michael",
-      "views": "296",
+      "views": "296 million",
       "id": "wo0ospGvxXc"
+    }
+  ],
+
+  "hollywoodTopSongs": [
+    {
+      "name": "Luis Fonsi - Despacito",
+      "movie": "ft. Daddy Yankee",
+      "views": "5.3 billion",
+      "id": "kJQP7kiw5Fk"
+    },
+    {
+      "name": "Wiz Khalifa - See You Again",
+      "movie": "ft. Charlie Puth",
+      "views": "3.68 billion",
+      "id": "RgKAFK5djSk"
+    },
+    {
+      "name": "Shape of You",
+      "movie": "Ed Sheeran",
+      "views": "3.67 billion",
+      "id": "JGwWNGJdvx8"
+    },
+    {
+      "name": "Gangnam Style",
+      "movie": "PSY",
+      "views": "3.18 billion",
+      "id": "9bZkp7q19f0"
+    },
+    {
+      "name": "Mark Ronson - Uptown Funk",
+      "movie": "ft. Bruno Mars",
+      "views": "3.16 billion",
+      "id": "OPf0YbXqDm0"
+    },
+    {
+      "name": "Sorry",
+      "movie": "Justin Bieber",
+      "views": "2.97 billion",
+      "id": "fRh_vgS2dFE"
+    },
+    {
+      "name": "Sugar",
+      "movie": "Maroon 5",
+      "views": "2.70 billion",
+      "id": "09R8_2nJtjg"
+    },
+    {
+      "name": "Shake It Off",
+      "movie": "Taylor Swift",
+      "views": "2.61 billion",
+      "id": "nfWlot6h_JM"
+    },
+    {
+      "name": "Enrique Iglesias - Bailando (Español)",
+      "movie": "ft. Descemer Bueno, Gente De Zona",
+      "views": "2.54 billion",
+      "id": "NUsoVlDFqZg"
+    },
+    {
+      "name": "Roar",
+      "movie": "Katy Perry",
+      "views": "2.58 billion",
+      "id": "CevxZvSJLk8"
+    },
+    {
+      "name": "Katy Perry - Dark Horse",
+      "movie": "ft. Juicy J",
+      "views": "2.38 billion",
+      "id": "0KSOMA3QBU0"
+    },
+    {
+      "name": "Major Lazer & DJ Snake - Lean On",
+      "movie": "feat. MØ",
+      "views": "2.36 billion",
+      "id": "YqeW9_5kURI"
+    },
+    {
+      "name": "Hello",
+      "movie": "Adele",
+      "views": "2.37 billion",
+      "id": "YQHsXMglC9A"
+    },
+    {
+      "name": "Blank Space",
+      "movie": "Taylor Swift",
+      "views": "2.32 billion",
+      "id": "e-ORhEE9VVg"
+    },
+    {
+      "name": "All About That Bass",
+      "movie": "Meghan Trainor",
+      "views": "2.21 billion",
+      "id": "7PCkvCPvDXk"
     }
   ]
 }

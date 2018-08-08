@@ -24,7 +24,11 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.trends.trending.utils.Keys.TopTen.BOLLYWOOD;
+import static com.trends.trending.utils.Keys.TopTen.HOLLYWOOD;
 import static com.trends.trending.utils.Keys.TopTen.MOST_VIEWED;
+import static com.trends.trending.utils.Keys.TopTen.OLD_IS_GOLD;
+import static com.trends.trending.utils.Keys.TopTen.SONG_TYPE;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_API;
 
 public class TopTen extends YouTubeBaseActivity implements
@@ -36,6 +40,7 @@ public class TopTen extends YouTubeBaseActivity implements
     RecyclerView recyclerView;
     @BindView(R.id.youtube_player)
     YouTubePlayerView mYouTubePlayerView;
+
     private ArrayList<SongModel> mSongModels = new ArrayList<>();
     private String videoId;
     private YouTubePlayer mYoutubePlayer;
@@ -54,17 +59,29 @@ public class TopTen extends YouTubeBaseActivity implements
         setContentView(R.layout.activity_topten);
         ButterKnife.bind(this);
         setAdapter();
-
-
     }
 
     private void setAdapter() {
-
         Gson gson = new Gson();
         String jsonString = ExtraHelper.parseJson(TopTen.this, MOST_VIEWED);
         if (jsonString != null) {
             SongResponseList songResponseList = gson.fromJson(jsonString, SongResponseList.class);
-            mSongModels.addAll(songResponseList.getBollywoodTopSongs());
+            String name = getIntent().getStringExtra(SONG_TYPE);
+            switch (name) {
+                case BOLLYWOOD:
+                    mSongModels.addAll(songResponseList.getBollywoodTopSongs());
+                    break;
+                case HOLLYWOOD:
+                    mSongModels.addAll(songResponseList.getHollywoodTopSongs());
+                    break;
+                case OLD_IS_GOLD:
+                    mSongModels.addAll(songResponseList.getBollywoodTopSongs());
+                    break;
+                default:
+                    mSongModels.addAll(songResponseList.getBollywoodTopSongs());
+                    break;
+            }
+
         } else {
             mSongModels = null;
             Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
@@ -75,10 +92,9 @@ public class TopTen extends YouTubeBaseActivity implements
             @Override
             public void onItemClick(View view, int position, SongModel model) {
                 setVideoId(model.getSongYoutubeId());
-                if(mYoutubePlayer==null) {
+                if (mYoutubePlayer == null) {
                     mYouTubePlayerView.initialize(KEY_API, TopTen.this);
-                }
-                else {
+                } else {
                     mYoutubePlayer.loadVideo(getVideoId());
                 }
             }

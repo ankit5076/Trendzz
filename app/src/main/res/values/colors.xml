@@ -61,4 +61,8 @@
     <color name="colorTopDark">#4E342E</color>
     <color name="colorFeedback">#78909C</color>
     <color name="colorFeedbackDark">#37474F</color>
+    <color name="materialRed">#37474F</color>
+    <color name="materialPurple">#37474F</color>
+
+
 </resources>

@@ -58,6 +58,7 @@
             android:name=".ui.PlaceDetail"
             android:theme="@style/MyMaterialTheme" />
         <activity android:name=".ui.TopTen"/>
+        <activity android:name=".ui.TopTenHome" />
     </application>
 
 </manifest>

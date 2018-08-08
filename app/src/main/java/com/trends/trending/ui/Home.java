@@ -174,7 +174,7 @@ public class Home extends AppCompatActivity {
 
     }
 
-    public void startActivity(final Class<? extends Activity> clz) {
+    private void startActivity(final Class<? extends Activity> clz) {
         startActivity(new Intent(Home.this, clz));
     }
 
@@ -250,7 +250,7 @@ public class Home extends AppCompatActivity {
                 startActivity(Place.class);
                 break;
             case R.id.home_top10:
-                startActivity(TopTen.class);
+                startActivity(TopTenHome.class);
                 break;
             case R.id.home_feedback:
                 break;
