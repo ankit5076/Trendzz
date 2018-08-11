@@ -8,6 +8,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:340781226627:android:1ed2cd5c6b02b996",
+        "android_client_info": {
+          "package_name": "com.trends.adminconsole"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340781226627-lk3bv8n5r65nvsv0grqrmckj3pruscif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trends.adminconsole",
+            "certificate_hash": "5c8abf5db06cdfe32977b0944ee1b3636e5f8fd6"
+          }
+        },
+        {
+          "client_id": "340781226627-mjtpu60eeq5393jg9ldlb2tvr62spp7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhnqoVU65dKaFU3-D8B8aB0wV3ZA58Yvg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340781226627-mjtpu60eeq5393jg9ldlb2tvr62spp7u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:340781226627:android:4f91ca9a0ee8cfea",
         "android_client_info": {
           "package_name": "com.trends.trending"
@@ -35,7 +79,8 @@
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-4771408720075669~2381119901"
     }
   ],
   "configuration_version": "1"
