@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.NativeExpressAdView;
 import com.trends.trending.R;
+import com.trends.trending.model.OldSongModel;
 import com.trends.trending.model.SongModel;
 
 import java.util.ArrayList;
@@ -33,11 +34,6 @@ public class SongAdapter extends
     private OnItemClickListener mItemClickListener;
     private int spaceBetweenAds;
 
-
-    public SongAdapter(Context context, List<SongModel> list) {
-        this.context = context;
-        this.list.addAll(list);
-    }
     public SongAdapter(Context context, ArrayList<Object> list, int spaceBetweenAds) {
         this.context = context;
         this.list.addAll(list);
@@ -46,6 +42,8 @@ public class SongAdapter extends
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position, SongModel model);
+
+        void onOldItemClick(View view, int position, OldSongModel model);
     }
 
     public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
@@ -53,7 +51,6 @@ public class SongAdapter extends
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // Todo Butterknife bindings
         @BindView(R.id.vertical_divider)
         View divider;
         @BindView(R.id.song_name)
@@ -62,6 +59,8 @@ public class SongAdapter extends
         TextView movieName;
         @BindView(R.id.views)
         TextView songViews;
+        @BindView(R.id.view_image)
+        AppCompatImageView mCompatImageView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -70,12 +69,13 @@ public class SongAdapter extends
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mItemClickListener.onItemClick(itemView, getAdapterPosition(), (SongModel) list.get(getAdapterPosition()));
+                    if (list.get(getAdapterPosition()) instanceof SongModel)
+                        mItemClickListener.onItemClick(itemView, getAdapterPosition(), (SongModel) list.get(getAdapterPosition()));
+                    else
+                        mItemClickListener.onOldItemClick(itemView, getAdapterPosition(), (OldSongModel) list.get(getAdapterPosition()));
                 }
             });
-
         }
-
     }
 
     // View Holder for Admob Native Express Ad Unit
@@ -85,11 +85,9 @@ public class SongAdapter extends
         }
     }
 
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         switch (viewType) {
             case DATA_VIEW_TYPE:
                 View dataLayoutView = LayoutInflater.from(parent.getContext()).inflate(
@@ -104,36 +102,28 @@ public class SongAdapter extends
                         parent, false);
                 return new NativeExpressAdViewHolder(nativeExpressLayoutView);
         }
-
-
-
-
-//        Context context = parent.getContext();
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//
-//        View view = inflater.inflate(R.layout.item_top_ten, parent, false);
-//        ButterKnife.bind(this, view);
-//
-//        ViewHolder viewHolder = new ViewHolder(view);
-//
-//        return viewHolder;
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         int viewType = getItemViewType(position);
-
         switch (viewType) {
             case DATA_VIEW_TYPE:
                 ViewHolder dataViewHolder = (ViewHolder) holder;
-                SongModel song = (SongModel) list.get(position);
-                dataViewHolder.divider.setBackgroundColor(getRandomMaterialColor("400"));
-                dataViewHolder.songName.setText(song.getSongName());
-                dataViewHolder.movieName.setText(song.getMovieName());
-//              holder.songViews.setText(context.getResources().getString(R.string.total_views, song.getSongViews()));
-                dataViewHolder.songViews.setText(song.getSongViews());
+                if (list.get(position) instanceof SongModel) {
+                    SongModel song = (SongModel) list.get(position);
+                    dataViewHolder.divider.setBackgroundColor(getRandomMaterialColor("400"));
+                    dataViewHolder.songName.setText(song.getSongName());
+                    dataViewHolder.movieName.setText(song.getMovieName());
+                    dataViewHolder.songViews.setText(song.getSongViews());
+                } else {
+                    OldSongModel oldSong = (OldSongModel) list.get(position);
+                    dataViewHolder.songViews.setVisibility(View.GONE);
+                    dataViewHolder.mCompatImageView.setVisibility(View.GONE);
+                    dataViewHolder.divider.setBackgroundColor(getRandomMaterialColor("400"));
+                    dataViewHolder.songName.setText(oldSong.getSongName());
+                    dataViewHolder.movieName.setText(oldSong.getSinger());
+                }
                 break;
             case NATIVE_EXPRESS_AD_VIEW_TYPE:
                 // fall through
@@ -141,7 +131,6 @@ public class SongAdapter extends
                 NativeExpressAdViewHolder nativeExpressHolder = (NativeExpressAdViewHolder) holder;
                 AdView adView = (AdView) list.get(position);
                 ViewGroup adCardView = (ViewGroup) nativeExpressHolder.itemView;
-
                 if (adCardView.getChildCount() > 0) {
                     adCardView.removeAllViews();
                 }
@@ -150,14 +139,6 @@ public class SongAdapter extends
                 }
                 adCardView.addView(adView);
         }
-
-//        SongModel song = list.get(position);
-//        holder.divider.setBackgroundColor(getRandomMaterialColor("400"));
-//        holder.songName.setText(song.getSongName());
-//        holder.movieName.setText(song.getMovieName());
-////        holder.songViews.setText(context.getResources().getString(R.string.total_views, song.getSongViews()));
-//        holder.songViews.setText(song.getSongViews());
-
     }
 
     @Override
@@ -166,7 +147,7 @@ public class SongAdapter extends
         // Here if remainder after dividing the position with (spaceBetweenAds + 1) comes equal to spaceBetweenAds,
         // then return NATIVE_EXPRESS_AD_VIEW_TYPE otherwise DATA_VIEW_TYPE
         // By the logic defined below, an ad unit will be showed after every spaceBetweenAds numbers of data items
-        return (position % (spaceBetweenAds + 1) == spaceBetweenAds) ? NATIVE_EXPRESS_AD_VIEW_TYPE: DATA_VIEW_TYPE;
+        return (position % (spaceBetweenAds + 1) == spaceBetweenAds) ? NATIVE_EXPRESS_AD_VIEW_TYPE : DATA_VIEW_TYPE;
     }
 
     @Override

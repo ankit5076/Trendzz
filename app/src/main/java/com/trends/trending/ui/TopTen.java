@@ -21,6 +21,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.gson.Gson;
 import com.trends.trending.R;
 import com.trends.trending.adapter.SongAdapter;
+import com.trends.trending.model.OldSongModel;
 import com.trends.trending.model.SongModel;
 import com.trends.trending.repository.SongResponseList;
 import com.trends.trending.utils.ExtraHelper;
@@ -47,6 +48,7 @@ public class TopTen extends YouTubeBaseActivity implements
     RecyclerView recyclerView;
     @BindView(R.id.youtube_player)
     YouTubePlayerView mYouTubePlayerView;
+
 
     private ArrayList<Object> mSongModels = new ArrayList<>();
     private String videoId;
@@ -84,7 +86,7 @@ public class TopTen extends YouTubeBaseActivity implements
                     mSongModels.addAll(songResponseList.getHollywoodTopSongs());
                     break;
                 case OLD_IS_GOLD:
-                    mSongModels.addAll(songResponseList.getBollywoodTopSongs());
+                    mSongModels.addAll(songResponseList.getPopularOldSongs());
                     break;
                 default:
                     mSongModels.addAll(songResponseList.getBollywoodTopSongs());
@@ -101,6 +103,16 @@ public class TopTen extends YouTubeBaseActivity implements
         adapter.SetOnItemClickListener(new SongAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, SongModel model) {
+                setVideoId(model.getSongYoutubeId());
+                if (mYoutubePlayer == null) {
+                    mYouTubePlayerView.initialize(KEY_API, TopTen.this);
+                } else {
+                    mYoutubePlayer.loadVideo(getVideoId());
+                }
+            }
+
+            @Override
+            public void onOldItemClick(View view, int position, OldSongModel model) {
                 setVideoId(model.getSongYoutubeId());
                 if (mYoutubePlayer == null) {
                     mYouTubePlayerView.initialize(KEY_API, TopTen.this);
@@ -205,8 +217,6 @@ public class TopTen extends YouTubeBaseActivity implements
         if (!wasRestored) {
             youTubePlayer.loadVideo(getVideoId());
             mYoutubePlayer = youTubePlayer;
-            // Hiding player controls
-//            youTubePlayer.setFullscreen(false);
             youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
         }
     }
