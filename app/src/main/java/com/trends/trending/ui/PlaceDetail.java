@@ -144,7 +144,13 @@ public class PlaceDetail extends AppCompatActivity {
     }
 
     public String wikipediaSearch(String place) {
-        if (place.contains("-"))
+        if(place.equals("Taj-Mahal"))
+            return place.replace("-"," ");
+        else if (place.equals("Abode of clouds"))
+            return "Meghalaya";
+        else if (place.equals("Andaman-Nicobar"))
+            return "Andaman Islands";
+        else if (place.contains("-"))
             return place.split("-")[0].trim();
         else if (place.contains("("))
             return place.split(" ")[0].trim();
