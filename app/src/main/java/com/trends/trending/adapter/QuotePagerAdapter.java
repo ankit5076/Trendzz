@@ -1,18 +1,23 @@
 package com.trends.trending.adapter;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
 import com.trends.trending.R;
@@ -41,9 +46,9 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
     }
 
     public QuotePagerAdapter(Context context) {
-        mContext = context;
-        mData = new ArrayList<>();
-        mViews = new ArrayList<>();
+        this.mContext = context;
+        this.mData = new ArrayList<>();
+        this.mViews = new ArrayList<>();
     }
 
     public void addCardItem(QuoteModel item) {
@@ -66,12 +71,13 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.item_quote, container, false);
         container.addView(view);
@@ -104,30 +110,43 @@ public class QuotePagerAdapter extends PagerAdapter implements QuoteRule {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
         mViews.set(position, null);
     }
 
-    private void bind(QuoteModel item, View view) {
+    private void bind(final QuoteModel item, View view) {
         TextView authorName =  view.findViewById(R.id.authorName);
-        TextView quote = view.findViewById(R.id.quoteText);
+        final TextView quote = view.findViewById(R.id.quoteText);
         TextView uploadedBy = view.findViewById(R.id.uploadedBy);
         FrameLayout quoteFrame = view.findViewById(R.id.quoteFrame);
+        AppCompatImageView mCopyBtn = view.findViewById(R.id.copy_image);
 
         MaterialFancyButton fancyShare = view.findViewById(R.id.btn_share);
-        quoteFrame.setBackgroundColor(getRandomMaterialColor("400"));
+        quoteFrame.setBackgroundColor(getRandomMaterialColor());
         ColorDrawable frameColor = (ColorDrawable) quoteFrame.getBackground();
         fancyShare.setBackgroundColor(frameColor.getColor());
         Resources res = mContext.getResources();
         authorName.setText(item.getAuthorName());
-        quote.setText(res.getString(R.string.quote_msg,item.getFamousQuote()));
+        quote.setText(res.getString(R.string.quote_msg, item.getFamousQuote()));
         uploadedBy.setText(String.format("- Uploaded By %s", item.getUploadedBy()));
+
+        mCopyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("quote", item.getFamousQuote());
+                if (clipboard != null) {
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(mContext, mContext.getResources().getString(R.string.msg_quote_copied), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
      }
 
-    private int getRandomMaterialColor(String typeColor) {
+    private int getRandomMaterialColor() {
         int returnColor = Color.GRAY;
-        int arrayId = mContext.getResources().getIdentifier("mdcolor_" + typeColor, "array", mContext.getPackageName());
+        int arrayId = mContext.getResources().getIdentifier("quote_color", "array", mContext.getPackageName());
 
         if (arrayId != 0) {
             TypedArray colors = mContext.getResources().obtainTypedArray(arrayId);
