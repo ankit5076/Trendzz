@@ -1,11 +1,15 @@
 package com.trends.trending.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ParseException;
 
 import com.trends.trending.ui.Home;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class SessionManagement {
@@ -14,6 +18,7 @@ public class SessionManagement {
     private static final String IS_LOGIN = "IsLoggedIn";
     private static final String QUOTE_START_INDEX = "QuoteStartIndex";
     private static final String NEW_USER = "NewUser";
+    private static final String LAST_VISITED_QUOTE_DATE = "LastVisitedQuote";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
 
@@ -41,6 +46,16 @@ public class SessionManagement {
         editor.putString(QUOTE_START_INDEX, index);
 
         editor.commit();
+    }
+
+    public void updateLastVisitedQuoteDate(Date date){
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            String dateTime = dateFormat.format(date);
+            editor.putString(LAST_VISITED_QUOTE_DATE, dateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     // todo update this when user is logged in every time by checking user existence in firebase
@@ -90,6 +105,20 @@ public class SessionManagement {
 
         // Staring Login Activity
         _context.startActivity(i);
+    }
+
+    public Date getLastVisitedQuoteDate(){
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = dateFormat.parse(pref.getString(LAST_VISITED_QUOTE_DATE, "11/01/2018"));
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     public boolean isLoggedIn() {

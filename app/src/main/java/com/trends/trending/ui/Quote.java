@@ -1,5 +1,6 @@
 package com.trends.trending.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,11 @@ import com.trends.trending.utils.FirebaseHelper;
 import com.trends.trending.utils.NetworkHelper;
 import com.trends.trending.utils.SessionManagement;
 import com.trends.trending.utils.ShadowTransformer;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,8 +77,12 @@ public class Quote extends AppCompatActivity {
             init();
             if (sessionManagement.isLoggedIn()) {
 
-                // todo current date equal to previous date
-                if (sessionManagement.isNewUser()) {
+                Date currentDate = currentDate();
+                Date lastVisitedDate = sessionManagement.getLastVisitedQuoteDate();
+
+                if (sessionManagement.isNewUser()
+                        ||
+                        (!sessionManagement.isNewUser() && (currentDate.compareTo(lastVisitedDate)==0 || currentDate.compareTo(lastVisitedDate)<0))) {
                     fetchQuote();
                 } else {
                     fetchIndex();
@@ -85,6 +95,18 @@ public class Quote extends AppCompatActivity {
             setContentView(R.layout.shared_no_wifi);
         }
 
+    }
+
+    private Date currentDate() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String today = dateFormat.format(new Date());
+        Date date = null;
+        try {
+            date = dateFormat.parse(today);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     private void fetchIndex() {
@@ -189,5 +211,11 @@ public class Quote extends AppCompatActivity {
     @OnClick(R.id.toolbar_user_upload)
     public void onViewClicked() {
         startActivity(new Intent(Quote.this, UserUploadQuote.class));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sessionManagement.updateLastVisitedQuoteDate(new Date());
     }
 }
