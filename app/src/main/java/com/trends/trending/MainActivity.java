@@ -6,16 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUserMetadata;
 import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.ReturnReceiver;
 import com.trends.trending.ui.Fact;
-import com.trends.trending.ui.Quote;
 import com.trends.trending.ui.Home;
+import com.trends.trending.ui.LoginSignUp;
 import com.trends.trending.ui.Place;
+import com.trends.trending.ui.Quote;
 import com.trends.trending.utils.ExtraHelper;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 
@@ -34,7 +38,15 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-       // mReturnReceiver = new ReturnReceiver(new Handler());
+        FirebaseUserMetadata metadata = FirebaseAuth.getInstance().getCurrentUser().getMetadata();
+        if (metadata != null && metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+            Toast.makeText(this, "onc new user", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "onc exsisting user", Toast.LENGTH_SHORT).show();
+
+
+        // mReturnReceiver = new ReturnReceiver(new Handler());
         //mReturnReceiver.setReceiver(this);
 //
 //        Intent parent1 = new Intent(this, VideoRepository.class);
@@ -54,9 +66,9 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 
     private void getUrl(String videoId) {
         ExtraHelper extraHelper = new ExtraHelper();
-        extraHelper.getYoutubeDownloadUrl("https://www.youtube.com/watch?v="+videoId,this);
+        extraHelper.getYoutubeDownloadUrl("https://www.youtube.com/watch?v=" + videoId, this);
         DownloadFormatDialog downloadFormatDialog = new DownloadFormatDialog();
-        downloadFormatDialog.show(getSupportFragmentManager(),"DIALOG_FRAGMENT");
+        downloadFormatDialog.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
 
     }
 
@@ -96,5 +108,17 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
     public void goToPlace(View view) {
         startActivity(new Intent(this, Place.class));
 
+    }
+
+    @OnClick(R.id.logout)
+    public void onViewClicked() {
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(MainActivity.this, LoginSignUp.class);
+        // Closing all the Activities
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // Add new Flag to start new Activity
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
     }
 }

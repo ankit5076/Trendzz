@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.trends.trending.utils.Keys.QuoteInfo.FB_USER;
 import static com.trends.trending.utils.Keys.QuoteInfo.FB_USER_QUOTE_CHILD;
 
 /**
@@ -96,7 +97,7 @@ public class FirebaseHelper {
     public boolean updateUserQuoteStartIndex(String userId, String index) {
         boolean isSaved = false;
         try{
-            mDatabaseReference.child("users").child(userId).child(FB_USER_QUOTE_CHILD).setValue(index);
+            mDatabaseReference.child(FB_USER).child(userId).child(FB_USER_QUOTE_CHILD).setValue(index);
             isSaved = true;
         }catch (DatabaseException ignored){
 

@@ -326,6 +326,25 @@
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="total_views">%1$s Million</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_here">Not have an account? Signup Here</string>
+    <string name="signin_here">Have an account? Signin Here</string>
+    <string name="or">OR</string>
+    <string name="forgot_password"><u>Forgot Password ?</u></string>
+    <string name="alert_forgot_password">Forgot Password</string>
+    <string name="alert_cancel">Cancel</string>
+    <string name="alert_send">Send Email</string>
+    <string name="alert_forgot_pwd_success_msg">Email Sent</string>
+    <string name="instruction_forgot_pwd">* A password reset link will be sent to your email.</string>
+    <string name="error_weak_password">weak password</string>
+    <string name="error_invalid_email">Invalid Email</string>
+    <string name="error_user_exists">user already exsits</string>
+    <string name="try_after_some_time">Please try after some time</string>
+    <string name="progress_account_creation_title">Registering Please Wait...</string>
+    <string name="error_wrong_password">wrong password</string>
 
 
 </resources>

@@ -66,6 +66,7 @@ public class Quote extends AppCompatActivity {
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private FirebaseAuth mFirebaseAuth;
     private SessionManagement sessionManagement;
+    private boolean updateIndex = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,20 +76,30 @@ public class Quote extends AppCompatActivity {
             setContentView(R.layout.activity_famous_quote);
             ButterKnife.bind(this);
             init();
-            if (sessionManagement.isLoggedIn()) {
-
+            if (mFirebaseAuth.getCurrentUser() != null) {
                 Date currentDate = currentDate();
                 Date lastVisitedDate = sessionManagement.getLastVisitedQuoteDate();
 
-                if (sessionManagement.isNewUser()
-                        ||
-                        (!sessionManagement.isNewUser() && (currentDate.compareTo(lastVisitedDate)==0 || currentDate.compareTo(lastVisitedDate)<0))) {
+                Log.d(TAG, sessionManagement.isNewUser() + " new user?");
+                Log.d(TAG, currentDate + " current date");
+                Log.d(TAG, lastVisitedDate + " prev date");
+                Log.d(TAG, currentDate.compareTo(lastVisitedDate) + " compare");
+
+                if (lastVisitedDate == null) {
+                    updateIndex = false;
+                    fetchIndex();
+                } else if ((currentDate.compareTo(lastVisitedDate) == 0 || currentDate.compareTo(lastVisitedDate) < 0)) {
+                    updateIndex = false;
+                    Toast.makeText(this, "fetch quote", Toast.LENGTH_SHORT).show();
                     fetchQuote();
                 } else {
+                    updateIndex = true;
+                    Toast.makeText(this, "fetch index", Toast.LENGTH_SHORT).show();
                     fetchIndex();
                 }
-            }
-            else {
+            } else {
+                Toast.makeText(this, "annonyms fetch quote", Toast.LENGTH_SHORT).show();
+                updateIndex = false;
                 fetchQuote();
             }
         } else {
@@ -161,9 +172,9 @@ public class Quote extends AppCompatActivity {
     private void fetchQuote() {
 
         String startValue;
-        String endValue;
+        final String endValue;
 
-        if (sessionManagement.isLoggedIn()) {
+        if (mFirebaseAuth.getCurrentUser() != null) {
             startValue = sessionManagement.getQuoteStartIndex();
             endValue = String.valueOf((LOGGED_IN_TOTAL_QUOTES_TO_DISPLAY + Integer.parseInt(startValue) - 1));
         } else {
@@ -171,6 +182,8 @@ public class Quote extends AppCompatActivity {
             endValue = String.valueOf((GUEST_TOTAL_QUOTES_TO_DISPLAY + Integer.parseInt(startValue) - 1));
         }
 
+        Toast.makeText(this, "start: " + startValue, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "end: " + endValue, Toast.LENGTH_SHORT).show();
         Query randomQuotes = mFirebaseDatabase.child(FB_QUOTE).orderByChild(FB_QUOTE_ID_CHILD)
                 .startAt(startValue)
                 .endAt(endValue);
@@ -182,6 +195,16 @@ public class Quote extends AppCompatActivity {
                 Log.d("data_snapshot: ", dataSnapshot.toString());
                 mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
                 displayData();
+                if (updateIndex) {
+                    Log.d(TAG, "onDataChange: update index");
+                    //Toast.makeText(this, "update index", Toast.LENGTH_SHORT).show();
+                    sessionManagement.updateQuoteStartIndex(endValue + 1);
+                    FirebaseHelper firebaseHelper = new FirebaseHelper(mFirebaseDatabase, Quote.this);
+                    if (firebaseHelper.updateUserQuoteStartIndex(mFirebaseAuth.getCurrentUser().getUid(), endValue + 1)) {
+                        Log.d(TAG, "onDataChange: updated index");
+                      //  Toast.makeText(this, "index updated", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
             @Override
@@ -192,6 +215,7 @@ public class Quote extends AppCompatActivity {
                 Toast.makeText(Quote.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
     }
