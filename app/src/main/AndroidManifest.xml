@@ -59,6 +59,7 @@
             android:theme="@style/MyMaterialTheme" />
         <activity android:name=".ui.TopTen"/>
         <activity android:name=".ui.TopTenHome" />
+        <activity android:name=".ui.VideoHome" />
     </application>
 
 </manifest>
