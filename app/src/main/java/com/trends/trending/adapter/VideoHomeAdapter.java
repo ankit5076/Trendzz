@@ -7,10 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.trends.trending.R;
 import com.trends.trending.model.VideoHomeModel;
 
@@ -32,7 +32,7 @@ public class VideoHomeAdapter extends RecyclerView.Adapter<VideoHomeAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView textView;
-        public ImageView imageView;
+//        public ImageView imageView;
         public RelativeLayout relativeLayout;
         VideoHomeModel item;
 
@@ -42,7 +42,7 @@ public class VideoHomeAdapter extends RecyclerView.Adapter<VideoHomeAdapter.View
 
             v.setOnClickListener(this);
             textView = v.findViewById(R.id.textView);
-            imageView = v.findViewById(R.id.imageView);
+//            imageView = v.findViewById(R.id.imageView);
             relativeLayout = v.findViewById(R.id.relativeLayout);
 
         }
@@ -51,7 +51,7 @@ public class VideoHomeAdapter extends RecyclerView.Adapter<VideoHomeAdapter.View
             this.item = item;
 
             textView.setText(item.text);
-            imageView.setImageResource(item.drawable);
+//            imageView.setImageResource(item.drawable);
             relativeLayout.setBackgroundColor(Color.parseColor(item.color));
 
         }

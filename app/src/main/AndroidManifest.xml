@@ -35,6 +35,7 @@
             android:theme="@style/MyMaterialTheme" />
         <activity
             android:name=".ui.Video"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/MyMaterialTheme" />
         <activity android:name=".DummyBottom" />
         <activity android:name=".DummyUploadQuote" />

@@ -39,12 +39,12 @@ import static com.trends.trending.utils.Keys.VideoInfo.KEY_METHOD;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 import static com.trends.trending.utils.Keys.VideoInfo.PARENT_TO_STRING;
 import static com.trends.trending.utils.Keys.VideoInfo.SEARCH_PARENT_TO_STRING;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_BOLLYWOOD_TRAILER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_MUSIC;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_NEWS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TECHNOLOGY;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRAILER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_VINES;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_WEBSERIES;
@@ -83,7 +83,7 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
 
         List<Chip> chipList = new ArrayList<>();
         chipList.add(new Tag(TAB_TRENDING, TYPE_ONE));
-        chipList.add(new Tag(TAB_TRAILER, TYPE_TWO));
+        chipList.add(new Tag(TAB_BOLLYWOOD_TRAILER, TYPE_TWO));
         chipList.add(new Tag(TAB_WEBSERIES, TYPE_THREE));
         chipList.add(new Tag(TAB_MUSIC, TYPE_FOUR));
         chipList.add(new Tag(TAB_TECHNOLOGY, TYPE_FIVE));
@@ -149,7 +149,7 @@ public class DummyBottom extends AppCompatActivity implements OnChipClickListene
             Toast.makeText(this, chip.getText(), Toast.LENGTH_SHORT).show();
             switch (title) {
                 case TAB_TRENDING:
-                case TAB_TRAILER:
+                case TAB_BOLLYWOOD_TRAILER:
                     fragmentManager.beginTransaction()
                             .replace(R.id.frag, VideoFragment.newInstance(title))
                             .commit();
