@@ -13,11 +13,14 @@ import com.trends.trending.utils.AutoFitGridLayoutManager;
 
 import java.util.ArrayList;
 
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_BE_YOUNICK;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_BHAJAN;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_BOLLYWOOD_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_HOLLYWOOD_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_MOTIVATION;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_REVIEWS;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_SONGS;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_NEW_SONGS;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TECHNOLOGY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_WEBSERIES;
@@ -36,14 +39,15 @@ public class VideoHome extends AppCompatActivity implements VideoHomeAdapter.Ite
 
         recyclerView = findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
-        arrayList.add(new VideoHomeModel(TAB_TRENDING, R.drawable.ic_b, "#F44336"));
-        arrayList.add(new VideoHomeModel(TAB_SONGS, R.drawable.dummy_jetpack_joyride, "#9C27B0"));
-        arrayList.add(new VideoHomeModel(TAB_BOLLYWOOD_TRAILER, R.drawable.dummy_jetpack_joyride, "#3F51B5"));
-        arrayList.add(new VideoHomeModel(TAB_HOLLYWOOD_TRAILER, R.drawable.dummy_jetpack_joyride, "#009688"));
-        arrayList.add(new VideoHomeModel(TAB_REVIEWS, R.drawable.dummy_jetpack_joyride, "#4CAF50"));
-        arrayList.add(new VideoHomeModel(TAB_WEBSERIES, R.drawable.dummy_jetpack_joyride, "#795548"));
-        arrayList.add(new VideoHomeModel(TAB_TECHNOLOGY, R.drawable.dummy_jetpack_joyride, "#607D8B"));
-        arrayList.add(new VideoHomeModel("Item 6", R.drawable.dummy_jetpack_joyride, "#0A9B88"));
+        arrayList.add(new VideoHomeModel(TAB_TRENDING, R.drawable.hot, "#F44336"));
+        arrayList.add(new VideoHomeModel(TAB_NEW_SONGS, R.drawable.new1, "#9C27B0"));
+        arrayList.add(new VideoHomeModel(TAB_BOLLYWOOD_TRAILER, R.drawable.trailer, "#3F51B5"));
+        arrayList.add(new VideoHomeModel(TAB_HOLLYWOOD_TRAILER, R.drawable.trailer, "#009688"));
+        arrayList.add(new VideoHomeModel(TAB_MOTIVATION, R.drawable.motivation, "#4CAF50"));
+        arrayList.add(new VideoHomeModel(TAB_WEBSERIES, R.drawable.web_series, "#795548"));
+        arrayList.add(new VideoHomeModel(TAB_TECHNOLOGY, R.drawable.bulb, "#607D8B"));
+        arrayList.add(new VideoHomeModel(TAB_BHAJAN, R.drawable.bhajan_om, "#0A9B88"));
+        arrayList.add(new VideoHomeModel(TAB_COMEDY, R.drawable.comedy, "#0A9B88"));
 
         VideoHomeAdapter adapter = new VideoHomeAdapter(this, arrayList, this);
         recyclerView.setAdapter(adapter);
@@ -69,35 +73,44 @@ public class VideoHome extends AppCompatActivity implements VideoHomeAdapter.Ite
 
         switch (item.text){
             case TAB_TRENDING:
-                Intent i = new Intent(VideoHome.this, Video.class);
-                i.putExtra(TAB_NAME,TAB_TRENDING);
-                startActivity(i);
+                openVideoActivity(TAB_TRENDING);
                 break;
             case TAB_BOLLYWOOD_TRAILER:
-                Intent i1 = new Intent(VideoHome.this, Video.class);
-                i1.putExtra(TAB_NAME,TAB_BOLLYWOOD_TRAILER);
-                startActivity(i1);
+                openVideoActivity(TAB_BOLLYWOOD_TRAILER);
                 break;
             case TAB_HOLLYWOOD_TRAILER:
-                Intent holly = new Intent(VideoHome.this, Video.class);
-                holly.putExtra(TAB_NAME,TAB_HOLLYWOOD_TRAILER);
-                startActivity(holly);
+                openVideoActivity(TAB_HOLLYWOOD_TRAILER);
                 break;
-            case TAB_SONGS:
-                Intent songs = new Intent(VideoHome.this, Video.class);
-                songs.putExtra(TAB_NAME,TAB_SONGS);
-                startActivity(songs);
+            case TAB_NEW_SONGS:
+                openVideoActivity(TAB_NEW_SONGS);
                 break;
-            case TAB_REVIEWS:
+            case TAB_MOTIVATION:
+                openVideoActivity(TAB_MOTIVATION);
+                break;
+            case TAB_BHAJAN:
+                openVideoActivity(TAB_BHAJAN);
+                break;
+            case TAB_COMEDY:
+                openVideoActivity(TAB_COMEDY);
                 break;
             case TAB_WEBSERIES:
+                Intent web = new Intent(VideoHome.this, Channel.class);
+                web.putExtra(TAB_NAME,TAB_WEBSERIES);
+                startActivity(web);
                 break;
             case TAB_TECHNOLOGY:
+                openVideoActivity(TAB_TECHNOLOGY);
                 break;
         }
 
         Toast.makeText(getApplicationContext(), item.text + " is clicked", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void openVideoActivity(String tabName){
+        Intent songs = new Intent(VideoHome.this, Video.class);
+        songs.putExtra(TAB_NAME, tabName);
+        startActivity(songs);
     }
 }
 

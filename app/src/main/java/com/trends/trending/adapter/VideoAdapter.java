@@ -1,74 +1,80 @@
 package com.trends.trending.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
 import com.trends.trending.R;
 import com.trends.trending.interfaces.ItemClickListener;
-import com.trends.trending.model.youtube.Item;
-import com.trends.trending.model.youtube.Playlist;
-import com.trends.trending.model.youtube.Video;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-/**
- * Created by ankit.a.vishwakarma on 28-Mar-18.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public abstract class VideoAdapter<T> extends RecyclerView.Adapter<VideoAdapter.PlanetViewHolder> {
 
-    //    public abstract RecyclerView.ViewHolder setViewHolder(ViewGroup parent);
     private ItemClickListener<T> clickListener;
+    private int itemPosition;
 
     public abstract void onBindData(VideoAdapter.PlanetViewHolder holder, T val);
 
     private List<T> videoList;
 
 
-    public VideoAdapter(List<T> videoList, ItemClickListener<T> itemClickListener) {
+    protected VideoAdapter(List<T> videoList, ItemClickListener<T> itemClickListener) {
         this.videoList = videoList;
         this.clickListener = itemClickListener;
+        this.itemPosition = -1;
     }
 
+    @NonNull
     @Override
-    public VideoAdapter.PlanetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VideoAdapter.PlanetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false);
         PlanetViewHolder viewHolder = new PlanetViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(VideoAdapter.PlanetViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final VideoAdapter.PlanetViewHolder holder, int position) {
         onBindData(holder, videoList.get(position));
+
+        /*
+        // New feature share and download
+
         holder.mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickListener != null) clickListener.onShareClick(videoList.get(position));
+                if (clickListener != null) clickListener.onShareClick(videoList.get(holder.getAdapterPosition()));
             }
         });
         holder.mDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickListener != null) clickListener.onDownloadClick(videoList.get(position));
+                if (clickListener != null) clickListener.onDownloadClick(videoList.get(holder.getAdapterPosition()));
 
             }
         });
+
+        */
+
         holder.mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickListener != null) clickListener.onPlayClick(videoList.get(position));
+                itemPosition = holder.getAdapterPosition();
+                if (clickListener != null) clickListener.onPlayClick(videoList.get(itemPosition));
+            }
+        });
 
+        holder.channelTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickListener != null) clickListener.onChannelTitleClick(videoList.get(holder.getAdapterPosition()));
             }
         });
     }
@@ -81,20 +87,18 @@ public abstract class VideoAdapter<T> extends RecyclerView.Adapter<VideoAdapter.
 
     public static class PlanetViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.video_image)
         public ImageView image;
+        @BindView(R.id.video_title)
         public TextView title;
-        public TextView channelTtile;
-        public ImageView mShare, mDownload, mPlay;
+        @BindView(R.id.video_channel_title)
+        public TextView channelTitle;
+        @BindView(R.id.play_video)
+        public ImageView mPlay;
 
         public PlanetViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.video_image);
-            title = itemView.findViewById(R.id.video_title);
-            channelTtile = itemView.findViewById(R.id.video_channel_title);
-            mShare = itemView.findViewById(R.id.share_video);
-            mDownload = itemView.findViewById(R.id.download_video);
-            mPlay = itemView.findViewById(R.id.play_video);
-
+            ButterKnife.bind(this, itemView);
         }
 
     }

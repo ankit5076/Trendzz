@@ -1,24 +1,24 @@
 package com.trends.trending.adapter;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
+import com.google.gson.Gson;
 import com.trends.trending.R;
-import com.trends.trending.model.OldSongModel;
-import com.trends.trending.model.SongModel;
+import com.trends.trending.model.youtube.ChannelTitle;
 import com.trends.trending.model.youtube.Item;
-
-import org.w3c.dom.Text;
+import com.trends.trending.repository.ChannelTitleResponseList;
+import com.trends.trending.utils.ExtraHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,19 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.trends.trending.utils.Keys.VideoInfo.AJAY_DEVGN;
-import static com.trends.trending.utils.Keys.VideoInfo.MADDOCK_FILM;
-import static com.trends.trending.utils.Keys.VideoInfo.MADDOCK_FILM_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.SALMAN_KHAN_FILM;
-import static com.trends.trending.utils.Keys.VideoInfo.SAREGAMA_MUSIC;
-import static com.trends.trending.utils.Keys.VideoInfo.SAREGAMA_MUSIC_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.TIPS_OFFICIAL;
-import static com.trends.trending.utils.Keys.VideoInfo.TIPS_OFFICIAL_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.T_SERIES;
-import static com.trends.trending.utils.Keys.VideoInfo.VEVO;
-import static com.trends.trending.utils.Keys.VideoInfo.VEVO_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.YASH_RAJ_FILM;
-import static com.trends.trending.utils.Keys.VideoInfo.ZEE_STUDIO;
+import static com.trends.trending.utils.Keys.VideoInfo.JSON_CHANNEL_TITLE;
 
 public class NewVideoAdapter extends
         RecyclerView.Adapter {
@@ -51,13 +39,21 @@ public class NewVideoAdapter extends
     private List<Object> list = new ArrayList<>();
     private OnItemClickListener mItemClickListener;
     private int spaceBetweenAds;
+    private int itemPosition;
     private boolean isTrending;
+    private ValueAnimator colorAnimation;
+
 
     public NewVideoAdapter(Context context, ArrayList<Object> list, int spaceBetweenAds, boolean trending) {
         this.context = context;
         this.list.addAll(list);
         this.spaceBetweenAds = spaceBetweenAds;
         this.isTrending = trending;
+        this.itemPosition = -1;
+    }
+
+    public void setItemPosition(int itemPosition) {
+        this.itemPosition = itemPosition;
     }
 
     public interface OnItemClickListener {
@@ -65,7 +61,7 @@ public class NewVideoAdapter extends
         void onOldItemClick(View view, int position, Item model);
     }
 
-    public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 
@@ -82,12 +78,7 @@ public class NewVideoAdapter extends
         public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mItemClickListener.onOldItemClick(itemView, getAdapterPosition(), (Item) list.get(getAdapterPosition()));
-                }
-            });
+
         }
     }
 
@@ -122,8 +113,7 @@ public class NewVideoAdapter extends
         int viewType = getItemViewType(position);
         switch (viewType) {
             case DATA_VIEW_TYPE:
-                ViewHolder dataViewHolder = (ViewHolder) holder;
-
+                final ViewHolder dataViewHolder = (ViewHolder) holder;
                 Item song = (Item) list.get(position);
                 dataViewHolder.divider.setBackgroundColor(getRandomMaterialColor("400"));
                 if (isTrending) {
@@ -132,13 +122,51 @@ public class NewVideoAdapter extends
                 } else {
                     String titleText = simplyfyTitle(song.getSnippet().getTitle());
                     dataViewHolder.title.setText(titleText);
-                    String cnlText = checkTitle(song.getSnippet().getDescription());
+                    String cnlText = checkTitle(song.getSnippet().getDescription().toLowerCase());
                     if (cnlText == null) {
                         dataViewHolder.channelName.setText(song.getSnippet().getDescription());
                         dataViewHolder.channelName.setSelected(true);
                     } else
                         dataViewHolder.channelName.setText(cnlText);
                 }
+                if(itemPosition == position){
+
+                    if (colorAnimation!=null && colorAnimation.isRunning()) {
+                        colorAnimation.end();
+                    }
+
+                    int colorFrom = context.getResources().getColor(R.color.red);
+                    int colorTo = context.getResources().getColor(R.color.blue);
+
+                    colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+                    colorAnimation.setRepeatCount(ValueAnimator.INFINITE);
+                    colorAnimation.setDuration(800);
+                    colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animator) {
+                            dataViewHolder.hDivider.setBackgroundColor((int) animator.getAnimatedValue());
+                        }
+
+                    });
+                    colorAnimation.start();
+                }
+                else {
+                    if (colorAnimation!=null && colorAnimation.isRunning()) {
+                        colorAnimation.cancel();
+                    }
+                    dataViewHolder.hDivider.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+                }
+
+                dataViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        itemPosition = dataViewHolder.getAdapterPosition();
+                        notifyItemChanged(itemPosition);
+                        mItemClickListener.onOldItemClick(dataViewHolder.itemView, itemPosition
+                                , (Item) list.get(itemPosition));
+                    }
+                });
                 break;
             case NATIVE_EXPRESS_AD_VIEW_TYPE:
                 // fall through
@@ -169,35 +197,24 @@ public class NewVideoAdapter extends
 
     private String checkTitle(String description) {
 
-        if (description.contains(ZEE_STUDIO))
-            return ZEE_STUDIO;
-        else if (description.contains(T_SERIES))
-            return T_SERIES;
-        else if (description.contains(VEVO))
-            return VEVO_NAME;
-        else if (description.contains(YASH_RAJ_FILM))
-            return YASH_RAJ_FILM;
-        else if (description.contains(TIPS_OFFICIAL))
-            return TIPS_OFFICIAL_NAME;
-        else if (description.contains(SALMAN_KHAN_FILM))
-            return SALMAN_KHAN_FILM;
-        else if (description.contains(MADDOCK_FILM))
-            return MADDOCK_FILM_NAME;
-        else if (description.contains(SAREGAMA_MUSIC))
-            return SAREGAMA_MUSIC_NAME;
-        else if (description.contains(AJAY_DEVGN))
-            return AJAY_DEVGN;
-        else
-            return null;
+        Gson gson = new Gson();
+        String jsonString = ExtraHelper.parseJson(context, JSON_CHANNEL_TITLE);
+        if (jsonString != null) {
+            ChannelTitleResponseList channelTitleResponseList = gson.fromJson(jsonString, ChannelTitleResponseList.class);
+
+            for (ChannelTitle channelTitle : channelTitleResponseList.getChannelTitles()) {
+
+                if (description.contains(channelTitle.getSearchChannelTitle().toLowerCase()))
+                    return channelTitle.getChannelTitle();
+
+            }
+        }
+        return null;
     }
 
 
     @Override
     public int getItemViewType(int position) {
-        // Logic for returning view type based on spaceBetweenAds variable
-        // Here if remainder after dividing the position with (spaceBetweenAds + 1) comes equal to spaceBetweenAds,
-        // then return NATIVE_EXPRESS_AD_VIEW_TYPE otherwise DATA_VIEW_TYPE
-        // By the logic defined below, an ad unit will be showed after every spaceBetweenAds numbers of data items
         return (position % (spaceBetweenAds + 1) == spaceBetweenAds) ? NATIVE_EXPRESS_AD_VIEW_TYPE : DATA_VIEW_TYPE;
     }
 

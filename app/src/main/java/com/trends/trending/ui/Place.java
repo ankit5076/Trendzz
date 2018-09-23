@@ -123,7 +123,7 @@ public class Place extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                ArrayList<PlaceToVisitModel> filterList = new ArrayList<PlaceToVisitModel>();
+                ArrayList<PlaceToVisitModel> filterList = new ArrayList<>();
                 if (s.length() > 0) {
                     for (int i = 0; i < modelList.size(); i++) {
                         if (modelList.get(i).getPlaceName().toLowerCase().contains(s.toLowerCase())) {

@@ -1,14 +1,10 @@
 package com.trends.trending.ui;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -16,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -34,9 +31,6 @@ import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,19 +42,22 @@ import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_METHOD;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
-import static com.trends.trending.utils.Keys.VideoInfo.PARENT_BOLLYWOOD_TRAILER_TO_STRING;
-import static com.trends.trending.utils.Keys.VideoInfo.PARENT_HOLLYWOOD_TRAILER_TO_STRING;
-import static com.trends.trending.utils.Keys.VideoInfo.PARENT_SONGS_TO_STRING;
-import static com.trends.trending.utils.Keys.VideoInfo.PARENT_TO_STRING;
+import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_BHAJAN;
 import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_BOLLYWOOD_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_HOLLYWOOD_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_MOTIVATION;
 import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_NEW_SONGS;
+import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_TECHNOLOGY;
 import static com.trends.trending.utils.Keys.VideoInfo.SEARCH_PARENT_TO_STRING;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_BHAJAN;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_BOLLYWOOD_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_HOLLYWOOD_TRAILER;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_MOTIVATION;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_NAME;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_REVIEWS;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_SONGS;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_NEW_SONGS;
+import static com.trends.trending.utils.Keys.VideoInfo.TAB_TECHNOLOGY;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_TRENDING;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_PLAYLIST_VIDEOS;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_SEARCH;
@@ -69,13 +66,14 @@ import static com.trends.trending.utils.Keys.VideoInfo.VAL_TRENDING;
 
 public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receiver, YouTubePlayer.OnInitializedListener {
 
-    private static final int RECOVERY_DIALOG_REQUEST = 1;
     public final static int spaceBetweenAds = 3;
-
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.youtube_player)
     YouTubePlayerView mYouTubePlayerView;
+    @BindView(R.id.shimmer_view_container)
+    ShimmerFrameLayout mShimmerFrameLayout;
 
 
     private ArrayList<Object> mSongModels = new ArrayList<>();
@@ -84,7 +82,16 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
     private YouTubePlayer mYoutubePlayer;
     private ReturnReceiver mReturnReceiver;
     private boolean isTrending = true;
-    private ValueAnimator colorAnimation;
+    private NewVideoAdapter adapter;
+    private int pos;
+
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
 
     public View getView() {
         return mView;
@@ -112,11 +119,6 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
             isTrending = false;
         mReturnReceiver = new ReturnReceiver(new Handler());
         mReturnReceiver.setReceiver(this);
-        int colorFrom = getResources().getColor(R.color.red);
-        int colorTo = getResources().getColor(R.color.blue);
-        colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        colorAnimation.setRepeatCount(ValueAnimator.INFINITE);
-        colorAnimation.setDuration(500);
         setAdapter();
     }
 
@@ -125,126 +127,57 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            SharedPreferences settings = this.getSharedPreferences(PREFS_NAME,
-                    Context.MODE_PRIVATE);
             String tab = b.getString(TAB_NAME, TAB_TRENDING);
             switch (tab) {
                 case TAB_TRENDING:
                     isTrending = true;
                     Intent parent1 = new Intent(Video.this, VideoRepository.class);
-
                     parent1.putExtra(KEY_RECEIVER, mReturnReceiver);
                     parent1.putExtra(KEY_INTENT, VAL_TRENDING);
-
                     this.startService(parent1);
-                    String jsonParent = settings.getString(PARENT_TO_STRING, null);
-                    Gson gson = new Gson();
-                    Parent parent = gson.fromJson(jsonParent, Parent.class);
-                    if (parent != null) {
-//                        mShimmerViewContainer.stopShimmerAnimation();
-                        //                      mContainer.removeView(mShimmerViewContainer);
-                        mSongModels.addAll(parent.getItems());
-                    } else
-                        Toast.makeText(this, "Parent null", Toast.LENGTH_LONG).show();
-
-
                     break;
+
                 case TAB_BOLLYWOOD_TRAILER:
-                    isTrending = false;
-                    Intent parent2 = new Intent(Video.this, VideoRepository.class);
-
-                    parent2.putExtra(KEY_RECEIVER, mReturnReceiver);
-                    parent2.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
-                    parent2.putExtra(KEY_CHANNEL_ID, PLAYLIST_ID_BOLLYWOOD_TRAILER);
-
-                    this.startService(parent2);
-                    String jsonParent1 = settings.getString(PARENT_BOLLYWOOD_TRAILER_TO_STRING, null);
-                    Gson gson1 = new Gson();
-                    Parent parent22 = gson1.fromJson(jsonParent1, Parent.class);
-                    if (parent22 != null) {
-//                        mShimmerViewContainer.stopShimmerAnimation();
-                        //                      mContainer.removeView(mShimmerViewContainer);
-                        mSongModels.addAll(parent22.getItems());
-                    } else
-                        Toast.makeText(this, "Parent null", Toast.LENGTH_LONG).show();
-
+                    getDataInBackground(PLAYLIST_ID_BOLLYWOOD_TRAILER);
                     break;
+
                 case TAB_HOLLYWOOD_TRAILER:
-                    isTrending = false;
-                    Intent holly = new Intent(Video.this, VideoRepository.class);
-
-                    holly.putExtra(KEY_RECEIVER, mReturnReceiver);
-                    holly.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
-                    holly.putExtra(KEY_CHANNEL_ID, PLAYLIST_ID_HOLLYWOOD_TRAILER);
-
-                    this.startService(holly);
-                    String jsonholly = settings.getString(PARENT_HOLLYWOOD_TRAILER_TO_STRING, null);
-                    Gson gsonholly = new Gson();
-                    Parent parentholly = gsonholly.fromJson(jsonholly, Parent.class);
-                    if (parentholly != null) {
-//                        mShimmerViewContainer.stopShimmerAnimation();
-                        //                      mContainer.removeView(mShimmerViewContainer);
-                        mSongModels.addAll(parentholly.getItems());
-                    } else
-                        Toast.makeText(this, "Parent null", Toast.LENGTH_LONG).show();
-
+                    getDataInBackground(PLAYLIST_ID_HOLLYWOOD_TRAILER);
                     break;
-                case TAB_SONGS:
-                    isTrending = false;
-                    Intent songs = new Intent(Video.this, VideoRepository.class);
 
-                    songs.putExtra(KEY_RECEIVER, mReturnReceiver);
-                    songs.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
-                    songs.putExtra(KEY_CHANNEL_ID, PLAYLIST_ID_NEW_SONGS);
-
-                    this.startService(songs);
-                    String jsonsongs = settings.getString(PARENT_SONGS_TO_STRING, null);
-                    Gson gsonsongs = new Gson();
-                    Parent parentsongs = gsonsongs.fromJson(jsonsongs, Parent.class);
-                    if (parentsongs != null) {
-//                        mShimmerViewContainer.stopShimmerAnimation();
-                        //                      mContainer.removeView(mShimmerViewContainer);
-                        mSongModels.addAll(parentsongs.getItems());
-                    } else
-                        Toast.makeText(this, "Parent null", Toast.LENGTH_LONG).show();
+                case TAB_NEW_SONGS:
+                    getDataInBackground(PLAYLIST_ID_NEW_SONGS);
                     break;
-                case TAB_REVIEWS:
+
+                case TAB_MOTIVATION:
+                    getDataInBackground(PLAYLIST_ID_MOTIVATION);
+                    break;
+
+                case TAB_BHAJAN:
+                    getDataInBackground(PLAYLIST_ID_BHAJAN);
+                    break;
+
+                case TAB_COMEDY:
+                    getDataInBackground(PLAYLIST_ID_COMEDY);
+                    break;
+
+                case TAB_TECHNOLOGY:
+                    getDataInBackground(PLAYLIST_ID_TECHNOLOGY);
                     break;
             }
-
-            addNativeExpressAds();
-            NewVideoAdapter adapter = new NewVideoAdapter(Video.this, mSongModels, spaceBetweenAds, isTrending);
-            adapter.SetOnItemClickListener(new NewVideoAdapter.OnItemClickListener() {
-
-                @Override
-                public void onOldItemClick(final View view, int position, Item model) {
-                    setView(view);
-                    if (!isTrending) {
-                        Toast.makeText(Video.this, "id: " + model.getSnippet().getResourceId().getVideoId(), Toast.LENGTH_SHORT).show();
-                        setVideoId(model.getSnippet().getResourceId().getVideoId());
-                    } else {
-                        Toast.makeText(Video.this, "id: " + model.getId(), Toast.LENGTH_SHORT).show();
-                        setVideoId(model.getId());
-                    }
-                    // milliseconds
-
-                    if (mYoutubePlayer == null) {
-                        mYouTubePlayerView.initialize(KEY_API, Video.this);
-                    } else {
-                        mYoutubePlayer.loadVideo(getVideoId());
-                    }
-                }
-            });
-            recyclerView.setHasFixedSize(true);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(layoutManager);
-            recyclerView.setAdapter(adapter);
-
         }
-
-
     }
 
+
+    private void getDataInBackground(String playlistId) {
+
+        isTrending = false;
+        Intent intent = new Intent(Video.this, VideoRepository.class);
+        intent.putExtra(KEY_RECEIVER, mReturnReceiver);
+        intent.putExtra(KEY_INTENT, VAL_PLAYLIST_VIDEOS);
+        intent.putExtra(KEY_CHANNEL_ID, playlistId);
+        this.startService(intent);
+    }
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
@@ -256,39 +189,21 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
                 Context.MODE_PRIVATE);
         editor = settings.edit();
         Gson gson = new Gson();
-        Bundle b = getIntent().getExtras();
-
+//        Bundle b = getIntent().getExtras();
         if (TextUtils.equals(resultData.getString(KEY_METHOD), VAL_SEARCH)) {
             searchParent = resultData.getParcelable(KEY_PARENT);
-//            if (searchParent != null)
-//                Toast.makeText(this, "video:: "+searchParent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-//            else
-//                Toast.makeText(this, "nulllllllllllll", Toast.LENGTH_SHORT).show();
             String parentString = gson.toJson(searchParent);
-
             editor.putString(SEARCH_PARENT_TO_STRING, parentString);
             editor.commit();
         } else {
-
             parent = resultData.getParcelable(KEY_PARENT);
-            String parentString = gson.toJson(parent);
-            if (b.getString(TAB_NAME, TAB_TRENDING).equals(TAB_BOLLYWOOD_TRAILER)) {
-                editor.putString(PARENT_BOLLYWOOD_TRAILER_TO_STRING, parentString);
-            } else if (b.getString(TAB_NAME, TAB_TRENDING).equals(TAB_SONGS)) {
-                Toast.makeText(this, "tab songssss", Toast.LENGTH_SHORT).show();
-                editor.putString(PARENT_SONGS_TO_STRING, parentString);
-            } else if (b.getString(TAB_NAME, TAB_TRENDING).equals(TAB_HOLLYWOOD_TRAILER)) {
-                editor.putString(PARENT_HOLLYWOOD_TRAILER_TO_STRING, parentString);
+
+            if (parent != null) {
+                displayData(parent);
             } else
-                editor.putString(PARENT_TO_STRING, parentString);
-            editor.commit();
+                toastResult();
+
         }
-
-
-//        if (parent != null) {
-//            Toast.makeText(this, parent.getItems().get(0).getSnippet().getTitle(), Toast.LENGTH_LONG).show();
-//        } else
-//            Toast.makeText(this, "MainActivity null", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -304,12 +219,9 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
         youTubePlayer.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
             @Override
             public void onFullscreen(boolean b) {
-                if(b){
+                if (b) {
                     mYoutubePlayer.setFullscreen(true);
-//                    mYoutubePlayer.loadVideo(getVideoId());
-//                    mYoutubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
-                }
-                else
+                } else
                     mYoutubePlayer.setFullscreen(false);
             }
         });
@@ -334,6 +246,8 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
             @Override
             public void onVideoEnded() {
+                adapter.setItemPosition(-1);
+                adapter.notifyItemChanged(getPos());
             }
 
             @Override
@@ -348,26 +262,10 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
             @Override
             public void onPaused() {
-                if (colorAnimation.isRunning()) {
-                    colorAnimation.end();
-                }
             }
 
             @Override
             public void onPlaying() {
-
-
-                colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animator) {
-                        getView().findViewById(R.id.horizontal_divider).setBackgroundColor((int) animator.getAnimatedValue());
-                    }
-
-                });
-                colorAnimation.start();
-
-
             }
 
             @Override
@@ -376,29 +274,10 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
             @Override
             public void onStopped() {
-                if (colorAnimation.isRunning()) {
-                    colorAnimation.end();
-                }
             }
         });
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (colorAnimation.isRunning()) {
-            colorAnimation.end();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (colorAnimation.isRunning()) {
-            colorAnimation.end();
-        }
-        setView(null);
-    }
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
@@ -506,6 +385,71 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
     private YouTubePlayer.Provider getYouTubePlayerProvider() {
         return (YouTubePlayerView) findViewById(R.id.youtube_player);
+    }
+
+    private void displayData(Parent parent) {
+        mShimmerFrameLayout.stopShimmerAnimation();
+        mShimmerFrameLayout.setVisibility(View.GONE);
+        mSongModels.addAll(parent.getItems());
+        addNativeExpressAds();
+        adapter = new NewVideoAdapter(Video.this, mSongModels, spaceBetweenAds, isTrending);
+        adapter.setOnItemClickListener(new NewVideoAdapter.OnItemClickListener() {
+
+            @Override
+            public void onOldItemClick(final View view, int position, Item model) {
+                setView(view);
+                setPos(position);
+                if (!isTrending) {
+                    Toast.makeText(Video.this, "id: " + model.getSnippet().getResourceId().getVideoId(), Toast.LENGTH_SHORT).show();
+                    setVideoId(model.getSnippet().getResourceId().getVideoId());
+                } else {
+                    Toast.makeText(Video.this, "id: " + model.getId(), Toast.LENGTH_SHORT).show();
+                    setVideoId(model.getId());
+                }
+                // milliseconds
+
+                if (mYoutubePlayer == null) {
+                    mYouTubePlayerView.initialize(KEY_API, Video.this);
+                } else {
+                    mYoutubePlayer.loadVideo(getVideoId());
+                }
+            }
+        });
+
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void toastResult() {
+        mShimmerFrameLayout.stopShimmerAnimation();
+        mShimmerFrameLayout.setVisibility(View.GONE);
+        Toast.makeText(this, "Please try again later", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    protected void onResume() {
+        mShimmerFrameLayout.startShimmerAnimation();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        mShimmerFrameLayout.stopShimmerAnimation();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        setView(null);
     }
 
 }

@@ -32,7 +32,6 @@ import com.trends.trending.utils.ShadowTransformer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;

@@ -1,26 +1,16 @@
 package com.trends.trending.adapter;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rilixtech.materialfancybutton.MaterialFancyButton;
-import com.squareup.picasso.Picasso;
 import com.trends.trending.R;
-import com.trends.trending.interfaces.QuoteRule;
-import com.trends.trending.model.FactModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

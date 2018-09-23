@@ -1,8 +1,5 @@
 package com.trends.trending.utils;
 
-import android.content.Context;
-import android.os.Parcel;
-
 import com.plumillonforge.android.chipview.Chip;
 
 /**

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.trends.trending.adapter.FactPagerAdapter;
-import com.trends.trending.adapter.QuotePagerAdapter;
 import com.trends.trending.interfaces.QuoteRule;
 
 

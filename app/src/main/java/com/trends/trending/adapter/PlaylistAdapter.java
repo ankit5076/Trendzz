@@ -2,8 +2,8 @@ package com.trends.trending.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +17,10 @@ import com.trends.trending.ui.PlaylistVideo;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-
+import static com.trends.trending.utils.Keys.VideoInfo.CHANNEL_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.CHANNEL_OR_PLAYLIST_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.CURRENT_TITLE;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_FITNESS;
-import static com.trends.trending.utils.Keys.VideoInfo.TAB_WEBSERIES;
+import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_TITLE;
 
 /**
  * Created by ankit.a.vishwakarma on 28-Mar-18.
@@ -33,24 +31,27 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Planet
     private ArrayList<Playlist> planetList;
     private String mTitle;
     private Context mContext;
-    private String[] ids;
+    private String[] playlistIds;
+    private String[] channelIds;
 
 
-    public PlaylistAdapter(ArrayList<Playlist> planetList, String title, Context context, String[] id) {
+    public PlaylistAdapter(ArrayList<Playlist> planetList, String title, Context context, String[] id, String[] cId) {
         this.planetList = planetList;
         this.mTitle = title;
         this.mContext = context;
-        this.ids = id;
+        this.playlistIds = id;
+        this.channelIds = cId;
     }
 
+    @NonNull
     @Override
-    public PlaylistAdapter.PlanetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlaylistAdapter.PlanetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist,parent,false);
         return new PlanetViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final PlaylistAdapter.PlanetViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PlaylistAdapter.PlanetViewHolder holder, int position) {
         holder.image.setImageResource(planetList.get(position).getPlaylistImage());
         holder.channel.setText(planetList.get(position).getPlaylistTitle());
 
@@ -60,7 +61,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Planet
 
                 Intent intent = new Intent(mContext, PlaylistVideo.class);
                 intent.putExtra(CURRENT_TITLE, mTitle);
-                intent.putExtra(CHANNEL_OR_PLAYLIST_ID, ids[holder.getAdapterPosition()]);
+                intent.putExtra(PLAYLIST_TITLE, planetList.get(holder.getAdapterPosition()).getPlaylistTitle());
+                intent.putExtra(CHANNEL_OR_PLAYLIST_ID, playlistIds[holder.getAdapterPosition()]);
+                intent.putExtra(CHANNEL_ID, channelIds[holder.getAdapterPosition()]);
                 mContext.startActivity(intent);
 
             }

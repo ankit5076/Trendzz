@@ -1,35 +1,25 @@
 package com.trends.trending.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.trends.trending.R;
 import com.trends.trending.interfaces.QuoteRule;
 import com.trends.trending.model.FactModel;
-import com.trends.trending.ui.Fact;
-import com.trends.trending.utils.RoundCornersTransformation;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.trends.trending.utils.Keys.Common.SHARE_INTENT_TITLE;
 
 /**
  * Created by USER on 3/7/2018.

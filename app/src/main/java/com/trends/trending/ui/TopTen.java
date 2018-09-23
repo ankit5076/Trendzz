@@ -13,7 +13,6 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -150,12 +149,12 @@ public class TopTen extends YouTubeBaseActivity implements
         recyclerView.post(new Runnable() {
             @Override
             public void run() {
-                float scale = TopTen.this.getResources().getDisplayMetrics().density;
-                int adWidth = (int) (recyclerView.getWidth() - (2 * TopTen.this.getResources().getDimension(R.dimen.activity_horizontal_margin)));
+                //float scale = TopTen.this.getResources().getDisplayMetrics().density;
+                //int adWidth = (int) (recyclerView.getWidth() - (2 * TopTen.this.getResources().getDimension(R.dimen.activity_horizontal_margin)));
 
                 // we are setting size of adView
                 // you should check admob's site for possible ads size
-                AdSize adSize = new AdSize((int) (adWidth / scale), 60);
+                //AdSize adSize = new AdSize((int) (adWidth / scale), 60);
 
                 // looping over mDataset to sesize every Native Express Ad to ew adSize
                 for (int i = spaceBetweenAds; i <= mSongModels.size(); i += (spaceBetweenAds + 1)) {
