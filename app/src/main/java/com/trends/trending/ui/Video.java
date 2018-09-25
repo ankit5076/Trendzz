@@ -1,8 +1,6 @@
 package com.trends.trending.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,12 +19,10 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.google.gson.Gson;
 import com.trends.trending.R;
 import com.trends.trending.adapter.NewVideoAdapter;
 import com.trends.trending.model.youtube.Item;
 import com.trends.trending.model.youtube.Parent;
-import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.repository.VideoRepository;
 import com.trends.trending.service.ReturnReceiver;
 
@@ -35,7 +31,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.trends.trending.utils.ExtraHelper.PREFS_NAME;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_API;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_CHANNEL_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_INTENT;
@@ -49,7 +44,6 @@ import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_HOLLYWOOD_TRA
 import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_MOTIVATION;
 import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_NEW_SONGS;
 import static com.trends.trending.utils.Keys.VideoInfo.PLAYLIST_ID_TECHNOLOGY;
-import static com.trends.trending.utils.Keys.VideoInfo.SEARCH_PARENT_TO_STRING;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_BHAJAN;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_BOLLYWOOD_TRAILER;
 import static com.trends.trending.utils.Keys.VideoInfo.TAB_COMEDY;
@@ -84,6 +78,7 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
     private boolean isTrending = true;
     private NewVideoAdapter adapter;
     private int pos;
+    private boolean isFullScreen = false;
 
     public int getPos() {
         return pos;
@@ -182,20 +177,8 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         Parent parent;
-        SearchParent searchParent;
-        SharedPreferences settings;
-        SharedPreferences.Editor editor;
-        settings = getSharedPreferences(PREFS_NAME,
-                Context.MODE_PRIVATE);
-        editor = settings.edit();
-        Gson gson = new Gson();
-//        Bundle b = getIntent().getExtras();
-        if (TextUtils.equals(resultData.getString(KEY_METHOD), VAL_SEARCH)) {
-            searchParent = resultData.getParcelable(KEY_PARENT);
-            String parentString = gson.toJson(searchParent);
-            editor.putString(SEARCH_PARENT_TO_STRING, parentString);
-            editor.commit();
-        } else {
+        if (!TextUtils.equals(resultData.getString(KEY_METHOD), VAL_SEARCH)) {
+
             parent = resultData.getParcelable(KEY_PARENT);
 
             if (parent != null) {
@@ -208,9 +191,11 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+
         if (!wasRestored) {
             mYoutubePlayer = youTubePlayer;
             mYoutubePlayer.setFullscreen(false);
+            isFullScreen = false;
             mYoutubePlayer.loadVideo(getVideoId());
             mYoutubePlayer.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CONTROL_SYSTEM_UI);
             mYoutubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
@@ -221,8 +206,11 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
             public void onFullscreen(boolean b) {
                 if (b) {
                     mYoutubePlayer.setFullscreen(true);
-                } else
+                    isFullScreen = true;
+                } else {
                     mYoutubePlayer.setFullscreen(false);
+                    isFullScreen = false;
+                }
             }
         });
 
@@ -246,8 +234,11 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
 
             @Override
             public void onVideoEnded() {
-                adapter.setItemPosition(-1);
-                adapter.notifyItemChanged(getPos());
+                if (adapter != null) {
+                    adapter.setItemPosition(-1);
+                    adapter.notifyItemChanged(getPos());
+                }
+
             }
 
             @Override
@@ -452,4 +443,13 @@ public class Video extends YouTubeBaseActivity implements ReturnReceiver.Receive
         setView(null);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isFullScreen) {
+            mYoutubePlayer.setFullscreen(false);
+            isFullScreen = false;
+        }
+        else
+            super.onBackPressed();
+    }
 }

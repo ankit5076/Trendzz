@@ -5,6 +5,7 @@
     <string name="no_network">Network not available</string>
     <string name="slow_network">Slow internet connection</string>
     <string name="no_internet">No Internet Connection</string>
+    <string name="try_again">Please try after some time</string>
     <string name="double_quote">\"</string>
     <string name="quote_msg">\"%s\"</string>
     <string name="channel_name">Channel Name</string>

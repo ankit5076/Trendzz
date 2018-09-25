@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.trends.trending.R;
 import com.trends.trending.model.youtube.Playlist;
 import com.trends.trending.ui.PlaylistVideo;
+import com.trends.trending.utils.NetworkHelper;
 
 import java.util.ArrayList;
 
@@ -59,13 +61,18 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Planet
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, PlaylistVideo.class);
-                intent.putExtra(CURRENT_TITLE, mTitle);
-                intent.putExtra(PLAYLIST_TITLE, planetList.get(holder.getAdapterPosition()).getPlaylistTitle());
-                intent.putExtra(CHANNEL_OR_PLAYLIST_ID, playlistIds[holder.getAdapterPosition()]);
-                intent.putExtra(CHANNEL_ID, channelIds[holder.getAdapterPosition()]);
-                mContext.startActivity(intent);
-
+                if (NetworkHelper.hasNetworkAccess(mContext)) {
+                    Intent intent = new Intent(mContext, PlaylistVideo.class);
+                    intent.putExtra(CURRENT_TITLE, mTitle);
+                    intent.putExtra(PLAYLIST_TITLE, planetList.get(holder.getAdapterPosition()).getPlaylistTitle());
+                    intent.putExtra(CHANNEL_OR_PLAYLIST_ID, playlistIds[holder.getAdapterPosition()]);
+                    intent.putExtra(CHANNEL_ID, channelIds[holder.getAdapterPosition()]);
+                    mContext.startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(mContext, mContext.getResources().getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

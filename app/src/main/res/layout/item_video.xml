@@ -13,6 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <View
+            android:id="@+id/vDivider"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@id/video_image"
+            android:layout_alignBottom="@id/video_image"
+            android:background="@color/colorWhite"
+            />
+
 
         <ImageView
             android:id="@+id/video_image"
