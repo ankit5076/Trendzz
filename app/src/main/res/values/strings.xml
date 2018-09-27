@@ -5,6 +5,7 @@
     <string name="no_network">Network not available</string>
     <string name="slow_network">Slow internet connection</string>
     <string name="no_internet">No Internet Connection</string>
+    <string name="try_again">Please try after some time</string>
     <string name="double_quote">\"</string>
     <string name="quote_msg">\"%s\"</string>
     <string name="channel_name">Channel Name</string>
@@ -89,87 +90,45 @@
     <string name="geekyranjit">Geekyranjit</string>
     <!--channel End-->
 
-
     <string-array name="web_series_playlist_title">
-        <item>TVF Tech Conversations With Dad</item>
-        <item>TVF Pitchers | Season 01</item>
-        <item>TVF Permanent Roommates | Season 01</item>
-        <item>TVF Permanent Roommates | Season 02</item>
-        <item>FLAMES #PadhaiAurPyaar</item>
-        <item>Official Chukyagiri | Full Episodes</item>
-        <item>Binge Watch Official CEOgiri</item>
-        <item>Rise | Web Series | Vikrant Massey | Cheers!</item>
-        <item>It Happened In Hong Kong | Aahana Kumra | Amol</item>
-        <item>Dice Media | What The Folks (WTF!)</item>
-        <item>Dice Media | Little Things | Season 1</item>
-        <item>AIB : Honest Bars and Restaurants</item>
-        <item>TSP Zeroes</item>
+        <item>Rise</item>
+        <item>What\'s Your Status</item>
+        <item>Official Chukyagiri</item>
+        <item>Official CEOgiri</item>
+        <item>What The Folks (WTF!)</item>
+        <item>Little Things | Season 1</item>
+        <item>BAKED | Season 1</item>
+        <item>BAKED | Season 2</item>
     </string-array>
     <string-array name="web_series_playlist_id">
-        <item>PLTB0eCoUXErb0NYOXVgZyHJW6Cx_3HWWm</item>
-        <item>PLTB0eCoUXErbtRa6MYRnPCQMXT57TG2on</item>
-        <item>PLTB0eCoUXErZe2pMrH3qO4tHtw-K0QKb_</item>
-        <item>PLTB0eCoUXErZpnOUF1CD_syEKkrReXdF7</item>
-        <item>PLbZboRRHE3b14pFvT26golxysQKbWGOSg</item>
+        <item>PLQrvCvrWprVT21z8Bz3KcfGQgZ7kfu5D4</item>
+        <item>PLQrvCvrWprVRDayGP_y8sAYzy80JxvHxi</item>
         <item>PLcvCQa6KHYRnAxKJi6mDLbdV7XzDMTOzL</item>
         <item>PLcvCQa6KHYRn6n1yfE3oD_mZmBrJXgvJx</item>
-        <item>PLQrvCvrWprVT21z8Bz3KcfGQgZ7kfu5D4</item>
-        <item>PLNoppEJMkKSoAtm623dulddYV0UOXFxdK</item>
         <item>PL4x7Of-X4XhiK_gmCcJF8xfrlQN_46nmj</item>
         <item>PL4x7Of-X4XhgNBVfFpd1N4cSU_X1x96gU</item>
-        <item>PLF05eR2VJLBkmUtRT15g73AYApfHZiNGH</item>
-        <item>PLcxtukvbdUtA_PEYIV3-zSNNppNrTX06_</item>
-
+        <item>PL2BrJauH6oAQPPOIimPBaqNZel6TCwWRm</item>
+        <item>PL2BrJauH6oAT9pZUDUJGYV-xnL-sElNtC</item>
+    </string-array>
+    <string-array name="web_series_channel_id">
+        <item>UCYc3JNvtOfwHWU_DSByJm2g</item>
+        <item>UCYc3JNvtOfwHWU_DSByJm2g</item>
+        <item>UC2O-N1R4x56XhndL4qqfKcw</item>
+        <item>UC2O-N1R4x56XhndL4qqfKcw</item>
+        <item>UCC89oVFqenaffhBoyqxd6qw</item>
+        <item>UCC89oVFqenaffhBoyqxd6qw</item>
+        <item>UCx2HcmpB-UZGkMXOCJ4QIVA</item>
+        <item>UCx2HcmpB-UZGkMXOCJ4QIVA</item>
     </string-array>
     <array name="web_series_playlist_image">
-        <item>@drawable/the_viral_fever</item>
-        <item>@drawable/the_viral_fever</item>
-        <item>@drawable/the_viral_fever</item>
-        <item>@drawable/the_viral_fever</item>
-        <item>@drawable/the_timeliners</item>
-        <item>@drawable/arre</item>
-        <item>@drawable/arre</item>
         <item>@drawable/cheers</item>
-        <item>@drawable/viu</item>
+        <item>@drawable/cheers</item>
+        <item>@drawable/arre</item>
+        <item>@drawable/arre</item>
         <item>@drawable/dice_media</item>
         <item>@drawable/dice_media</item>
-        <item>@drawable/aib</item>
-        <item>@drawable/tsp</item>
-    </array>
-
-    <string-array name="fitness_playlist_title">
-        <item>Coordination, Agility and Balance Workouts</item>
-        <item>Mass Building Workouts for Muscle</item>
-        <item>Flexibility, Stretching, Warm Up and Cool Down Workout Videos</item>
-        <item>HOW TO: Barbell and Dumbbell Exercise</item>
-        <item>MUSCLE GAIN Routines</item>
-        <item>Reviews on Protein</item>
-        <item>Top 3 Guru Mann's Pick</item>
-        <item>Diet</item>
-        <item>Muscleblaze transformation</item>
-
-    </string-array>
-    <string-array name="fitness_playlist_id">
-        <item>PL5lPziO_t_Vjq5bzvW1HrEE3gnnySBn5w</item>
-        <item>PL5lPziO_t_ViCGfTMuco8iAD4Z-psEfkn</item>
-        <item>PLFD9A7697E965FB1B</item>
-        <item>PLacPhVACI3MNgGaNdQfNfcMyupRfSiMmQ</item>
-        <item>PLacPhVACI3MPdcVw_Or3g0fd2npcc4mLj</item>
-        <item>PLjlSxZrKIR8RelrmVtbs_LtRy1kK12T7B</item>
-        <item>PLjlSxZrKIR8SCVK-pe_06SQ415UO0kjui</item>
-        <item>PLghtQOauHTUrFnCr1YxO-y99Bl-JSM82h</item>
-        <item>PLghtQOauHTUqGhMY3vQNhVq5fa_YhPiYH</item>
-    </string-array>
-    <array name="fitness_playlist_image">
-        <item>@drawable/fitness_blender</item>
-        <item>@drawable/fitness_blender</item>
-        <item>@drawable/fitness_blender</item>
-        <item>@drawable/scott_herman_fitness</item>
-        <item>@drawable/scott_herman_fitness</item>
-        <item>@drawable/guru_mann_fitness</item>
-        <item>@drawable/guru_mann_fitness</item>
-        <item>@drawable/fitmuscle_tv</item>
-        <item>@drawable/fitmuscle_tv</item>
+        <item>@drawable/scoopwhoop</item>
+        <item>@drawable/scoopwhoop</item>
     </array>
 
     <string-array name="technology_chhanel_title">
@@ -186,48 +145,6 @@
         <item>@drawable/technical_guruji</item>
         <item>@drawable/unbox_therapy</item>
         <item>@drawable/geekyranjit</item>
-    </array>
-
-    <string-array name="web_series_chhanel_title">
-        <item>@string/the_viral_fever</item>
-        <item>@string/all_india_bakchod</item>
-        <item>@string/bindass</item>
-        <item>@string/the_timeliners</item>
-    </string-array>
-    <string-array name="web_series_chhanel_id">
-        <item>UCNJcSUSzUeFm8W9P7UUlSeQ</item>
-        <item>UCzUYuC_9XdUUdrnyLii8WYg</item>
-        <item>UCzo5sreD2cVGu2T2mNu__1Q</item>
-        <item>UCTlnaHHQ75zlDg_fLr7tGEg</item>
-    </string-array>
-    <array name="web_series_chhanel_image">
-        <item>@drawable/the_viral_fever</item>
-        <item>@drawable/the_timeliners</item>
-    </array>
-
-    <string-array name="music_chhanel_title">
-        <item>@string/zee_music_company</item>
-        <item>@string/t_series</item>
-        <item>@string/yrf_music</item>
-        <item>@string/sony_music_india</item>
-        <item>@string/taylor_swift_vevo</item>
-        <item>@string/akon_vevo</item>
-    </string-array>
-    <string-array name="music_chhanel_id">
-        <item>UCFFbwnve3yF62-tVXkTyHqg</item>
-        <item>UCq-Fj5jknLsUf-MWSy4_brA</item>
-        <item>UCjeD2I8jwXg2l_nvXb_6Hzw</item>
-        <item>UC56gTxNs4f9xZ7Pa2i5xNzg</item>
-        <item>UCANLZYMidaCbLQFWXBC95Jg</item>
-        <item>UCX2v47KsDKqajrEYFV7GbBg</item>
-    </string-array>
-    <array name="music_chhanel_image">
-        <item>@drawable/zee_music_company</item>
-        <item>@drawable/t_series</item>
-        <item>@drawable/yrf_music</item>
-        <item>@drawable/sony_music_india</item>
-        <item>@drawable/taylor_swift_vevo</item>
-        <item>@drawable/akon_vevo</item>
     </array>
 
 
@@ -270,48 +187,9 @@
         <item>@drawable/carryminati</item>
     </array>
 
-
-    <string-array name="fitness_chhanel_title">
-        <item>@string/guru_mann_fitness</item>
-        <item>@string/fitmuscle_tv</item>
-    </string-array>
-    <string-array name="fitness_chhanel_id">
-        <item>UCj22tfcQrWG7EMEKS0qLeEg</item>
-        <item>UCGMOauU8dOd4mv2bT3Tx57w</item>
-    </string-array>
-    <array name="fitness_chhanel_image">
-        <item>@drawable/guru_mann_fitness</item>
-        <item>@drawable/fitmuscle_tv</item>
-    </array>
-
-    <string-array name="news_chhanel_title">
-        <item>@string/aaj_tak</item>
-        <item>@string/abp_news</item>
-        <item>@string/india_today</item>
-        <item>@string/zee_news</item>
-        <item>@string/bbc_news</item>
-    </string-array>
-    <string-array name="news_chhanel_id">
-        <item>UCt4t-jeY85JegMlZ-E5UWtA</item>
-        <item>UCRWFSbif-RFENbBrSiez1DA</item>
-        <item>UCYPvAwZP8pZhSMW8qs7cVCw</item>
-        <item>UCIvaYmXn910QMdemBG3v1pQ</item>
-        <item>UC16niRr50-MSBwiO3YDb3RA</item>
-    </string-array>
-    <array name="news_chhanel_image">
-        <item>@drawable/aaj_tak</item>
-        <item>@drawable/abp_news</item>
-        <item>@drawable/india_today</item>
-        <item>@drawable/zee_news</item>
-        <item>@drawable/bbc_news</item>
-    </array>
-
-    <string name="Hello_World">Hello World!</string>
     <string name="swipe_up">Swipe up</string>
     <string name="swipe_down">Swipe Down</string>
     <string name="title_activity_place">Place</string>
-
-    <string name="hello_world">Hello world!</string>
 
     <!--Place details activity-->
     <string name="wikipedia">Wikipedia</string>

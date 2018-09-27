@@ -24,6 +24,7 @@ public class SessionManagement {
     private Context _context;
     private int PRIVATE_MODE = 0;
 
+    @SuppressLint("CommitPrefEdits")
     public SessionManagement(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

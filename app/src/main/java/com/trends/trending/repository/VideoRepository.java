@@ -7,8 +7,8 @@ import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.model.youtube.Parent;
+import com.trends.trending.model.youtube.SearchParent;
 import com.trends.trending.service.VideoService;
 
 import java.io.IOException;
@@ -26,10 +26,9 @@ import static com.trends.trending.utils.Keys.VideoInfo.KEY_METHOD;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_ORDER_BY;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PARENT;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_PART;
-import static com.trends.trending.utils.Keys.VideoInfo.KEY_PLAYLIST_ID;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_RECEIVER;
-import static com.trends.trending.utils.Keys.VideoInfo.NUMBER_OF_VIDEOS_RETURNED;
 import static com.trends.trending.utils.Keys.VideoInfo.KEY_SEARCH;
+import static com.trends.trending.utils.Keys.VideoInfo.NUMBER_OF_VIDEOS_RETURNED;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_CHANNEL_PLAYLIST;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_CHANNEL_VIDEOS;
 import static com.trends.trending.utils.Keys.VideoInfo.VAL_PLAYLIST_VIDEOS;

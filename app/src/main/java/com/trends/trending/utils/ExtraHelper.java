@@ -7,13 +7,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
 import android.util.SparseArray;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
-import com.trends.trending.R;
 import com.trends.trending.model.youtube.VideoLink;
 
 import java.io.IOException;
@@ -23,8 +21,6 @@ import java.util.ArrayList;
 import at.huber.youtubeExtractor.VideoMeta;
 import at.huber.youtubeExtractor.YouTubeExtractor;
 import at.huber.youtubeExtractor.YtFile;
-
-import static com.trends.trending.utils.Keys.VideoInfo.PLACE_TO_VISIT;
 
 /**
  * Created by USER on 4/4/2018.

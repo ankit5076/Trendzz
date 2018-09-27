@@ -35,10 +35,11 @@
             android:theme="@style/MyMaterialTheme" />
         <activity
             android:name=".ui.Video"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/MyMaterialTheme" />
-        <activity android:name=".DummyBottom" />
         <activity android:name=".DummyUploadQuote" />
-        <activity android:name=".ui.PlaylistVideo" />
+        <activity android:name=".ui.PlaylistVideo"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".ui.UserUploadQuote" />
         <activity
             android:name=".ui.Fact"
@@ -59,6 +60,8 @@
             android:theme="@style/MyMaterialTheme" />
         <activity android:name=".ui.TopTen"/>
         <activity android:name=".ui.TopTenHome" />
+        <activity android:name=".ui.VideoHome" />
+        <activity android:name=".ui.Channel" />
         <activity android:name=".MainActivity" />
     </application>
 

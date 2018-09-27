@@ -12,6 +12,15 @@ public class Snippet {
     private Thumbnails thumbnails;
     private String channelTitle;
     private String liveBroadcastContent;
+    private ResourceId resourceId;
+
+    public ResourceId getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(ResourceId resourceId) {
+        this.resourceId = resourceId;
+    }
 
     public String getPublishedAt() {
         return publishedAt;

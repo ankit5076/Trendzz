@@ -1,12 +1,8 @@
 package com.trends.trending.ui;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,11 +15,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
 import com.trends.trending.R;
 import com.trends.trending.adapter.FactPagerAdapter;
-import com.trends.trending.adapter.QuotePagerAdapter;
 import com.trends.trending.utils.FactShadowTransformer;
 import com.trends.trending.utils.FirebaseHelper;
 import com.trends.trending.utils.NetworkHelper;
-import com.trends.trending.utils.ShadowTransformer;
 
 /**
  * Created by USER on 3/7/2018.

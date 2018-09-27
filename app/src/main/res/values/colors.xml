@@ -10,6 +10,8 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
 
+    <color name="background">#dddddd</color>
+
     <color name="blue_grey">#455A64</color>
     <color name="red">#F44336</color>
     <color name="pink">#E91E63</color>
