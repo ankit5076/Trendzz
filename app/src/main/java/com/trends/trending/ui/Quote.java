@@ -75,7 +75,9 @@ public class Quote extends AppCompatActivity {
             setContentView(R.layout.activity_famous_quote);
             ButterKnife.bind(this);
             init();
+
             if (mFirebaseAuth.getCurrentUser() != null) {
+                sessionManagement.updateLastVisitedQuoteDate(new Date());
                 Date currentDate = currentDate();
                 Date lastVisitedDate = sessionManagement.getLastVisitedQuoteDate();
 
@@ -144,8 +146,8 @@ public class Quote extends AppCompatActivity {
     private void init() {
         setSupportActionBar(toolbar);
         mShimmerViewContainer.startShimmerAnimation();
-        sessionManagement = new SessionManagement(Quote.this);
         mCardAdapter = new QuotePagerAdapter(Quote.this);
+        sessionManagement = new SessionManagement(Quote.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference();
         mFirebaseHelper = new FirebaseHelper(mFirebaseDatabase, Quote.this);
@@ -199,7 +201,7 @@ public class Quote extends AppCompatActivity {
                     //Toast.makeText(this, "update index", Toast.LENGTH_SHORT).show();
                     sessionManagement.updateQuoteStartIndex(endValue + 1);
                     FirebaseHelper firebaseHelper = new FirebaseHelper(mFirebaseDatabase, Quote.this);
-                    if (firebaseHelper.updateUserQuoteStartIndex(mFirebaseAuth.getCurrentUser().getUid(), endValue + 1)) {
+                    if (firebaseHelper.updateUserQuoteStartIndex(mFirebaseAuth.getCurrentUser().getUid(), Integer.parseInt(endValue) + 1)) {
                         Log.d(TAG, "onDataChange: updated index");
                       //  Toast.makeText(this, "index updated", Toast.LENGTH_SHORT).show();
                     }
@@ -239,6 +241,5 @@ public class Quote extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        sessionManagement.updateLastVisitedQuoteDate(new Date());
     }
 }

@@ -93,10 +93,10 @@ public class FirebaseHelper {
         return isSaved;
     }
 
-    public boolean updateUserQuoteStartIndex(String userId, String index) {
+    public boolean updateUserQuoteStartIndex(String userId, int index) {
         boolean isSaved = false;
         try{
-            mDatabaseReference.child(FB_USER).child(userId).child(FB_USER_QUOTE_CHILD).setValue(index);
+            mDatabaseReference.child(FB_USER).child(userId).child(FB_USER_QUOTE_CHILD).setValue(String.valueOf(index));
             isSaved = true;
         }catch (DatabaseException ignored){
 

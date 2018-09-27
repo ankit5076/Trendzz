@@ -44,6 +44,7 @@ public class SessionManagement {
         try {
             String dateTime = dateFormat.format(date);
             editor.putString(LAST_VISITED_QUOTE_DATE, dateTime);
+            editor.commit();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -60,10 +61,16 @@ public class SessionManagement {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
         try {
-            date = dateFormat.parse(pref.getString(LAST_VISITED_QUOTE_DATE, null));
+            String savedDate = pref.getString(LAST_VISITED_QUOTE_DATE, null);
+            if (savedDate!=null) {
+                date = dateFormat.parse(savedDate);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
         return date;
