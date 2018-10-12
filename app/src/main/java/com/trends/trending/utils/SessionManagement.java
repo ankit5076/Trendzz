@@ -35,7 +35,6 @@ public class SessionManagement {
 
     public void updateQuoteStartIndex(String index) {
         editor.putString(QUOTE_START_INDEX, index);
-
         editor.commit();
     }
 

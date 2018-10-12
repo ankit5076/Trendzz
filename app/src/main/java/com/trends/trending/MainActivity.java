@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUserMetadata;
 import com.trends.trending.fragment.DownloadFormatDialog;
 import com.trends.trending.model.youtube.Parent;
 import com.trends.trending.service.ReturnReceiver;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
 //    Button mButton;
 //    @BindView(R.id.quoteAct)
 //    Button mQuoteAct;
+private FirebaseAuth firebaseAuth;
 
     ReturnReceiver mReturnReceiver;
 
@@ -38,12 +38,17 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        FirebaseUserMetadata metadata = FirebaseAuth.getInstance().getCurrentUser().getMetadata();
-        if (metadata != null && metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-            Toast.makeText(this, "onc new user", Toast.LENGTH_SHORT).show();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser()==null){
+            finish();
         }
-        else
-            Toast.makeText(this, "onc exsisting user", Toast.LENGTH_SHORT).show();
+//        FirebaseUserMetadata metadata = FirebaseAuth.getInstance().getCurrentUser().getMetadata();
+//        if (metadata != null && metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+//            Toast.makeText(this, "onc new user", Toast.LENGTH_SHORT).show();
+//        }
+//        else
+//            Toast.makeText(this, "onc exsisting user", Toast.LENGTH_SHORT).show();
 
 
         // mReturnReceiver = new ReturnReceiver(new Handler());
@@ -117,8 +122,16 @@ public class MainActivity extends AppCompatActivity implements ReturnReceiver.Re
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        // Add new Flag to start new Activity
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        // Add new Flag to start new Activity
+//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+    }
+
+    @Override
+    protected void onResume() {
+        if (firebaseAuth.getCurrentUser()==null){
+            finish();
+        }
+        super.onResume();
     }
 }

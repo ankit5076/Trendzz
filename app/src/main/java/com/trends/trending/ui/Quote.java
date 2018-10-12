@@ -77,17 +77,17 @@ public class Quote extends AppCompatActivity {
             init();
 
             if (mFirebaseAuth.getCurrentUser() != null) {
-                sessionManagement.updateLastVisitedQuoteDate(new Date());
                 Date currentDate = currentDate();
                 Date lastVisitedDate = sessionManagement.getLastVisitedQuoteDate();
 
-                Log.d(TAG, sessionManagement.isNewUser() + " new user?");
-                Log.d(TAG, currentDate + " current date");
-                Log.d(TAG, lastVisitedDate + " prev date");
-                Log.d(TAG, currentDate.compareTo(lastVisitedDate) + " compare");
+//                Log.d(TAG, sessionManagement.isNewUser() + " new user?");
+//                Log.d(TAG, currentDate + " current date");
+//                Log.d(TAG, lastVisitedDate + " prev date");
+//                Log.d(TAG, currentDate.compareTo(lastVisitedDate) + " compare");
 
                 if (lastVisitedDate == null) {
-                    updateIndex = false;
+                    sessionManagement.updateLastVisitedQuoteDate(new Date());
+                    updateIndex = true;
                     fetchIndex();
                 } else if ((currentDate.compareTo(lastVisitedDate) == 0 || currentDate.compareTo(lastVisitedDate) < 0)) {
                     updateIndex = false;
@@ -95,6 +95,7 @@ public class Quote extends AppCompatActivity {
                     fetchQuote();
                 } else {
                     updateIndex = true;
+                    sessionManagement.updateLastVisitedQuoteDate(new Date());
                     Toast.makeText(this, "fetch index", Toast.LENGTH_SHORT).show();
                     fetchIndex();
                 }
@@ -126,12 +127,12 @@ public class Quote extends AppCompatActivity {
         String uid = mFirebaseAuth.getCurrentUser().getUid();
 
         mFirebaseDatabase.child("users")
-                .orderByChild(uid)
-                .equalTo(uid)
+                .child(uid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         sessionManagement.updateQuoteStartIndex(mFirebaseHelper.getUserQuoteStartIndex(dataSnapshot));
+                        Toast.makeText(Quote.this, "saved: "+sessionManagement.getQuoteStartIndex(), Toast.LENGTH_LONG).show();
                         fetchQuote();
                     }
 
@@ -172,20 +173,23 @@ public class Quote extends AppCompatActivity {
 
     private void fetchQuote() {
 
-        String startValue;
-        final String endValue;
+        long startValue;
+        final long endValue;
 
         if (mFirebaseAuth.getCurrentUser() != null) {
-            startValue = sessionManagement.getQuoteStartIndex();
-            endValue = String.valueOf((LOGGED_IN_TOTAL_QUOTES_TO_DISPLAY + Integer.parseInt(startValue) - 1));
+            startValue = Long.parseLong(sessionManagement.getQuoteStartIndex());
+            endValue = (LOGGED_IN_TOTAL_QUOTES_TO_DISPLAY + startValue - 1);
         } else {
-            startValue = mFirebaseRemoteConfig.getString(FB_RM_GUEST_START);
-            endValue = String.valueOf((GUEST_TOTAL_QUOTES_TO_DISPLAY + Integer.parseInt(startValue) - 1));
+            startValue = Long.parseLong(mFirebaseRemoteConfig.getString(FB_RM_GUEST_START));
+            endValue = (GUEST_TOTAL_QUOTES_TO_DISPLAY + startValue - 1);
         }
 
         Toast.makeText(this, "start: " + startValue, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "end: " + endValue, Toast.LENGTH_SHORT).show();
-        Query randomQuotes = mFirebaseDatabase.child(FB_QUOTE).orderByChild(FB_QUOTE_ID_CHILD)
+//        Query randomQuotes = mFirebaseDatabase.child(FB_QUOTE).orderByChild(FB_QUOTE_ID_CHILD)
+//                .startAt(startValue)
+//                .endAt(endValue);
+        Query randomQuotes = mFirebaseDatabase.child(FB_QUOTE).orderByChild("id")
                 .startAt(startValue)
                 .endAt(endValue);
         randomQuotes.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -193,17 +197,13 @@ public class Quote extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mShimmerViewContainer.stopShimmerAnimation();
                 mShimmerViewContainer.setVisibility(View.GONE);
-                Log.d("data_snapshot: ", dataSnapshot.toString());
                 mCardAdapter = mFirebaseHelper.fetchQuotes(dataSnapshot);
                 displayData();
                 if (updateIndex) {
-                    Log.d(TAG, "onDataChange: update index");
-                    //Toast.makeText(this, "update index", Toast.LENGTH_SHORT).show();
-                    sessionManagement.updateQuoteStartIndex(endValue + 1);
+//                    sessionManagement.updateQuoteStartIndex(String.valueOf(Integer.parseInt(endValue) + 1));
                     FirebaseHelper firebaseHelper = new FirebaseHelper(mFirebaseDatabase, Quote.this);
-                    if (firebaseHelper.updateUserQuoteStartIndex(mFirebaseAuth.getCurrentUser().getUid(), Integer.parseInt(endValue) + 1)) {
+                    if (firebaseHelper.updateUserQuoteStartIndex(mFirebaseAuth.getCurrentUser().getUid(), endValue + 1)) {
                         Log.d(TAG, "onDataChange: updated index");
-                      //  Toast.makeText(this, "index updated", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

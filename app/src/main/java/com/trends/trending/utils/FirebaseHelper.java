@@ -36,7 +36,8 @@ public class FirebaseHelper {
 
     public Boolean uploadQuote(QuoteModel quote, String node) {
         Boolean isSaved;
-        if (quote == null || quote.getAuthorName().trim().length()==0 || quote.getFamousQuote().trim().length()==0 || quote.getUploadedBy().trim().length()==0) isSaved = false;
+        if (quote == null || quote.getAuthorName().trim().length() == 0 || quote.getFamousQuote().trim().length() == 0 || quote.getUploadedBy().trim().length() == 0)
+            isSaved = false;
         else {
             try {
                 mDatabaseReference.child(node).push().setValue(quote);
@@ -83,22 +84,22 @@ public class FirebaseHelper {
     public boolean writeNewUser(String userId, String name, String email) {
         boolean isSaved = false;
         UserModel user = new UserModel(name, email, "1");
-        try{
+        try {
             mDatabaseReference.child("users").child(userId).setValue(user);
             isSaved = true;
-        }catch (DatabaseException ignored){
+        } catch (DatabaseException ignored) {
 
         }
 
         return isSaved;
     }
 
-    public boolean updateUserQuoteStartIndex(String userId, int index) {
+    public boolean updateUserQuoteStartIndex(String userId, long index) {
         boolean isSaved = false;
-        try{
+        try {
             mDatabaseReference.child(FB_USER).child(userId).child(FB_USER_QUOTE_CHILD).setValue(String.valueOf(index));
             isSaved = true;
-        }catch (DatabaseException ignored){
+        } catch (DatabaseException ignored) {
 
         }
 
@@ -107,11 +108,11 @@ public class FirebaseHelper {
 
     public String getUserQuoteStartIndex(DataSnapshot dataSnapshot) {
         String index = null;
+
         if (dataSnapshot.exists()) {
-            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                index = ds.child(FB_USER_QUOTE_CHILD).getValue(String.class);
-            }
+            index = dataSnapshot.child(FB_USER_QUOTE_CHILD).getValue(String.class);
         }
+
         return index;
     }
 

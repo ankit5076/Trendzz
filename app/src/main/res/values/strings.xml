@@ -76,13 +76,6 @@
     <string name="carryminati">CarryMinati</string>
     <string name="guru_mann_fitness">Guru Mann Fitness</string>
     <string name="fitmuscle_tv">FitMuscle TV</string>
-    <string name="aaj_tak">Aaj Tak</string>
-    <string name="abp_news">Aaj Tak</string>
-    <string name="india_today">India Today</string>
-    <string name="zee_news">Zee News</string>
-    <string name="bbc_news">BBC News</string>
-    <string name="the_viral_fever">The Viral Fever</string>
-    <string name="all_india_bakchod">All India Bakchod</string>
     <string name="bindass">bindass</string>
     <string name="the_timeliners">The Timeliners</string>
     <string name="technical_guruji">Technical Guruji</string>
@@ -204,8 +197,11 @@
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="total_views">%1$s Million</string>
-    <string name="enter_email">Enter email</string>
-    <string name="enter_password">Enter password</string>
+    <string name="hint_enter_email">Enter email</string>
+    <string name="hint_enter_password">Enter password</string>
+    <string name="enter_email">Please Enter email</string>
+    <string name="enter_password">Please Enter password</string>
+    <string name="enter_name">Please Enter name</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="signup_here">Not have an account? Signup Here</string>
@@ -213,16 +209,20 @@
     <string name="or">OR</string>
     <string name="forgot_password"><u>Forgot Password ?</u></string>
     <string name="alert_forgot_password">Forgot Password</string>
+    <string name="enter_registered_email">Enter your registered email</string>
     <string name="alert_cancel">Cancel</string>
     <string name="alert_send">Send Email</string>
     <string name="alert_forgot_pwd_success_msg">Email Sent</string>
-    <string name="instruction_forgot_pwd">* A password reset link will be sent to your email.</string>
+    <string name="instruction_forgot_pwd">* A password reset link will be send to your email.</string>
     <string name="error_weak_password">weak password</string>
     <string name="error_invalid_email">Invalid Email</string>
-    <string name="error_user_exists">user already exsits</string>
+    <string name="error_user_exists">user already exists</string>
     <string name="try_after_some_time">Please try after some time</string>
-    <string name="progress_account_creation_title">Registering Please Wait...</string>
+    <string name="progress_account_creation_title">Registering Please Wait…</string>
     <string name="error_wrong_password">wrong password</string>
+    <string name="hint_enter_name">Enter name</string>
 
-
+    <string name="google_sign_in_cancelled">The sign in was cancelled. Make sure you are connected to the internet and try again.</string>
+    <string name="google_sign_in_failed">Sign In Failed </string>
+    <string name="google_sign_in_internal_error">No Network or Internal error occurred or cancelled by user</string>
 </resources>

@@ -53,4 +53,11 @@
         <item name="grey_500" type="color">#9e9e9e</item>
         <item name="blue_grey_500" type="color">#607d8b</item>
     </array>
+
+    <string-array name="login_header">
+        <item>Watch Trending Videos</item>
+        <item>Best Places to visit in India \u2665</item>
+        <item>\u201C Motivational Quotes \u201D</item>
+        <item>Most viewed songs on Youtube</item>
+    </string-array>
 </resources>

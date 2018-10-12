@@ -22,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -62,6 +63,8 @@ public class LoginSignUp extends AppCompatActivity {
     Button mButtonSignin;
     @BindView(R.id.textViewSignUp)
     TextView mTextViewSignUp;
+    @BindView(R.id.pBar)
+    ProgressBar mPBar;
 
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -74,16 +77,21 @@ public class LoginSignUp extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        if (firebaseAuth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        else {
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
 
-        //Then we will get the GoogleSignInClient object from GoogleSignIn class
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        progressDialog = new ProgressDialog(this);
-
+            //Then we will get the GoogleSignInClient object from GoogleSignIn class
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            progressDialog = new ProgressDialog(this);
+        }
     }
 
 
@@ -95,16 +103,16 @@ public class LoginSignUp extends AppCompatActivity {
 
         //checking if email and passwords are empty
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_password), Toast.LENGTH_LONG).show();
             return;
         }
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage(getResources().getString(R.string.progress_account_creation_title));
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -153,6 +161,7 @@ public class LoginSignUp extends AppCompatActivity {
                 }
                 break;
             case R.id.googleSignInButton:
+                mPBar.setVisibility(View.VISIBLE);
                 signUpWithGoogle();
                 break;
             case R.id.textViewSignUp:
@@ -167,7 +176,6 @@ public class LoginSignUp extends AppCompatActivity {
                     mEditTextName.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_up));
                     mButtonSignin.setText(getResources().getString(R.string.sign_in));
                     mTextViewSignUp.setText(getResources().getString(R.string.signup_here));
-
                 }
                 break;
 
@@ -206,7 +214,7 @@ public class LoginSignUp extends AppCompatActivity {
                                     }
                                 });
                             } else
-                                Toast.makeText(LoginSignUp.this, "Enter your registered email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginSignUp.this, getResources().getString(R.string.enter_registered_email), Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(LoginSignUp.this, getResources().getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
                     }
@@ -225,17 +233,17 @@ public class LoginSignUp extends AppCompatActivity {
         final String nickName = mEditTextName.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_email), Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(pwd)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_password), Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(nickName)) {
-            Toast.makeText(this, "Please enter nick name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_name), Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -308,8 +316,26 @@ public class LoginSignUp extends AppCompatActivity {
                 //authenticating with firebase
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
-                Toast.makeText(LoginSignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                int statusCode = e.getStatusCode();
+
+                switch (statusCode) {
+                    case GoogleSignInStatusCodes.SIGN_IN_CANCELLED:
+                        Toast.makeText(this, getResources().getString(R.string.google_sign_in_cancelled), Toast.LENGTH_LONG).show();
+                        break;
+                    case GoogleSignInStatusCodes.SIGN_IN_FAILED:
+                        Toast.makeText(this, getResources().getString(R.string.google_sign_in_failed) + e.getMessage(), Toast.LENGTH_LONG).show();
+                        break;
+                    case GoogleSignInStatusCodes.ERROR:
+                    case GoogleSignInStatusCodes.INTERNAL_ERROR:
+                    case GoogleSignInStatusCodes.NETWORK_ERROR:
+                        Toast.makeText(this, getResources().getString(R.string.google_sign_in_internal_error), Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        Toast.makeText(this, getResources().getString(R.string.try_again) +" "+ e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
+            mPBar.setVisibility(View.GONE);
         }
     }
 
@@ -339,18 +365,17 @@ public class LoginSignUp extends AppCompatActivity {
                 });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (firebaseAuth.getCurrentUser() != null) {
-            FirebaseUserMetadata metadata = firebaseAuth.getCurrentUser().getMetadata();
-            if (metadata != null && metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-                Toast.makeText(this, "new user", Toast.LENGTH_SHORT).show();
-            }
-            else
-                Toast.makeText(this, "exsisting user", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (firebaseAuth.getCurrentUser() != null) {
+//            FirebaseUserMetadata metadata = firebaseAuth.getCurrentUser().getMetadata();
+//            if (metadata != null && metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+//                Toast.makeText(this, "new user", Toast.LENGTH_SHORT).show();
+//            } else
+//                Toast.makeText(this, "exsisting user", Toast.LENGTH_SHORT).show();
+//            finish();
+//            startActivity(new Intent(this, MainActivity.class));
+//        }
+//    }
 }
