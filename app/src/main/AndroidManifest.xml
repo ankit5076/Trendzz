@@ -7,15 +7,17 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
         android:allowBackup="true"
+        android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".ui.LoginSignUp"
+            android:theme="@style/MyMaterialTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,10 +37,12 @@
             android:theme="@style/MyMaterialTheme" />
         <activity
             android:name=".ui.Video"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/MyMaterialTheme" />
-        <activity android:name=".DummyBottom" />
         <activity android:name=".DummyUploadQuote" />
-        <activity android:name=".ui.PlaylistVideo" />
+        <activity
+            android:name=".ui.PlaylistVideo"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".ui.UserUploadQuote" />
         <activity
             android:name=".ui.Fact"
@@ -60,6 +64,10 @@
             android:name=".ui.PlaceDetail"
             android:theme="@style/MyMaterialTheme" />
         <activity android:name=".ui.TopTen" />
+        <activity android:name=".ui.TopTenHome" />
+        <activity android:name=".ui.VideoHome" />
+        <activity android:name=".ui.Channel" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".ui.Settings" />
     </application>
 

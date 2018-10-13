@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -46,6 +45,8 @@ public class PlaceDetail extends AppCompatActivity {
     AdView mAdViewPlaceDetail;
     @BindView(R.id.bestTimeToVisit)
     TextView mBestTimeToVisit;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     private PlaceToVisitModel mPlace;
 
@@ -57,28 +58,28 @@ public class PlaceDetail extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mPlace = bundle.getParcelable(KEY_PLACE_OBJECT);
+            init();
         } else
             mPlace = null;
+    }
 
+    private void init() {
         ExtraHelper.bannerAdViewSetup(mAdViewPlaceDetail);
-
-        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(mPlace.getPlaceName());
-//        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         Picasso.get().load(mPlace.getPlaceImageUrl())
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.aaj_tak)
                 .into((ImageView) findViewById(R.id.place_detail_image));
-        mPlaceNames.setText(mPlace.getPlaces().replace(",", "#"));
+        mPlaceNames.setText(String.format(getResources().getString(R.string.about_detail),mPlace.getPlaces().replace(",", " #")));
         mAboutPlace.setText(mPlace.getAboutPlace());
         mBestTimeToVisit.setText(mPlace.getBestTimeToVisit());
 
     }
 
-    public void expandableButton4(View view) {
-        ExpandableRelativeLayout expandableLayout4 = findViewById(R.id.expandableAbout);
-        expandableLayout4.toggle(); // toggle expand and collapse
-    }
+//    public void expandableButton4(View view) {
+//        ExpandableRelativeLayout expandableLayout4 = findViewById(R.id.expandableAbout);
+//        expandableLayout4.toggle(); // toggle expand and collapse
+//    }
 
     public Uri getLocalBitmapUri(Bitmap bmp) {
         Uri bmpUri = null;
@@ -123,7 +124,7 @@ public class PlaceDetail extends AppCompatActivity {
                 break;
 
             case R.id.google_map:
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(mPlace.getPlaceName()+" "+mPlace.getPlaceState()));
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(mPlace.getPlaceName() + " " + mPlace.getPlaceState()));
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
@@ -135,8 +136,18 @@ public class PlaceDetail extends AppCompatActivity {
                 break;
 
             case R.id.wiki:
-                CustomTabs.openTab(PlaceDetail.this, WIKIPEDIA_SEARCH + mPlace.getPlaceName());
+                String placeName = wikipediaSearch(mPlace.getPlaceName());
+                CustomTabs.openTab(PlaceDetail.this, WIKIPEDIA_SEARCH + placeName);
                 break;
         }
+    }
+
+    public String wikipediaSearch(String place) {
+        if (place.contains("-"))
+            return place.split("-")[0].trim();
+        else if (place.contains("("))
+            return place.split(" ")[0].trim();
+        else
+            return place;
     }
 }

@@ -1,7 +1,6 @@
 package com.trends.trending.utils;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseException;
@@ -10,10 +9,14 @@ import com.trends.trending.adapter.FactPagerAdapter;
 import com.trends.trending.adapter.QuotePagerAdapter;
 import com.trends.trending.model.FactModel;
 import com.trends.trending.model.QuoteModel;
+import com.trends.trending.model.UserModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.trends.trending.utils.Keys.QuoteInfo.FB_USER;
+import static com.trends.trending.utils.Keys.QuoteInfo.FB_USER_QUOTE_CHILD;
 
 /**
  * Created by USER on 3/10/2018.
@@ -33,7 +36,8 @@ public class FirebaseHelper {
 
     public Boolean uploadQuote(QuoteModel quote, String node) {
         Boolean isSaved;
-        if (quote == null || quote.getAuthorName().trim().length()==0 || quote.getFamousQuote().trim().length()==0 || quote.getUploadedBy().trim().length()==0) isSaved = false;
+        if (quote == null || quote.getAuthorName().trim().length() == 0 || quote.getFamousQuote().trim().length() == 0 || quote.getUploadedBy().trim().length() == 0)
+            isSaved = false;
         else {
             try {
                 mDatabaseReference.child(node).push().setValue(quote);
@@ -68,10 +72,6 @@ public class FirebaseHelper {
             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                 FactModel fact = ds.getValue(FactModel.class);
                 facts.add(fact);
-                Log.d("factttttt:", "fetchfacts: "+ fact.getFactContent());
-//                Log.d("facttttttttttt:", "fetchfacts: "+ dataSnapshot.toString());
-//                Log.d("facttttttttttttttt:", "fetchfacts: "+ dataSnapshot.getChildren().toString());
-//                //quotePagerAdapter.addCardItem(quote);^
             }
             Collections.shuffle(facts);
             for (FactModel factModel : facts) {
@@ -80,4 +80,40 @@ public class FirebaseHelper {
         }
         return factPagerAdapter;
     }
+
+    public boolean writeNewUser(String userId, String name, String email) {
+        boolean isSaved = false;
+        UserModel user = new UserModel(name, email, "1");
+        try {
+            mDatabaseReference.child("users").child(userId).setValue(user);
+            isSaved = true;
+        } catch (DatabaseException ignored) {
+
+        }
+
+        return isSaved;
+    }
+
+    public boolean updateUserQuoteStartIndex(String userId, long index) {
+        boolean isSaved = false;
+        try {
+            mDatabaseReference.child(FB_USER).child(userId).child(FB_USER_QUOTE_CHILD).setValue(String.valueOf(index));
+            isSaved = true;
+        } catch (DatabaseException ignored) {
+
+        }
+
+        return isSaved;
+    }
+
+    public String getUserQuoteStartIndex(DataSnapshot dataSnapshot) {
+        String index = null;
+
+        if (dataSnapshot.exists()) {
+            index = dataSnapshot.child(FB_USER_QUOTE_CHILD).getValue(String.class);
+        }
+
+        return index;
+    }
+
 }

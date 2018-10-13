@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,19 +16,19 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <com.rilixtech.materialfancybutton.MaterialFancyButton
-
             android:id="@+id/toolbar_user_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            fancy:mfb_borderColor="#000000"
+            fancy:mfb_borderColor="@color/textColorPrimary"
             fancy:mfb_borderWidth="1dp"
             fancy:mfb_defaultColor="@color/colorPrimary"
             fancy:mfb_radius="5dp"
             fancy:mfb_text="Upload Quote"
-            fancy:mfb_textColor="#000000"
+            fancy:mfb_textColor="@color/textColorPrimary"
             android:layout_marginEnd="5dp"
-            android:layout_gravity="right"/>
+            android:layout_gravity="right"
+            tools:ignore="RtlHardcoded" />
 
     </android.support.v7.widget.Toolbar>
     <com.facebook.shimmer.ShimmerFrameLayout

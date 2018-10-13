@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/notification/ic_ondemand_video_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_pause_circle_outline_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,11 +28,11 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
+                            <entry key="color" value="14a983" />
                             <entry key="height" value="36" />
-                            <entry key="outputName" value="ic_video_white_36dp" />
+                            <entry key="outputName" value="ic_pause_circle_outline_teal_36dp" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\USER" />
+                            <entry key="sourceFile" value="F:\hot.svg" />
                             <entry key="width" value="36" />
                           </map>
                         </option>

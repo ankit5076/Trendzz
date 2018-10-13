@@ -12,6 +12,7 @@ public class PlaceResponseList {
     @SerializedName(BEST_PLACES)
     private List<PlaceToVisitModel> bestPlaces;
 
+
     public List<PlaceToVisitModel> getBestPlaces() {
         return bestPlaces;
     }

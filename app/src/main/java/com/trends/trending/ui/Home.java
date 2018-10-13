@@ -180,7 +180,7 @@ public class Home extends AppCompatActivity {
 
     }
 
-    public void startActivity(final Class<? extends Activity> clz) {
+    private void startActivity(final Class<? extends Activity> clz) {
         startActivity(new Intent(Home.this, clz));
     }
 
@@ -244,7 +244,7 @@ public class Home extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_video:
-                startActivity(PlaylistVideo.class);
+                startActivity(VideoHome.class);
                 break;
             case R.id.home_quote:
                 startActivity(Quote.class);
@@ -256,7 +256,7 @@ public class Home extends AppCompatActivity {
                 startActivity(Place.class);
                 break;
             case R.id.home_top10:
-                //startActivity();
+                startActivity(TopTenHome.class);
                 break;
             case R.id.home_feedback:
                 break;
